@@ -22,14 +22,24 @@
     </head>
     <body>
     @include('navbar')
-    @include('carousel')
-    <section class="container md-padding">
-        <h1 class="d-flex">¿Quiénes somos?</h1>
-        <p class="d-flex">
-            Objetos perdidos monterrey mejor conocida como "OPEMO" somos una empresa sin fines de lucro que se dedica a facilitar la recuperación de objetos perdidos 
-            en Monterrey y su área metropolitana. ¿Cómo? Haciendo una comunidad donde cada usuario puede publicar el objeto encontrado por medio de una imagen o video.
-        </p>
-    </section>
+    <div class="container md-padding">
+        <div class="card-columns">
+        @for($i=0;$i<15;$i++)
+            <div class="card">
+                <a href="/publication">
+                    <img src="img/catbox.jpg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+          @endfor
+        </div>
+    </div>
     @include('footer')
     </body>
 </html>

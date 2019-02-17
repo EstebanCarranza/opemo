@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard', function()
+{
+    return view('publications.publist');
+});
+Route::get('/publication', function()
+{
+    return view('publications.publication');
+});

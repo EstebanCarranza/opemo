@@ -1,0 +1,13 @@
+.md-padding
+{
+    padding:32px;
+}
+.md-margin
+{
+    margin:32px;
+}
+.md-padding-in
+{
+    padding:32px;
+    box-sizing: border-box;
+}

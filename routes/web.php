@@ -11,14 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function ($showCarousel = true) {
+    return view('pages.landingpage')->with('showCarousel',$showCarousel);
 });
-Route::get('/dashboard', function()
+Route::match(['get','post'],'/dashboard', function()
 {
-    return view('publications.publist');
+    //Revisar el kernel, por ahora solo está desactivada la seguridad, pero no debe ser así
+    //Se desactivó el middleware VerifyCsrfToken para peticiones POST seguras
+    //Ruta de desactivación: app/Http/Kernel.php
+    //Elemento comentarizado:  \App\Http\Middleware\VerifyCsrfToken::class,
+    return view('pages.publist');
 });
 Route::get('/publication', function()
 {
-    return view('publications.publication');
+    return view('pages.publication');
+});
+Route::get('/login',function()
+{
+    return view('pages.login');
 });

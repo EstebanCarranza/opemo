@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>OPEMO</title>
+        <title>@yield('title')</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,600" rel="stylesheet" type="text/css">
@@ -21,15 +21,15 @@
         <link href="css/helpers.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-    @include('navbar')
-    @include('carousel')
+    @include('inc.navbar')
+    @if(isset($showCarousel))
+        @if($showCarousel)
+            @include('inc.carousel')
+        @endif
+    @endif
     <section class="container md-padding">
-        <h1 class="d-flex">¿Quiénes somos?</h1>
-        <p class="d-flex">
-            Objetos perdidos monterrey mejor conocida como "OPEMO" somos una empresa sin fines de lucro que se dedica a facilitar la recuperación de objetos perdidos 
-            en Monterrey y su área metropolitana. ¿Cómo? Haciendo una comunidad donde cada usuario puede publicar el objeto encontrado por medio de una imagen o video.
-        </p>
+        @yield('content')
     </section>
-    @include('footer')
+    @include('inc.footer')
     </body>
 </html>

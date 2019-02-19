@@ -45,7 +45,7 @@
     </form>
     <ul class="navbar-nav mr-right">
     <li class="nav-item active">
-        <a class="nav-link link-color" href="#">Iniciar sesión <span class="sr-only">(current)</span></a>
+        <a class="nav-link link-color" href="/login">Iniciar sesión <span class="sr-only">(current)</span></a>
       </li>
      <li class="nav-item active">
         <a class="nav-link link-color" href="#">Registrarse <span class="sr-only">(current)</span></a>

@@ -10,9 +10,6 @@
         <a class="nav-link link-color" href="/dashboard">Publicaciones</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link link-color" href="#">¿Quiénes somos?</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link link-color" href="#">Contacto</a>
       </li>
       <li class="nav-item">

@@ -22,8 +22,8 @@
           <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="#">¿Quiénes somos?</a></li>
             <li><a class="text-muted" href="#">Ubicaciones</a></li>
-            <li><a class="text-muted" href="#">Privacidad</a></li>
-            <li><a class="text-muted" href="#">Términos y condiciones</a></li>
+            <li><a class="text-muted" href="/privacity">Privacidad</a></li>
+            <li><a class="text-muted" href="/termcon">Términos y condiciones</a></li>
           </ul>
         </div>
       </div>

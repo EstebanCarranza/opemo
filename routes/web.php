@@ -30,3 +30,11 @@ Route::get('/login',function()
 {
     return view('pages.login');
 });
+Route::get('/privacity',function()
+{
+    return view('pages.privacity');
+});
+Route::get('/termcon',function()
+{
+    return view ('pages.terminos-condiciones');
+});

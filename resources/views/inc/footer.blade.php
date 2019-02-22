@@ -14,14 +14,14 @@
         <div class="col-6 col-md">
           <h5>Recursos</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Preguntas frecuentes</a></li>
+            <li><a class="text-muted" href="frequent-questions">Preguntas frecuentes</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
           <h5>Acerca de</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">¿Quiénes somos?</a></li>
-            <li><a class="text-muted" href="#">Ubicaciones</a></li>
+            <li><a class="text-muted" href="/">¿Quiénes somos?</a></li>
+            <li><a class="text-muted" href="/ubications">Ubicaciones</a></li>
             <li><a class="text-muted" href="/privacity">Privacidad</a></li>
             <li><a class="text-muted" href="/termcon">Términos y condiciones</a></li>
           </ul>

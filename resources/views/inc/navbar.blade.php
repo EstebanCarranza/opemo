@@ -10,13 +10,13 @@
         <a class="nav-link link-color" href="/dashboard">Publicaciones</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link link-color" href="#">Contacto</a>
+        <a class="nav-link link-color" href="/contact">Contacto</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link link-color" href="#">Ubicaciones</a>
+        <a class="nav-link link-color" href="/ubications">Ubicaciones</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link link-color" href="#">Preguntas frecuentes</a>
+        <a class="nav-link link-color" href="/frequent-questions">Preguntas frecuentes</a>
       </li>
       <!--
       <li class="nav-item dropdown">

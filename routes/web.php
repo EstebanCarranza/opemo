@@ -38,3 +38,15 @@ Route::get('/termcon',function()
 {
     return view ('pages.terminos-condiciones');
 });
+Route::get('/ubications', function()
+{
+    return view ('pages.ubications');
+});
+Route::get('/frequent-questions',function()
+{
+    return view('pages.frecuent-questions');
+});
+Route::get('/contact', function()
+{
+    return view('pages.contact');
+});

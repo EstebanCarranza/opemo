@@ -42,16 +42,16 @@ $data = "http://twicky.com.mx";
 
 $navbarValue = [
   '0' =>"Publicaciones",
-  '1' => "Contacto",
-  '2' => "Ubicaciones",
-  '3' => "Preguntas frecuentes"
+  '1' => "Ubicaciones",
+  '2' => "Preguntas frecuentes",
+  '3' => "Contacto"
 ];
 $navbarRoute =
 [
   '0' => '/dashboard',
-  '1' => '/contact',
-  '2' => '/ubications',
-  '3' => '/frequent-questions'
+  '1' => '/ubications',
+  '2' => '/frequent-questions',
+  '3' => '/contact'
 ];
   
 ?>  
@@ -59,22 +59,24 @@ $navbarRoute =
     <div class="nav-wrapper container">
      <div id="navLogo" class="left"> <a href="/" class="brand-logo">OPEMO</a></div>
     <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      
-      <form id="frmSearch">
+     <form id="frmSearch">
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i id="srcClose" class="material-icons">close</i>
         </div>
       </form>
+     <div class="row"> 
        <ul id="ulNavBar" class="right hide-on-med-and-down">
       @for($i = 0; $i < count($navbarValue); $i++)
         <li title={{$navbarValue[$i]}}><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
       @endfor
       <li title="Buscar"><a id="btnSearch"><i class="material-icons">search</i></a></li>
-      <li title="Mi cuenta"><a id="btnSearch" href="/login"><i class="material-icons">person</i></a></li>
+      <li title="Mi cuenta"><a id="btnUserLog" href="/login"><i class="material-icons">person</i></a></li>
       </ul>
+
     </div>
+
     
   </nav>
 
@@ -92,16 +94,14 @@ $navbarRoute =
        
   </ul>
 <script>   
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
+  
 
   // Or with jQuery
 
   $(document).ready(function(){
     $('.sidenav').sidenav();
         $("#frmSearch").hide();
+      
     $("#btnSearch").click(function(){
         $("#ulNavBar").toggle();
         $("#frmSearch").toggle();
@@ -113,5 +113,6 @@ $navbarRoute =
       $("#frmSearch").toggle();
       $("#navLogo").toggle();
     });
+   
   });
   </script>

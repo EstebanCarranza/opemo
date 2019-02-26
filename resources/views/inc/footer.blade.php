@@ -20,9 +20,8 @@
   </div>
   <div class='footer-copyright'>
     <div class='container'>
-    <label class='black-text text-lighten-4'>© 2019 Copyright Text</label>
+    <label class='black-text text-lighten-4'>© 2019 Copyright Opemo</label>
     <a class='black-text text-lighten-4 right' href='/'>&nbsp;¿Quiénes somos?&nbsp;</a>
-    <a class='black-text text-lighten-4 right' href='/ubications'>&nbsp;Ubicaciones&nbsp;</a>
     <a class='black-text text-lighten-4 right' href='/privacity'>&nbsp;Privacidad&nbsp;</a>
     <a class='black-text text-lighten-4 right' href='/termcon'>&nbsp;Términos y condiciones&nbsp;</a>
     </div>

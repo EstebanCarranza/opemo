@@ -30,7 +30,11 @@
     @endif
     <section class="container md-padding">
         @yield('content')
+       
+        @yield('pagination')
+       
     </section>
+    
     @include('inc.footer')
     </body>
 </html>

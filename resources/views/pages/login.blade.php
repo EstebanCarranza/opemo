@@ -1,23 +1,35 @@
 @extends('layouts.master')
 @section('content')
-<div class="card mx-auto" style="width: 18rem;">
-  <div class="card-body">
-    <form method="post" action="/dashboard">
-     <div class="form-group">
-        <label for="txtCorreo">Correo electrónico</label>
-        <input type="email" class="form-control" id="txtCorreo" placeholder="correo@electronico.com" required>
-    </div>
-     <div class="form-group">
-        <label for="txtPassword">Contraseña</label>
-        <input type="password" class="form-control" id="txtPassword" placeholder="Contraseña" required>
-    </div>
-       <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </div>
-  </div>
-    </form>
-  </div>
-</div>
+<br>
+ <div class="row">
 
+    <form class="card col s4 offset-s4" method="post" action="/dashboard">
+      <br>
+          <div class="row">
+            <div class="col s12 center">
+              <i class="material-icons large">account_circle</i>
+            </div>
+            <h5 class="center-align">Iniciar sesión</h5>
+        </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+       <div class="row">
+       <div class="col s12">
+       <button class="btn waves-effect waves-light" type="submit" name="action">Iniciar sesión
+          <i class="material-icons right">send</i>
+        </button>
+        </div>
+        </div>
+    </form>
+</div>
 @stop

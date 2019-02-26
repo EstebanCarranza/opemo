@@ -1,30 +1,30 @@
-<footer class="container py-5">
-      <div class="row">
-        <div class="col-12 col-md">
-          <small class="d-block mb-3 text-muted">© 2019</small>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Usuarios</h5>
-          <ul class="list-unstyled text-small">  
-            <li><a class="text-muted" href>Reportar usuarios</a></li>
-            <li><a class="text-muted" href="#">Borraron mi publicación</a></li>
-            <li><a class="text-muted" href="#">No puedo acceder</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Recursos</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="frequent-questions">Preguntas frecuentes</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Acerca de</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="/">¿Quiénes somos?</a></li>
-            <li><a class="text-muted" href="/ubications">Ubicaciones</a></li>
-            <li><a class="text-muted" href="/privacity">Privacidad</a></li>
-            <li><a class="text-muted" href="/termcon">Términos y condiciones</a></li>
-          </ul>
-        </div>
+
+<footer class='page-footer white'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col l6 s12'>
+        <h5 class='white-text'></h5>
+        <p class='black-text text-lighten-4'>
+        </p>
       </div>
-    </footer>
+      <div class='col l4 offset-l2 s12'>
+        <h5 class='black-text'>Información para usuarios</h5>
+        <ul>
+          <li><a class='black-text text-lighten-3' href='/'>Reportar usuarios</a></li>
+          <li><a class='black-text text-lighten-3' href='/'>Borraron mi cuenta</a></li>
+          <li><a class='black-text text-lighten-3' href='/'>No puedo acceder</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class='footer-copyright'>
+    <div class='container'>
+    <label class='black-text text-lighten-4'>© 2019 Copyright Text</label>
+    <a class='black-text text-lighten-4 right' href='/'>&nbsp;¿Quiénes somos?&nbsp;</a>
+    <a class='black-text text-lighten-4 right' href='/ubications'>&nbsp;Ubicaciones&nbsp;</a>
+    <a class='black-text text-lighten-4 right' href='/privacity'>&nbsp;Privacidad&nbsp;</a>
+    <a class='black-text text-lighten-4 right' href='/termcon'>&nbsp;Términos y condiciones&nbsp;</a>
+    </div>
+  </div>
+</footer>

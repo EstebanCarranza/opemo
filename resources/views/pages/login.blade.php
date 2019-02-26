@@ -3,7 +3,7 @@
 <br>
  <div class="row">
 
-    <form class="card col s4 offset-s4" method="post" action="/dashboard">
+    <form class="card col l4 offset-l4 s12 m6 offset-m3" method="post" action="/dashboard">
       <br>
           <div class="row">
             <div class="col s12 center">
@@ -14,13 +14,13 @@
       <div class="row">
         <div class="input-field col s12">
           <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
+          <label for="email">Correo electrónico</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
+          <label for="password">Contraseña</label>
         </div>
       </div>
        <div class="row">

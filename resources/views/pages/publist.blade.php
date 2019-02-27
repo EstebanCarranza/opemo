@@ -35,8 +35,8 @@
 @section('body')
     @for($i=0;$i<count($cardList);$i++)
     
-        <div class='col l4 m6 s12 animated-card'>
-            <div class='card small hoverable'>
+        <div class='col l4 m6 s12 animated-card card-row-custom-size'>
+            <div class='card small hoverable card-custom-size'>
                 <div class='card-image waves-effect waves-block waves-light'>
                     <img class='activator' src={{$cardList[$i]['pathImage']}}>
                 </div>

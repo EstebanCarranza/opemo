@@ -35,14 +35,14 @@
 @section('body')
     @for($i=0;$i<count($cardList);$i++)
     
-        <div class='col l4 m6 s12 animated-card'>
-            <div class='card small hoverable'>
+        <div class='col l4 m6 s12 animated-card card-row-custom-size'>
+            <div class='card small hoverable card-custom-size'>
                 <div class='card-image waves-effect waves-block waves-light'>
                     <img class='activator' src={{$cardList[$i]['pathImage']}}>
                 </div>
                 <div class='card-content'>
                     <span class='card-title activator grey-text text-darken-4'>{{$cardList[$i]['title']}}<i class='material-icons right'>more_vert</i></span>
-                    <p><a target='_blank' href='/publication'>Abrir ubicación</a></p>
+                    <p><a target='_blank' href='/dashboard'>Abrir ubicación</a></p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
                             {{$cardList[$i]['time-ago']}}&nbsp;

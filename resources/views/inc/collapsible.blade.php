@@ -1,4 +1,7 @@
  <ul class="collapsible">
+    <li class="row">
+      <h1 class="flow-text center col s12"> Preguntas frecuentes </h1>
+    </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">question_answer</i>
       ¿Opemo cobra alguna subscripción al usuario?

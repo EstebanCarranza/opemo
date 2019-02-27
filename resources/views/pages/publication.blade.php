@@ -3,7 +3,7 @@
 @section('content')
 <div class="row card-panel">
 <div class="col s12">
-     <h3 class="flow-text">{{$title}}</h3>
+     <h3 class="flow-text center">{{$title}}</h3>
     </div>
 </div>
 <div class="row card-panel">
@@ -21,7 +21,7 @@
             </p>
     </div>
     <div class="col l6 offset-l6 s12 row">
-        <a class="col l12 m12 s12 waves-effect waves-light btn">Reclamar objeto</a>
+        <a class="col l12 m12 s12 waves-effect waves-light btn" href="/reclam">Reclamar objeto</a>
     </div>
 </div>
 <div class="row card-panel">

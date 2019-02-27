@@ -54,4 +54,12 @@ Route::get('/signup', function()
 {
     return view('pages.signup');
 });
+Route::get('/reclam',function()
+{
+    return view('pages.reclam');
+});
+Route::get('/dash',function()
+{
+    return view('pages.dash');
+});
 //Route::controller('/publicacion','')

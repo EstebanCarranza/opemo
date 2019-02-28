@@ -23,7 +23,9 @@
             
     </head>
     <body>
+    <div class="navbar-fixed">
         @include('inc.navbar')
+    </div>
     @if(isset($showCarousel))
         @if($showCarousel)
             @include('inc.carousel')

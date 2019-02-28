@@ -55,6 +55,7 @@ $navbarRoute =
 ];
   
 ?>  
+
 <nav class="orange">
     <div class="nav-wrapper container">
      <div id="navLogo" class="left"> <a href="/" class="brand-logo">OPEMO</a></div>

@@ -1,5 +1,4 @@
-
-<footer class='page-footer white'>
+<footer class='page-footer white footer-margin'>
   <div class='container'>
     <div class='row'>
       <div class='col l6 s12'>
@@ -10,7 +9,7 @@
       <div class='col l4 offset-l2 s12'>
         <h5 class='black-text'>Información para usuarios</h5>
         <ul>
-          <li><a class='black-text text-lighten-3' href='/'>Reportar usuarios</a></li>
+          <li><a class='black-text text-lighten-3' href='/report-users'>Reportar usuarios</a></li>
           <li><a class='black-text text-lighten-3' href='/'>Borraron mi cuenta</a></li>
           <li><a class='black-text text-lighten-3' href='/'>No puedo acceder</a></li>
           

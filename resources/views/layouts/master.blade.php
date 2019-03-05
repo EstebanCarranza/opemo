@@ -31,7 +31,7 @@
             @include('inc.carousel')
         @endif
     @endif
-    <section class="container md-padding">
+    <section class="container md-padding row">
         @yield('content')
        
         @yield('pagination')

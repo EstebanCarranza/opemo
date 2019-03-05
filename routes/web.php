@@ -66,4 +66,7 @@ Route::post('/dash',function()
 {
     return view('pages.dash');
 });
+Route::get('/report-users',function(){
+    return view('pages.report-users');
+});
 //Route::controller('/publicacion','')

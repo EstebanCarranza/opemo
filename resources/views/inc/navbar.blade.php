@@ -64,7 +64,7 @@ $navbarRoute =
         <div class="input-field">
           <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i id="srcClose" class="material-icons">close</i>
+          <i id="srcClose" class="material-icons" title="Cerrar barra de búsqueda">close</i>
         </div>
       </form>
      <div class="row"> 
@@ -104,15 +104,17 @@ $navbarRoute =
         $("#frmSearch").hide();
       
     $("#btnSearch").click(function(){
-        $("#ulNavBar").toggle();
-        $("#frmSearch").toggle();
-       $("#navLogo").toggle();
+      $("#navLogo").slideToggle( 200 );
+        $("#ulNavBar").slideToggle( 200 );
+        $("#frmSearch").slideToggle( 200 );
+       
     });
     $("#srcClose").click(function()
     {
-      $("#ulNavBar").toggle();
-      $("#frmSearch").toggle();
-      $("#navLogo").toggle();
+      $("#navLogo").slideToggle( 200 );
+      $("#ulNavBar").slideToggle( 200 );
+      $("#frmSearch").slideToggle( 200 );
+      
     });
    
   });

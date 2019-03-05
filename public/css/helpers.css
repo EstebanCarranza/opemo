@@ -11,8 +11,42 @@
     padding:32px;
     box-sizing: border-box;
 }
+.footer-margin
+{
+   
+}
+.card
+{
+    animation-duration: 0.3s;
+    animation-name: aparecer-pop;
+}
+.card-testimonio
+{
+    max-height:250px;
+    overflow-y:auto;
+}
+@keyframes slidein {
+  from {
+    margin-bottom: 64px;
+  }
 
-/* SMARTPHONES LANDSCAPE */
+  to {
+    margin-bottom: 16px;
+
+  }
+}
+@keyframes aparecer-pop {
+  from {
+    transform:scale(0);
+  }
+
+  to {
+    transform:scale(1);
+  }
+}
+/* SMARTPHONES LANDSCAPE 
+Aumenta el ancho de la tarjeta en modo móvil, 
+se cometarizó en lo que se revisa la utilidad del código
 @media only screen and (max-width: 480px) 
 {
 
@@ -40,3 +74,4 @@
         margin-top:6px;
     }
 }
+*/

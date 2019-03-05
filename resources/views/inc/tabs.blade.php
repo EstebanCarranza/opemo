@@ -1,6 +1,8 @@
 <div class="card">
     <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+        <p>
+            tabs
+        </p>
     </div>
     <div class="card-tabs">
         <ul class="tabs tabs-fixed-width">

@@ -1,65 +1,25 @@
-<!--
-<nav class="navbar navbar-expand-lg navbar-light bg-orange">
-  <b><a class="navbar-brand link-color" href="/">OPEMO</a></b>
-  <button class="navbar-toggler" style="color:white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link link-color" href="/dashboard">Publicaciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link link-color" href="/contact">Contacto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link link-color" href="/ubications">Ubicaciones</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link link-color" href="/frequent-questions">Preguntas frecuentes</a>
-      </li>
-      
-    </ul>
-   
-    <ul class="navbar-nav mr-right">
-    <li class="nav-item active">
-        <a class="nav-link link-color" href="/login">Iniciar sesión <span class="sr-only">(current)</span></a>
-      </li>
-     <li class="nav-item active">
-        <a class="nav-link link-color" href="#">Registrarse <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
--->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+<!-- Remember: add jquery 2.1.1 + materialize js and materialize css of libraries -->
 <?php 
-$data = "http://twicky.com.mx";
-
-$navbarValue = [
-  '0' =>"Publicaciones",
-  '1' => "Ubicaciones",
-  '2' => "Preguntas frecuentes",
-  '3' => "Contacto"
-];
-$navbarRoute =
-[
-  '0' => '/dashboard',
-  '1' => '/ubications',
-  '2' => '/frequent-questions',
-  '3' => '/contact'
-];
-  
+  $data = "http://twicky.com.mx";
+  $navbarValue = [
+    '0' => "Publicaciones",
+    '1' => "Ubicaciones",
+    '2' => "Preguntas frecuentes",
+    '3' => "Contacto"
+  ];
+  $navbarRoute =
+  [
+    '0' => '/publication-list',
+    '1' => '/ubications',
+    '2' => '/frequent-questions',
+    '3' => '/contact'
+  ];
 ?>  
-
 <nav class="orange">
+  <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper container">
      <div id="navLogo" class="left"> <a href="/" class="brand-logo">OPEMO</a></div>
-    <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      
      <form id="frmSearch">
         <div class="input-field">
           <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
@@ -81,24 +41,14 @@ $navbarRoute =
     
   </nav>
 
-
-
-
-
-
   <ul class="sidenav" id="mobile-demo">
-  <li><a href="/search">Buscar</a></li>
-  <li><a href="/login">Mi cuenta</a></li>
-     @for($i = 0; $i < count($navbarValue); $i++)
-        <li><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
-      @endfor
-       
+    <li><a href="/search">Buscar</a></li>
+    <li><a href="/login">Mi cuenta</a></li>
+    @for($i = 0; $i < count($navbarValue); $i++)
+      <li><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
+    @endfor   
   </ul>
 <script>   
-  
-
-  // Or with jQuery
-
   $(document).ready(function(){
     $('.sidenav').sidenav();
         $("#frmSearch").hide();

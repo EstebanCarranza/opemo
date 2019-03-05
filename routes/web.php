@@ -14,59 +14,41 @@
 Route::get('/', function ($showCarousel = true) {
     return view('pages.landingpage')->with('showCarousel',$showCarousel);
 });
-Route::match(['get','post'],'/dashboard', function()
+Route::get('/publication-list', function()
 {
-    //Revisar el kernel, por ahora solo está desactivada la seguridad, pero no debe ser así
-    //Se desactivó el middleware VerifyCsrfToken para peticiones POST seguras
-    //Ruta de desactivación: app/Http/Kernel.php
-    //Elemento comentarizado:  \App\Http\Middleware\VerifyCsrfToken::class,
     return view('pages.publist');
 });
 Route::get('/publication', function()
 {
     return view('pages.publication');
 });
-Route::get('/login',function()
-{
-    return view('pages.login');
-});
-Route::get('/privacity',function()
-{
-    return view('pages.privacity');
-});
-Route::get('/termcon',function()
-{
-    return view ('pages.terminos-condiciones');
-});
+
 Route::get('/ubications', function()
 {
     return view ('pages.ubications');
 });
-Route::get('/frequent-questions',function()
-{
-    return view('pages.frecuent-questions');
-});
-Route::get('/contact', function()
-{
-    return view('pages.contact');
-});
-Route::get('/signup', function()
-{
-    return view('pages.signup');
-});
+
 Route::get('/reclam',function()
 {
     return view('pages.reclam');
 });
-Route::get('/dash',function()
+Route::match(['get','post'],'/dashboard', function()
 {
-    return view('pages.dash');
+    //Revisar el kernel, por ahora solo está desactivada la seguridad, pero no debe ser así
+    //Se desactivó el middleware VerifyCsrfToken para peticiones POST seguras
+    //Ruta de desactivación: app/Http/Kernel.php
+    //Elemento comentarizado:  \App\Http\Middleware\VerifyCsrfToken::class,
+    return view('pages.dashboard');
 });
-Route::post('/dash',function()
-{
-    return view('pages.dash');
-});
-Route::get('/report-users',function(){
-    return view('pages.report-users');
-});
-//Route::controller('/publicacion','')
+//</------------------------------------ FORMS ------------------------------------\>
+Route::get('/login',    function(){ return view('forms.login');});
+Route::get('/signup',   function(){ return view('forms.signup');});
+Route::get('/contact',  function(){ return view('forms.contact');});
+//<\------------------------------------ FORMS ------------------------------------/>
+//</------------------------------------ INFO -------------------------------------\>
+Route::get('/privacity',            function(){return view('info.privacity');});
+Route::get('/termcon',              function(){return view('info.terminos-condiciones');});
+Route::get('/frequent-questions',   function(){return view('info.frecuent-questions');});
+Route::get('/report-users',         function(){return view('info.report-users');});
+//<\------------------------------------ INFO -------------------------------------/>
+Route::any('/test',                 function(){return view('pages.test');});

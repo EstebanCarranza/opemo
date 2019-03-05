@@ -27,11 +27,6 @@ Route::get('/ubications', function()
 {
     return view ('pages.ubications');
 });
-
-Route::get('/reclam',function()
-{
-    return view('pages.reclam');
-});
 Route::match(['get','post'],'/dashboard', function()
 {
     //Revisar el kernel, por ahora solo está desactivada la seguridad, pero no debe ser así
@@ -41,9 +36,10 @@ Route::match(['get','post'],'/dashboard', function()
     return view('pages.dashboard');
 });
 //</------------------------------------ FORMS ------------------------------------\>
-Route::get('/login',    function(){ return view('forms.login');});
-Route::get('/signup',   function(){ return view('forms.signup');});
-Route::get('/contact',  function(){ return view('forms.contact');});
+Route::get('/login',    function(){return view('forms.login');});
+Route::get('/signup',   function(){return view('forms.signup');});
+Route::get('/contact',  function(){return view('forms.contact');});
+Route::get('/reclam',   function(){return view('forms.reclam');});
 //<\------------------------------------ FORMS ------------------------------------/>
 //</------------------------------------ INFO -------------------------------------\>
 Route::get('/privacity',            function(){return view('info.privacity');});
@@ -52,3 +48,10 @@ Route::get('/frequent-questions',   function(){return view('info.frecuent-questi
 Route::get('/report-users',         function(){return view('info.report-users');});
 //<\------------------------------------ INFO -------------------------------------/>
 Route::any('/test',                 function(){return view('pages.test');});
+
+//</------------------------------------ ACTIONS ------------------------------------\>
+Route::match(['get','post'],'/send-reclam', function(){return view('pages.dashboard');});
+Route::match(['get','post'],'/send-login',  function(){return view('pages.dashboard');});
+Route::match(['get','post'],'/send-signup', function(){return view('pages.dashboard');});
+Route::match(['get','post'],'/send-contact', function(){return view('pages.dashboard');});
+//<\------------------------------------ ACTIONS ------------------------------------/>

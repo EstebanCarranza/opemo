@@ -3,7 +3,7 @@
 <br>
  <div class="row">
 
-    <form class="card col s10 offset-s1" method="post" action="/dashboard">
+    <form class="card col s10 offset-s1" method="post" action="/send-contact">
       <br>
           <div class="row">
             <h5 class="center-align">Formulario de contacto</h5>

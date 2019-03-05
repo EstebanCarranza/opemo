@@ -1,11 +1,12 @@
 @extends('layouts.master')
 <?php $title = "titulo"; ?>
+@section('title', 'Dashboard')
 @section('content')
 
 <div class="card-panel z-depth-0 col s12">
         <div class="row">
         <div class="col l4 m6 s12">
-                <div class="card">
+                <div class="card card-control-panel">
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Mi perfil<i class="material-icons right">more_vert</i></span>
@@ -20,7 +21,7 @@
                 </div>
             </div>
             <div class="col l4 m6 s12">
-                <div class="card">
+                <div class="card card-control-panel">
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">                    
                     Mis publicaciones<i class="material-icons right">more_vert</i></span>
@@ -35,7 +36,7 @@
                 </div>
             </div>
             <div class="col l4 m6 s12">
-                <div class="card">
+                <div class="card card-control-panel">
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Mis ubicaciones<i class="material-icons right">more_vert</i></span>
@@ -50,7 +51,7 @@
                 </div>
             </div>
             <div class="col l4 m6 s12">
-                <div class="card">
+                <div class="card card-control-panel">
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Mis objetos recuperados<i class="material-icons right">more_vert</i></span>
@@ -65,7 +66,7 @@
                 </div>
             </div>
              <div class="col l4 m6 s12">
-                <div class="card">
+                <div class="card card-control-panel">
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Usuarios reportados<i class="material-icons right">more_vert</i></span>

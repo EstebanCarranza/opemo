@@ -3,7 +3,7 @@
 <br>
  <div class="row">
 
-    <form class="card col l4 offset-l4 s12 m6 offset-m3" method="post" action="/dashboard">
+    <form class="card col l4 offset-l4 s12 m6 offset-m3" method="post" action="/send-login">
       <br>
           <div class="row">
             <div class="col s12 center">

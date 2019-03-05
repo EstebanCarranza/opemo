@@ -15,11 +15,15 @@
     '3' => '/contact'
   ];
 ?>  
+  <div class="navbar-fixed">
 <nav class="orange">
-  <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper container">
-     <div id="navLogo" class="left"> <a href="/" class="brand-logo">OPEMO</a></div>
-      
+      <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
+      <a id="navLogo" href="/" class="brand-logo">
+        OPEMO
+      </a>
      <form id="frmSearch">
         <div class="input-field">
           <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
@@ -40,6 +44,7 @@
 
     
   </nav>
+ </div>
 
   <ul class="sidenav" id="mobile-demo">
     <li><a href="/search">Buscar</a></li>
@@ -47,6 +52,7 @@
     @for($i = 0; $i < count($navbarValue); $i++)
       <li><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
     @endfor   
+    
   </ul>
 <script>   
   $(document).ready(function(){

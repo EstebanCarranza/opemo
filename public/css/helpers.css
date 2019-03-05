@@ -11,19 +11,33 @@
     padding:32px;
     box-sizing: border-box;
 }
+.ec-no-margin
+{
+  margin:0px;
+
+}
 .footer-margin
 {
    
 }
 .card
 {
-    animation-duration: 0.3s;
-    animation-name: aparecer-pop;
+   
+  animation-duration: 0.3s;
+  animation-name: aparecer-pop;
+}
+.card-custom-size
+{
+  min-height: 350px;
 }
 .card-testimonio
 {
     max-height:250px;
     overflow-y:auto;
+}
+.card-control-panel
+{
+  min-height:150px;
 }
 @keyframes slidein {
   from {
@@ -44,12 +58,46 @@
     transform:scale(1);
   }
 }
+.ir-arriba {
+  z-index: 100;
+	display:none;
+	padding:20px;
+	background:rgba(255,152,0, 0.5);
+	font-size:20px;
+	color:#fff;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;
+}
+.ir-arriba:hover{
+  	background:rgba(255,152,0,1.0);
+}
+.ec-title
+{
+  margin-top:0px;
+  margin-bottom:12px;
+  padding-bottom:0px;
+}
+@media only screen and (min-width: 500px) 
+{
+  .container-landingpage
+  {
+    min-height:500px;
+  }
+}
+
 /* SMARTPHONES LANDSCAPE 
 Aumenta el ancho de la tarjeta en modo móvil, 
 se cometarizó en lo que se revisa la utilidad del código
+*/
 @media only screen and (max-width: 480px) 
 {
-
+  nav, nav .sidenav-trigger i
+  {
+    line-height: 32px;
+  }
+  
     .container
     {
         width:100%;
@@ -71,7 +119,7 @@ se cometarizó en lo que se revisa la utilidad del código
     .card-custom-size{
         margin:0px;
         padding:0px;
-        margin-top:6px;
+        margin-top:8px;
+       
     }
 }
-*/

@@ -32,6 +32,7 @@
         
     ];
 ?>
+@section('title', 'Ubicaciones')
 @section('body')
     @for($i=0;$i<count($cardList);$i++)
     
@@ -42,7 +43,7 @@
                 </div>
                 <div class='card-content'>
                     <span class='card-title activator grey-text text-darken-4'>{{$cardList[$i]['title']}}<i class='material-icons right'>more_vert</i></span>
-                    <p><a target='_blank' href='/dashboard'>Abrir ubicación</a></p>
+                    <p><a href='/dashboard'>Abrir ubicación</a></p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
                             {{$cardList[$i]['time-ago']}}&nbsp;

@@ -10,18 +10,40 @@
         @include('libraries.javascript')
     </head>
     <body>
-    <div class="navbar-fixed">
-        @include('inc.navbar')
-    </div>
+        
+       
+    @include('inc.navbar')
+    
     @if(isset($showCarousel))
         @if($showCarousel)
             @include('inc.carousel')
         @endif
     @endif
-    <section class="container md-padding row">
+    
+    <section class="container md-padding row container-landingpage">
         @yield('content')
         @yield('pagination')
     </section>
+    <span class="ir-arriba material-icons">arrow_upward</span>
     @include('inc.footer')
+
+     <script>
+            $(document).ready(function()
+            {
+                $('.ir-arriba').click(function(){
+                    $('body, html').animate({
+                        scrollTop: '0px'
+                    }, 300);
+                });
+                    
+                $(window).scroll(function(){
+                    if( $(this).scrollTop() > 0 ){
+                        $('.ir-arriba').slideDown(300);
+                    } else {
+                        $('.ir-arriba').slideUp(300);
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

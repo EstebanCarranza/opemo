@@ -2,9 +2,7 @@
 <?php $title = "Mochila perdida en la macroplaza"; ?>
 @section('title', $title)
 @section('content')
-<div class ="row">
-     <h3 class="col s12 flow-text center">{{$title}}</h3>
-</div>
+<div class ="row"><h3 class="col s12 flow-text center">{{$title}}</h3></div>
    
 <div class="row card-panel">
     <img class="col l6 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">

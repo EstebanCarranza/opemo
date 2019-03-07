@@ -9,6 +9,7 @@
             adf
         </div>
     </p>  
+    @include('inc.sidebar')
 @stop
 
     

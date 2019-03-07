@@ -10,7 +10,7 @@
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Mi perfil<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">Abrir</a></p>
+                    <p><a href="/my-profile">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Mi perfil<i class="material-icons right">close</i></span>
@@ -25,7 +25,7 @@
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">                    
                     Mis publicaciones<i class="material-icons right">more_vert</i></span>
-                    <p><a href="buscar.php">Abrir</a></p>
+                    <p><a href="/my-publications">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Mis publicaciones<i class="material-icons right">close</i></span>
@@ -40,7 +40,7 @@
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Mis ubicaciones<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">Abrir</a></p>
+                    <p><a href="/my-ubications">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Mis ubicaciones<i class="material-icons right">close</i></span>
@@ -55,7 +55,7 @@
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Mis objetos recuperados<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">Abrir</a></p>
+                    <p><a href="/my-recovery-objects">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Mis objetos recuperados<i class="material-icons right">close</i></span>
@@ -70,7 +70,7 @@
                     <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                     Usuarios reportados<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">Abrir</a></p>
+                    <p><a href="/my-user-reports">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Usuarios reportados<i class="material-icons right">close</i></span>

@@ -11,8 +11,19 @@
     </head>
     <body>
         
-       
+       <?php 
+        if(!isset($_GET['login']))
+            $login = false; 
+        else
+            $login = $_GET['login'];
+            $UserPhotoProfile = "https://yt3.ggpht.com/-MhdomghHvC4/AAAAAAAAAAI/AAAAAAAAAAA/HPEwaJwVRQU/s88-c-k-no-mo-rj-c0xffffff/photo.jpg";
+            $UserPhotoCover = "http://bancodeimagenesgratis.net/wp-content/uploads/2015/09/615-portadas-para-facebook.jpg";
+            $UserPhotoProfileDefault = "img/profile.png";
+            $UserName = "Esteban Carranza";
+            $UserEmail = "esteban.carranza@outlook.com";
+       ?>
     @include('inc.navbar')
+    @include('inc.sidebar')
     
     @if(isset($showCarousel))
         @if($showCarousel)
@@ -24,7 +35,11 @@
         @yield('content')
         @yield('pagination')
     </section>
-    <span class="ir-arriba material-icons">arrow_upward</span>
+    <div class="fixed-action-btn">
+        <a class="ir-arriba btn-floating btn-large">
+            <i class="large material-icons">arrow_upward</i>
+        </a>
+    </div>
     @include('inc.footer')
 
      <script>
@@ -33,16 +48,17 @@
                 $('.ir-arriba').click(function(){
                     $('body, html').animate({
                         scrollTop: '0px'
-                    }, 300);
+                    }, 100);
                 });
                     
                 $(window).scroll(function(){
                     if( $(this).scrollTop() > 0 ){
-                        $('.ir-arriba').slideDown(300);
+                        $('.ir-arriba').slideDown(100);
                     } else {
-                        $('.ir-arriba').slideUp(300);
+                        $('.ir-arriba').slideUp(100);
                     }
                 });
+                
             });
         </script>
     </body>

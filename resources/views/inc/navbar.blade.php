@@ -53,9 +53,9 @@
      
         <a id="navMobileProfile" href="#" data-target="slide-out" class="sidenav-trigger right">
           @if($login)  
-            <img id="imgProfile" src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile circle" data-target="slide-out">
+            <img id="imgProfile" src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @else
-            <img id="imgProfile" src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile circle" data-target="slide-out">
+            <img id="imgProfile" src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @endif
         </a>     
     </div>

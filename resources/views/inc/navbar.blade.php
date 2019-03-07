@@ -15,12 +15,14 @@
     '3' => '/contact'
   ];
 ?>  
+
   <div class="navbar-fixed">
 <nav class="orange">
     <div class="nav-wrapper container">
       <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
+      
       <a id="navLogo" href="/" class="brand-logo">
         OPEMO
       </a>
@@ -37,9 +39,25 @@
         <li title={{$navbarValue[$i]}}><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
       @endfor
       <li title="Buscar"><a id="btnSearch"><i class="material-icons">search</i></a></li>
-      <li title="Mi cuenta"><a id="btnUserLog" href="/login"><i class="material-icons">person</i></a></li>
-      </ul>
+      <li title="Mi cuenta">
+        <a id="btnUserLog" class="">
+          @if($login)
+            <img src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @else
+            <img src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @endif
+        </a>
+      </li>
 
+      </ul>
+     
+        <a id="navMobileProfile" href="#" data-target="slide-out" class="sidenav-trigger right">
+          @if($login)  
+            <img id="imgProfile" src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @else
+            <img id="imgProfile" src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @endif
+        </a>     
     </div>
 
     
@@ -47,8 +65,14 @@
  </div>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="/search">Buscar</a></li>
-    <li><a href="/login">Mi cuenta</a></li>
+  <section class="row ec-search-row">
+    <div class="input-field col s10 offset-s1 ec-search-div">
+      <input id="navBuscarMobile" type="text" class="validate">
+      <label for="navBuscarMobile">Buscar...</label>
+      <i class="material-icons ec-search-icon">search</i>
+    </div>
+  </section>
+    <li><div class="divider"></div></li>
     @for($i = 0; $i < count($navbarValue); $i++)
       <li><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
     @endfor   
@@ -75,3 +99,4 @@
    
   });
   </script>
+  

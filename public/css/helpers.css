@@ -59,16 +59,10 @@
   }
 }
 .ir-arriba {
-  z-index: 100;
 	display:none;
-	padding:20px;
 	background:rgba(255,152,0, 0.5);
-	font-size:20px;
 	color:#fff;
 	cursor:pointer;
-	position: fixed;
-	bottom:20px;
-	right:20px;
 }
 .ir-arriba:hover{
   	background:rgba(255,152,0,1.0);
@@ -79,6 +73,19 @@
   margin-bottom:12px;
   padding-bottom:0px;
 }
+/* <------------------------ Barra de navegación movil ------------------------ */
+.ec-search-row{ margin-bottom:0px; padding-bottom:0px;}
+.ec-search-div{margin-bottom:0px; padding-bottom:0px;}
+.ec-search-icon{cursor:pointer; position:absolute; right:10px; top:8px;
+  padding:2%;
+  box-sizing: border-box;
+}
+.ec-search-icon:hover{
+  background-color:rgba(245,245,245,1);
+  
+}
+
+/* ------------------------ Barra de navegación movil ------------------------/> */
 @media only screen and (min-width: 500px) 
 {
   .container-landingpage
@@ -86,16 +93,23 @@
     min-height:500px;
   }
 }
-
+  img.nav-img-profile
+  {
+    width:32px; height:32px;margin-top:16px;border-radius:50%;
+  }
 /* SMARTPHONES LANDSCAPE 
 Aumenta el ancho de la tarjeta en modo móvil, 
 se cometarizó en lo que se revisa la utilidad del código
 */
 @media only screen and (max-width: 480px) 
 {
-  nav, nav .sidenav-trigger i
+  nav, nav .sidenav-trigger i, nav .sidenav-trigger #imgProfile
   {
     line-height: 32px;
+  }
+ img.nav-img-profile
+  {
+    margin-top:0px;
   }
   
     .container

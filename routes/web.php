@@ -48,10 +48,17 @@ Route::get('/frequent-questions',   function(){return view('info.frecuent-questi
 Route::get('/report-users',         function(){return view('info.report-users');});
 //<\------------------------------------ INFO -------------------------------------/>
 Route::any('/test',                 function(){return view('pages.test');});
-
 //</------------------------------------ ACTIONS ------------------------------------\>
 Route::match(['get','post'],'/send-reclam', function(){return view('pages.dashboard');});
 Route::match(['get','post'],'/send-login',  function(){return view('pages.dashboard');});
 Route::match(['get','post'],'/send-signup', function(){return view('pages.dashboard');});
 Route::match(['get','post'],'/send-contact', function(){return view('pages.dashboard');});
 //<\------------------------------------ ACTIONS ------------------------------------/>
+//</------------------------------------ CONTROL-PANEL ---------------------------------\>
+Route::get('/my-profile',               function(){return view('pages.dashboard');});
+Route::get('/my-publications',          function(){return view('pages.dashboard');});
+Route::get('/my-ubications',            function(){return view('pages.dashboard');});
+Route::get('/my-recovery-objects',      function(){return view('pages.dashboard');});
+Route::get('/my-user-reports',          function(){return view('pages.dashboard');});
+
+//<\------------------------------------ CONTROL-PANEL ---------------------------------/>

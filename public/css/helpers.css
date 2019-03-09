@@ -84,6 +84,19 @@
   background-color:rgba(245,245,245,1);
   
 }
+.ec-btn-file-input
+{
+  position:absolute;top:calc(50% - 16px); left:calc(50% - 16px);
+  
+}
+.ec-img-profile:hover
+{
+  cursor:pointer;
+  -webkit-box-shadow: inset 0px 0px 260px 2px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 260px 2px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 260px 2px rgba(0,0,0,0.75);
+}
+
 
 /* ------------------------ Barra de navegación movil ------------------------/> */
 @media only screen and (min-width: 500px) 

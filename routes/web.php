@@ -55,7 +55,7 @@ Route::match(['get','post'],'/send-signup', function(){return view('pages.dashbo
 Route::match(['get','post'],'/send-contact', function(){return view('pages.dashboard');});
 //<\------------------------------------ ACTIONS ------------------------------------/>
 //</------------------------------------ CONTROL-PANEL ---------------------------------\>
-Route::get('/my-profile',               function(){return view('pages.dashboard');});
+Route::get('/my-profile',               function(){return view('pages.profile');});
 Route::get('/my-publications',          function(){return view('pages.dashboard');});
 Route::get('/my-ubications',            function(){return view('pages.dashboard');});
 Route::get('/my-recovery-objects',      function(){return view('pages.dashboard');});

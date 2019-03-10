@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Inicio')
+@section('title', 'OPEMO')
 @section('content')
 <div class="col s12">
 <h4>¿Quiénes somos?</h4>

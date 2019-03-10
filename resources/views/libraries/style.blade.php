@@ -6,3 +6,4 @@
 <!-- Custom CSS -->
 <link href="css/carousel.css" rel="stylesheet">
 <link href="css/helpers.css" rel="stylesheet">
+<link href="css/colors.css" rel="stylesheet">

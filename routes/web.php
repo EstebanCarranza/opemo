@@ -36,10 +36,11 @@ Route::match(['get','post'],'/dashboard', function()
     return view('pages.dashboard');
 });
 //</------------------------------------ FORMS ------------------------------------\>
-Route::get('/login',    function(){return view('forms.login');});
-Route::get('/signup',   function(){return view('forms.signup');});
-Route::get('/contact',  function(){return view('forms.contact');});
-Route::get('/reclam',   function(){return view('forms.reclam');});
+Route::get('/login',        function(){return view('forms.login');});
+Route::get('/signup',       function(){return view('forms.signup');});
+Route::get('/contact',      function(){return view('forms.contact');});
+Route::get('/reclam',       function(){return view('forms.reclam');});
+Route::get('/profile-edit', function(){return view('forms.profile-edit');});
 //<\------------------------------------ FORMS ------------------------------------/>
 //</------------------------------------ INFO -------------------------------------\>
 Route::get('/privacity',            function(){return view('info.privacity');});

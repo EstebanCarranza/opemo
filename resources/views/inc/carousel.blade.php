@@ -32,7 +32,9 @@
       opacity: 0.8;
       filter: alpha(opacity=80);
       width:100%;
-      object-fit: cover; height: 600px;
+      object-fit: cover;
+      height:600px;
+       /*height: 600px;*/
       
     }
     .cover-text 
@@ -46,40 +48,54 @@
       margin-bottom: 1%;
       max-height:100%;
     }
-    
+    .carousel-arrows
+    {
+      z-index:2;
+      position:absolute;
+      height:100%;
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      width:20%;
+      color:white;
+      font-size:64px;
+      cursor:pointer;
+      
+    }
+    .carousel-arrows:hover
+    {
+      background-color:rgba(0,0,0,0.1);
+    }
+    .ec-carousel-left 
+    {
+      left:0px;
+    }
+    .ec-carousel-right
+    {
+      right:0px;
+    }
+   
 </style>
 
 <div class="carousel carousel-slider center " style="">
+<div class="carousel-arrows ec-carousel-left">
+ <h1 class="material-icons center-align"> chevron_left</h1>
+</div>
+<div class="carousel-arrows ec-carousel-right">
+ <h1 class="material-icons center-align"> chevron_right</h1>
+</div>
     <div class="carousel-item orange white-text center" href="#one!">
-      <div class="ec-cover-style cover-text">
-        <h1 id="carTest"></h1>
-        <p class="center white-text flow-text" style="">
-        
-        </p>
-      </div>
       <div class="cover-image-container">
         <img class="cover-image" src="img/catbox.jpg">
       </div>
     </div>
     <div class="carousel-item blue darken-1 white-text" href="#two!">
-      <div class="ec-cover-style cover-text">
-        <h1 ></h1>
-        <p class="center white-text flow-text" style="">
-          
-        </p>
-      </div>
       <div class="cover-image-container">
         <img class="cover-image" src="img/welcome-kit-contents.jpg">
       </div>
       
     </div>
     <div class="carousel-item blue darken-4 white-text" href="#three!">
-      <div class="ec-cover-style cover-text">
-        <h1 ></h1>
-        <p class="center white-text flow-text" style="">
-          
-        </p>
-      </div>
       <div class="cover-image-container">
         <img class="cover-image" src="img/getty.jpg">
       </div>
@@ -92,12 +108,35 @@
   // Or with jQuery
 
   $(document).ready(function(){
-    $('.carousel').carousel();
+    /*$('.carousel').carousel(
+      {
+        fullWidth: true,
+    indicators: true,
+    duration:200
+      }
+    );*/
+    
      $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true
   });
 
+    var carVel = 6;
+    function mover_carousel()
+    {
+      $('.carousel').carousel('next');
+    }
+    setInterval(mover_carousel, carVel*1000);
+
+    $(".ec-carousel-left").click(function()
+    {
+      $('.carousel').carousel('prev');
+    });
+    
+    $(".ec-carousel-right").click(function()
+    {
+      $('.carousel').carousel('next');
+    });
 
   });
       

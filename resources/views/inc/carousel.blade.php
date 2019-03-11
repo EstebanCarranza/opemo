@@ -84,22 +84,45 @@
 <div class="carousel-arrows ec-carousel-right">
  <h1 class="material-icons center-align"> chevron_right</h1>
 </div>
+
     <div class="carousel-item orange white-text center" href="#one!">
       <div class="cover-image-container">
         <img class="cover-image" src="img/catbox.jpg">
+      </div>
+      <div class="carousel-fixed-item center">
+        <h1 class="" style="text-shadow: 3px 3px 2px #454545;">
+          ¡Bienvenido a OPEMO!
+        </h1>
+        <h4 class="" style="text-shadow: 3px 3px 2px #454545;">
+          Objetos Perdidos Monterrey :D
+        </h4>
       </div>
     </div>
     <div class="carousel-item blue darken-1 white-text" href="#two!">
       <div class="cover-image-container">
         <img class="cover-image" src="img/welcome-kit-contents.jpg">
       </div>
-      
+      <div class="carousel-fixed-item center">
+        <h1 class="" style="text-shadow: 3px 3px 2px #454545;">
+          ¡Podrás buscar cualquier cosa!
+        </h1>
+        <h4 class="" style="text-shadow: 3px 3px 2px #454545;">
+          Cualquier cosa que hayas extraviado en el área metropolitana de Monterrey
+        </h4>
+      </div>
     </div>
     <div class="carousel-item blue darken-4 white-text" href="#three!">
       <div class="cover-image-container">
         <img class="cover-image" src="img/getty.jpg">
       </div>
-    
+      <div class="carousel-fixed-item center">
+        <h1 class="" style="text-shadow: 3px 3px 2px #454545;">
+          Ten mejores momentos sin preocupaciones
+        </h1>
+        <h4 class="" style="text-shadow: 3px 3px 2px #454545;">
+          Disfruta tus vacaciones y del tiempo con tus seres queridos
+        </h4>
+      </div>
     </div>
   </div>
   <script>

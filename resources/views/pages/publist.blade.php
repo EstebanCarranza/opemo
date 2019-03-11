@@ -32,7 +32,6 @@
         
     ];
 ?>
-@section('title', 'Publicaciones')
 @section('body')
     @for($i=0;$i<count($cardList);$i++)
     
@@ -44,7 +43,7 @@
                 <div class='card-content'>
                     <a href="#" class=""><i class='material-icons right activator'>more_vert</i></a>
                     <span class='card-title  grey-text text-darken-4 truncate'>{{$cardList[$i]['title']}}</span>
-                    <p><a href='/publication'>Abrir publicación</a></p>
+                    <p><a href='/publication'>Abrir</a>&nbsp;&nbsp;<a href='/edit-publication'>Editar</a></p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
                             {{$cardList[$i]['time-ago']}}&nbsp;

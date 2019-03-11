@@ -10,7 +10,7 @@
 */
 .carousel-size
 {
-    height:600px;    
+   /* height:600px;    */
     
 }
 .carousel-inner-size
@@ -36,6 +36,5 @@
 }
 .carousel-image-size
 {
-    object-fit: cover; height: 100%;
-    
+    object-fit: cover; height: 100%;   
 }

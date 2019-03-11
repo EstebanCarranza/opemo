@@ -32,7 +32,6 @@
         
     ];
 ?>
-@section('title', 'Publicaciones')
 @section('body')
     @for($i=0;$i<count($cardList);$i++)
     
@@ -42,8 +41,9 @@
                     <img class='activator' src={{$cardList[$i]['pathImage']}}>
                 </div>
                 <div class='card-content'>
-                    <span class='card-title activator grey-text text-darken-4 truncate'>{{$cardList[$i]['title']}}<i class='material-icons right'>more_vert</i></span>
-                    <p><a href='/publication'>Abrir publicación</a></p>
+                    <a href="#" class=""><i class='material-icons right activator'>more_vert</i></a>
+                    <span class='card-title  grey-text text-darken-4 truncate'>{{$cardList[$i]['title']}}</span>
+                    <p><a href='/publication'>Abrir</a>&nbsp;&nbsp;<a href='/edit-publication'>Editar</a></p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
                             {{$cardList[$i]['time-ago']}}&nbsp;
@@ -52,7 +52,8 @@
                     </div>
                 </div>
                 <div class='card-reveal'>
-                    <span class='card-title grey-text text-darken-4'>{{$cardList[$i]['title']}}<i class='material-icons right'>close</i></span>
+                    <div><i class='material-icons right card-title'>close</i></div>
+                    <span class='card-title grey-text text-darken-4'>{{$cardList[$i]['title']}}</span>
                     <p class="flow-text">
                         {{$cardList[$i]['description']}}
                     </p>  

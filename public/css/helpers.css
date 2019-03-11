@@ -84,7 +84,74 @@
   background-color:rgba(245,245,245,1);
   
 }
+.ec-btn-file-input
+{
+  position:absolute;top:calc(50% - 16px); 
+  /*left:calc(50% - 16px);*/
+  left:90px;
+  z-index:2;
+  
+}
+.ec-btn-file-input-cover
+{
+  position:absolute;
+  top:calc(50% - 16px); 
+  left:calc(82% - 16px);
+  z-index:2;
+  
+  
+}
+.ec-img-shadow-profile:hover
+{
+  cursor:pointer;
+  -webkit-box-shadow: 0px 0px 10px 0.5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0.5px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px 0.5px rgba(0,0,0,0.75);
+}
+.cover
+{
+  position:relative;
+  
+}
+.ec-img-cover
+{
+  width:100%;
+  object-fit: cover;
+  height:250px;
+ /* position: absolute;*/
+}
+.ec-img-avatar
+{
+  border-radius: 50%;
+  z-index:1;
+  left:32px;
+  top:64px;
+  width:150px;
+  height:150px;
+  position:absolute;
+  
+  -webkit-box-shadow:  0px 0px 4px 0.5px rgba(0,0,0,0.75);
+-moz-box-shadow:  0px 0px 4px 0.5px rgba(0,0,0,0.75);
+box-shadow:  0px 0px 4px 0.5px rgba(0,0,0,0.75);
+}
 
+.ec-img-seguidor
+{  
+  border-radius:50% !important;
+  
+  margin-top:calc(-50%);
+  margin-left:auto;
+  margin-right:auto;
+  width:100px;
+  height: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  -webkit-box-shadow:  0px 0px 4px 0.5px rgba(0,0,0,0.75);
+-moz-box-shadow:  0px 0px 4px 0.5px rgba(0,0,0,0.75);
+box-shadow:  0px 0px 4px 0.5px rgba(0,0,0,0.75);
+}
 /* ------------------------ Barra de navegación movil ------------------------/> */
 @media only screen and (min-width: 500px) 
 {

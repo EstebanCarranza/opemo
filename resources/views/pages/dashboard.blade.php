@@ -5,11 +5,13 @@
 
 <div class="card-panel z-depth-0 col s12">
         <div class="row">
-        <div class="col l4 m6 s12">
+            <div class="col l4 m6 s12">
                 <div class="card card-control-panel">
                     <div class="card-content">
+                    <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">
-                    Mi perfil<i class="material-icons right">more_vert</i></span>
+                    Mi perfil
+                    </span>
                     <p><a href="/my-profile">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
@@ -23,8 +25,26 @@
             <div class="col l4 m6 s12">
                 <div class="card card-control-panel">
                     <div class="card-content">
+                    <a class="activator"><i class="material-icons right">more_vert</i></a>
+                    <span class="card-title activator grey-text text-darken-4">
+                    Mis respuestas</span>
+                    <p><a href="/my-">Abrir</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Mis respuestas<i class="material-icons right">close</i></span>
+                        <p>
+                           Aquí podrás ver las respuestas de los reclamos que hayas hecho
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col l4 m6 s12">
+                <div class="card card-control-panel">
+                    <div class="card-content">
+                    <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">                    
-                    Mis publicaciones<i class="material-icons right">more_vert</i></span>
+                    Mis publicaciones
+                    </span>
                     <p><a href="/my-publications">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
@@ -38,8 +58,10 @@
             <div class="col l4 m6 s12">
                 <div class="card card-control-panel">
                     <div class="card-content">
+                    <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">
-                    Mis ubicaciones<i class="material-icons right">more_vert</i></span>
+                    Mis ubicaciones
+                    </span>
                     <p><a href="/my-ubications">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
@@ -53,8 +75,10 @@
             <div class="col l4 m6 s12">
                 <div class="card card-control-panel">
                     <div class="card-content">
+                    <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">
-                    Mis objetos recuperados<i class="material-icons right">more_vert</i></span>
+                    Mis objetos recuperados
+                    </span>
                     <p><a href="/my-recovery-objects">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
@@ -68,8 +92,10 @@
              <div class="col l4 m6 s12">
                 <div class="card card-control-panel">
                     <div class="card-content">
+                    <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">
-                    Usuarios reportados<i class="material-icons right">more_vert</i></span>
+                    Usuarios reportados
+                    </span>
                     <p><a href="/my-user-reports">Abrir</a></p>
                     </div>
                     <div class="card-reveal">

@@ -10,7 +10,10 @@
 </div>
    
 <div class="row card-panel">
-    <img class="col l6 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
+<div class="col l6">
+
+        <img class="col l12 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
+    </div>
     <div class="col l6 s12 ">
         <h5 class='card-title flex-content'>Fecha y hora</h5>
             <div class="input-field col l6 s12">
@@ -23,7 +26,7 @@
             </div>
         <h5 class='card-title flex-content'>Ubicación</h5>
             
-              <div class="input-field col s12">
+              <div class="input-field col s10">
                 <select>
                     <option value="" disabled selected>Choose your option</option>
                     <option value="1">Option 1</option>
@@ -31,6 +34,13 @@
                     <option value="3">Option 3</option>
                     </select>
                 <label>Elige una ubicación</label>
+            </div>
+            <div class="input-field col s2">
+              <a href="#modal1" class="modal-trigger waves-effect waves-light btn primary-color orange">
+                <i class="material-icons">
+                    add
+                </i>
+                </a>
             </div>
 
         <h5 class='card-title flex-content'>Municipio</h5>
@@ -64,8 +74,33 @@
         <a class="col l12 m12 s12 waves-effect waves-light btn orange" href="/reclam">Publicar</a>
     </div>
 </div>
+
+ <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>
+        Crear ubicación
+      </h4>
+      <h6 class="col s12">
+        Escribe la nueva ubicación y presiona aceptar para guardarla    
+      </h6>
+      <p>
+        <div class="input-field col s12">
+            <input id="pubCrearUbicacion" type="text" class="validate" required>
+            <label for="pubCrearUbicacion">Escribe la ubicación</label>
+        </div>
+      </p>
+      
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a>
+    </div>
+  </div>
+
  <script>
 $(document).ready(function(){
+    $('.modal').modal();
     $('.datepicker').datepicker({
         autoClose : true,
         format : 'dd/mm/yyyy'

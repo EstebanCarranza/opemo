@@ -26,7 +26,7 @@
       <a id="navLogo" href="/" class="brand-logo">
         OPEMO
       </a>
-     <form id="frmSearch">
+     <form id="frmSearch" action="/results">
         <div class="input-field">
           <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>

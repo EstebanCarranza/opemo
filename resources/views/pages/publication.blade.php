@@ -5,7 +5,30 @@
 <div class ="row"><h3 class="col s12 flow-text center">{{$title}}</h3></div>
    
 <div class="row card-panel">
-    <img class="col l6 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
+    <div class="col l6">
+    <img class="col l12 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
+     <div class="col s12 m8 offset-m2 l12">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img src="img/profile.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+              <div  class="black-text">
+                Nombre de usuario
+              </div>
+              <div>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     <div class="col l6 s12 ">
         <h5 class='card-title flex-content'>Fecha y hora</h5>
             <p class='cart-text flex-content'>17/02/2019 12:52 a. m.</p>
@@ -19,22 +42,60 @@
             </p>
     </div>
     <div class="col l6 offset-l6 s12 row">
-        <a class="col l12 m12 s12 waves-effect waves-light btn" href="/reclam">Reclamar objeto</a>
+        <a class="col l12 m12 s12 waves-effect waves-light btn orange" href="/reclam">Reclamar objeto</a>
     </div>
 </div>
-<div class="row card-panel">
-    <img class="col l4 s12" src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
-    <div class="col l8 s12">
-        <h3 class="flow-text">Usuario: user</h3>
-        <h3 class="flow-text">
-            <i class="material-icons">star</i>
-            <i class="material-icons">star</i>
-            <i class="material-icons">star</i>
-            <i class="material-icons">star</i>
-            <i class="material-icons">star</i>
-        </h3>
+<div class="row card-panel z-depth-1">
+    <div class="col s12">
+        <div class="card-panel z-depth-0">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img src="img/profile.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                    <div  class="black-text">
+                    Nombre de usuario
+                    </div>
+                    <div>
+                        <div class="input-field col l12 s12">
+                            <input id="pubComentario" type="text" class="validate" required>
+                            <label for="pubComentario">Comentario</label>
+                            <p>
+                                <a class="col offset-s10 s2 waves-effect waves-light btn orange">
+                                    <i class="material-icons">send</i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+@for($i = 0; $i < 10; $i++)
+<div class="row card-panel z-depth-1">
+    <div class="col s12">
+        <div class="card-panel z-depth-0">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img src="img/profile.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                    <div  class="black-text">
+                    Nombre de usuario
+                    </div>
+                    <div>
+                        <div class="input-field col l12 s12">
+                            Esto es un comentario :v
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endfor
+       
  <script>
 $(document).ready(function(){
     $('.materialboxed').materialbox();

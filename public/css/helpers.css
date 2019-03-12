@@ -16,6 +16,7 @@
   margin:0px;
 
 }
+
 .footer-margin
 {
    
@@ -100,6 +101,11 @@
   z-index:2;
   
   
+}
+.report-size
+{
+animation-duration: 0.3s;
+  animation-name: aparecer-pop;
 }
 .ec-img-shadow-profile:hover
 {
@@ -190,6 +196,12 @@ se cometarizó en lo que se revisa la utilidad del código
         padding:0px;
         margin:0px;
         width:100%;
+    }
+    .report-size
+    {
+      padding:32px;
+      box-sizing: border-box;
+      margin-bottom:16px;
     }
     .card-row-custom-size
     {

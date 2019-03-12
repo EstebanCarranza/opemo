@@ -67,3 +67,4 @@ Route::get('/my-user-reports',          function(){return view('pages.report-use
 Route::get('/edit-publication',          function(){return view('forms.edit-publication');});
 Route::get('/results',                   function($cardTitle = 'Resultados de busqueda', $login = true){return view('pages.results')->with('cardTitle',$cardTitle);});
 //<\------------------------------------ EDITS -----------------------------------------/>
+Route::get('/profile',                   function(){return view('pages.profile');});

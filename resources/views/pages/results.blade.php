@@ -33,6 +33,54 @@
     ];
 ?>
 @section('body')
+<div class="col s12 card-panel">
+<div class="input-field col l4 m6 s12">
+        <input id="pubTitulo" type="text" class="validate center" required value="">
+        <label for="pubTitulo">Titulo</label>
+    </div>
+     <div class="input-field col l4 m6 s12">
+                <input id="pubFecha" type="text" class="validate datepicker" required>
+                <label for="pubFecha">Fecha</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+                <input id="pubHora" type="text" class="validate timepicker" required>
+                <label for="pubHora">Hora</label>
+            </div>
+
+             <div class="input-field col l4 m6 s12">
+                <select>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    </select>
+                <label>Elige una ubicación</label>
+            </div>
+            <div class="input-field col l4 m6 s12">
+                <select>
+                    <optgroup label="Monterrey">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                    </optgroup>
+                    <optgroup label="San Pedro Garza García">
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </optgroup>
+                    <optgroup label="San Nicolás">
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </optgroup>
+                </select>
+                <label>Elige un municipio</label>
+            </div>
+<div class="input-field col l2 m4 s12">
+    <a class="col s12 waves-effect waves-light btn orange">Aplicar filtros</a>
+</div>
+ <div class="input-field col l2 m4 s12">
+    <a class="col s12 waves-effect waves-light btn orange">Borrar filtros</a>
+</div>
+</div>
+
     @for($i=0;$i<count($cardList);$i++)
     
         <div class='col l4 m6 s12 animated-card card-row-custom-size'>
@@ -67,6 +115,17 @@
             </div>
         </div>
     @endfor
+    <script>
+    $(document).ready(function()
+    {
+         $('.datepicker').datepicker({
+        autoClose : true,
+        format : 'dd/mm/yyyy'
+    });
+    $('.timepicker').timepicker();
+    $('select').formSelect();
+    });
+    </script>
 @stop
 @section('pagination')
     @include('inc.pagination')

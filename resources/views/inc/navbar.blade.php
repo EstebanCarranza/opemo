@@ -1,117 +1,102 @@
-<!--
-<nav class="navbar navbar-expand-lg navbar-light bg-orange">
-  <b><a class="navbar-brand link-color" href="/">OPEMO</a></b>
-  <button class="navbar-toggler" style="color:white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link link-color" href="/dashboard">Publicaciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link link-color" href="/contact">Contacto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link link-color" href="/ubications">Ubicaciones</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link link-color" href="/frequent-questions">Preguntas frecuentes</a>
-      </li>
-      
-    </ul>
-   
-    <ul class="navbar-nav mr-right">
-    <li class="nav-item active">
-        <a class="nav-link link-color" href="/login">Iniciar sesión <span class="sr-only">(current)</span></a>
-      </li>
-     <li class="nav-item active">
-        <a class="nav-link link-color" href="#">Registrarse <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
--->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+<!-- Remember: add jquery 2.1.1 + materialize js and materialize css of libraries -->
 <?php 
-$data = "http://twicky.com.mx";
-
-$navbarValue = [
-  '0' =>"Publicaciones",
-  '1' => "Contacto",
-  '2' => "Ubicaciones",
-  '3' => "Preguntas frecuentes"
-];
-$navbarRoute =
-[
-  '0' => '/dashboard',
-  '1' => '/contact',
-  '2' => '/ubications',
-  '3' => '/frequent-questions'
-];
-  
+  $data = "http://twicky.com.mx";
+  $navbarValue = [
+    '0' => "Publicaciones",
+    '1' => "Ubicaciones",
+    '2' => "Preguntas frecuentes",
+    '3' => "Contacto"
+  ];
+  $navbarRoute =
+  [
+    '0' => '/publication-list',
+    '1' => '/ubications',
+    '2' => '/frequent-questions',
+    '3' => '/contact'
+  ];
 ?>  
+
+  <div class="navbar-fixed">
 <nav class="orange">
     <div class="nav-wrapper container">
-     <div id="navLogo" class="left"> <a href="/" class="brand-logo">OPEMO</a></div>
-    <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a id="navMobile" href="#" data-target="mobile-demo" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
       
-      <form id="frmSearch">
+      <a id="navLogo" href="/" class="brand-logo">
+        OPEMO
+      </a>
+     <form id="frmSearch" action="/results">
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i id="srcClose" class="material-icons">close</i>
+          <i id="srcClose" class="material-icons" title="Cerrar barra de búsqueda">close</i>
         </div>
       </form>
+     <div class="row"> 
        <ul id="ulNavBar" class="right hide-on-med-and-down">
       @for($i = 0; $i < count($navbarValue); $i++)
         <li title={{$navbarValue[$i]}}><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
       @endfor
       <li title="Buscar"><a id="btnSearch"><i class="material-icons">search</i></a></li>
-      <li title="Mi cuenta"><a id="btnSearch" href="/login"><i class="material-icons">person</i></a></li>
+      <li title="Mi cuenta">
+        <a id="btnUserLog" class="">
+          @if($login)
+            <img src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @else
+            <img src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @endif
+        </a>
+      </li>
+
       </ul>
+     
+        <a id="navMobileProfile" href="#" data-target="slide-out" class="sidenav-trigger right">
+          @if($login)  
+            <img id="imgProfile" src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @else
+            <img id="imgProfile" src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+          @endif
+        </a>     
     </div>
+
     
   </nav>
-
-
-
-
-
+ </div>
 
   <ul class="sidenav" id="mobile-demo">
-  <li><a href="/search">Buscar</a></li>
-  <li><a href="/login">Mi cuenta</a></li>
-     @for($i = 0; $i < count($navbarValue); $i++)
-        <li><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
-      @endfor
-       
+  <section class="row ec-search-row">
+    <div class="input-field col s10 offset-s1 ec-search-div">
+      <input id="navBuscarMobile" type="text" class="validate">
+      <label for="navBuscarMobile">Buscar...</label>
+      <i class="material-icons ec-search-icon">search</i>
+    </div>
+  </section>
+    <li><div class="divider"></div></li>
+    @for($i = 0; $i < count($navbarValue); $i++)
+      <li><a class='nav-link link-color' href={{$navbarRoute[$i]}}>{{$navbarValue[$i]}}</a></li>
+    @endfor   
+    
   </ul>
 <script>   
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
-
-  // Or with jQuery
-
   $(document).ready(function(){
     $('.sidenav').sidenav();
         $("#frmSearch").hide();
+      
     $("#btnSearch").click(function(){
-        $("#ulNavBar").toggle();
-        $("#frmSearch").toggle();
-       $("#navLogo").toggle();
+      $("#navLogo").slideToggle( 200 );
+        $("#ulNavBar").slideToggle( 200 );
+        $("#frmSearch").slideToggle( 200 );
+       
     });
     $("#srcClose").click(function()
     {
-      $("#ulNavBar").toggle();
-      $("#frmSearch").toggle();
-      $("#navLogo").toggle();
+      $("#navLogo").slideToggle( 200 );
+      $("#ulNavBar").slideToggle( 200 );
+      $("#frmSearch").slideToggle( 200 );
+      
     });
+   
   });
   </script>
+  

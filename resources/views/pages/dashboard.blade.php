@@ -28,7 +28,7 @@
                     <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">
                     Mis respuestas</span>
-                    <p><a href="/my-">Abrir</a></p>
+                    <p><a href="/my-answers">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Mis respuestas<i class="material-icons right">close</i></span>

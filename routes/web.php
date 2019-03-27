@@ -61,7 +61,7 @@ Route::get('/my-publications',          function($cardTitle = 'Mis publicaciones
 Route::get('/my-ubications',            function($cardTitle = 'Mis ubicaciones', $login = true){return view('pages.ubications')->with('cardTitle',$cardTitle);});
 Route::get('/my-recovery-objects',      function(){return view('pages.dashboard');});
 Route::get('/my-user-reports',          function(){return view('pages.report-users');});
-Route::get('/my-answers',          function(){return view('pages.answers');});
+Route::get('/messages',          function(){return view('pages.answers');});
 Route::get('/descartar',          function(){return view('pages.answers');});
 
 //<\------------------------------------ CONTROL-PANEL ---------------------------------/>

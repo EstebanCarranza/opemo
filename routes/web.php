@@ -70,3 +70,11 @@ Route::get('/edit-publication',          function(){return view('forms.edit-publ
 Route::get('/results',                   function($cardTitle = 'Resultados de busqueda', $login = true){return view('pages.results')->with('cardTitle',$cardTitle);});
 //<\------------------------------------ EDITS -----------------------------------------/>
 Route::get('/profile',                   function(){return view('pages.profile');});
+
+
+//Route::get('/test-01','Ciudad@index');
+
+Route::resource('Ciudad', 'Ciudad');
+
+
+

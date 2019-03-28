@@ -14,23 +14,32 @@ class InitBD extends Migration
     public function up()
     {
         //
+        
         Schema::create('tbl_pais', function (Blueprint $table) {
             $table->increments('idPais');
             $table->string('titulo',100);
+            $table->timestamps();
         });
+        
+//        Schema::enableForeignKeyConstraints();
         Schema::create('tbl_estado', function (Blueprint $table) {
             $table->increments('idEstado');
             $table->string('titulo',100);
-            $table->integer('idPais')->default(-1);
+            $table->timestamps();
 
-            $table->foreign('idPais')->references('idPais')->on('tbl_pais');
+            $table->integer('idPais')->unsigned();
+
+            $table->foreign('idPais','fk_paisEstado')->references('idPais')->on('tbl_pais');
         });
         Schema::create('tbl_ciudad', function (Blueprint $table) {
             $table->increments('idCiudad');
             $table->string('titulo',100);
-            $table->integer('idEstado')->default(-1);
+            $table->boolean('areaMetropolitana')->default(false);
+            $table->timestamps();
+            
+            $table->integer('idEstado')->unsigned();
 
-            $table->foreign('idEstado')->references('idEstado')->on('tbl_estado');
+            $table->foreign('idEstado','fk_estadoCiudad')->references('idEstado')->on('tbl_estado');
         });
         Schema::create('tbl_usuario', function (Blueprint $table) {
             $table->increments('idUsuario');
@@ -44,21 +53,23 @@ class InitBD extends Migration
             $table->string('bio',255);
             $table->date('fechaNacimiento');
             $table->text('tokenRecuperacion');
-            $table->timestamp('fechaRegistro');
             $table->boolean('bloqueado');
-            $table->timestamps('ultimoIngreso');
+            $table->timestamps();
         });
         Schema::create('tbl_ubicacion', function (Blueprint $table) {
             $table->increments('idUbicacion');
             $table->string('titulo');
             $table->text('descripcion');
-            $table->integer('idCiudad')->default(-1);
+            $table->timestamps();
+            
+            $table->integer('idCiudad')->unsigned();
 
-            $table->foreign('idCiudad')->references('idCiudad')->on('tbl_ciudad');
+            $table->foreign('idCiudad','fk_ciudadUbicacion')->references('idCiudad')->on('tbl_ciudad');
         });
         Schema::create('tbl_publicacionEstado', function (Blueprint $table) {
             $table->increments('idPublicacionEstado');
             $table->string('titulo');
+            $table->timestamps();
         });
         Schema::create('tbl_publicacion', function (Blueprint $table) {
             $table->increments('idPublicacion');
@@ -66,77 +77,88 @@ class InitBD extends Migration
             $table->text('pathImgVideo');
             $table->date('fecha');
             $table->time('hora');
-            $table->integer('idUbicacion')->default(-1);
             $table->text('descripcion');
-            $table->integer('idPublicacionEstado')->default(1);
+            $table->timestamps();
+            
+            $table->integer('idUbicacion')->unsigned();
+            $table->integer('idPublicacionEstado')->unsigned();
+            $table->integer('idCiudad')->unsigned();
 
-            $table->foreign('idUbicacion')->references('idUbicacion')->on('tbl_ubicacion');
-            $table->foreign('idMunicipio')->references('idMunicipio')->on('tbl_municipio');
-            $table->foreign('idPublicacionEstado')->references('idPublicacionEstado')->on('tbl_publicacionEstado');
+            $table->foreign('idUbicacion','fk_ubicacionPublicacion')->references('idUbicacion')->on('tbl_ubicacion');
+            $table->foreign('idPublicacionEstado','fk_pubEstadoPublicacion')->references('idPublicacionEstado')->on('tbl_publicacionEstado');
+            $table->foreign('idCiudad','fk_ciudadPublicacion')->references('idCiudad')->on('tbl_ciudad');
 
         });
         Schema::create('tbl_puntuacion', function (Blueprint $table) {
             $table->increments('idPuntuacion');
-            $table->integer('idUsuario');
-            $table->integer('idPublicacion');
             $table->enum('puntuacion',['1','2','3','4','5']);
+            $table->timestamps();
+             
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idPublicacion')->unsigned();
 
-            $table->foreign('idUsuario')->references('idUsuario')->on('tbl_usuario');
-            $table->foreign('idPublicacion')->references('idPublicacion')->on('tbl_publicacion');
+            $table->foreign('idUsuario','fk_usuarioPuntuacion')->references('idUsuario')->on('tbl_usuario');
+            $table->foreign('idPublicacion','fk_publicacionPuntuacion')->references('idPublicacion')->on('tbl_publicacion');
         });
         Schema::create('tbl_recuperado', function (Blueprint $table) {
             $table->increments('idRecuperado');
-            $table->integer('idUsuario');
+            
             $table->string('titulo');
             $table->text('pathImgVideo');
             $table->date('fecha');
             $table->time('hora');
-            $table->integer('idUbicacion');
-            $table->integer('idMunicipio');
             $table->text('descripcion');
-            $table->timestamps('fechaCreacion');
+            $table->timestamps();
+            
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idUbicacion')->unsigned();
+            $table->integer('idCiudad')->unsigned();
 
-            $table->foreign('idUsuario')->references('idUsuario')->on('tbl_usuario');
-            $table->foreign('idUbicacion')->references('idUbicacion')->on('tbl_ubicacion');
-            $table->foreign('idMunicipio')->references('idMunicipio')->on('tbl_municipio');
+            $table->foreign('idUsuario','fk_usuarioRecuperado')->references('idUsuario')->on('tbl_usuario');
+            $table->foreign('idUbicacion','fk_ubicacionRecuperado')->references('idUbicacion')->on('tbl_ubicacion');
+            $table->foreign('idCiudad','fk_ciudadRecuperado')->references('idCiudad')->on('tbl_ciudad');
 
         });
         
-        Schema::create('mensajes', function (Blueprint $table) {
-            $table->increments('idMensajes');
-            $table->integer('idUsuario');
-            $table->integer('idPublicacion');
+        Schema::create('tbl_mensaje', function (Blueprint $table) {
+            $table->increments('idMensaje');
             $table->text('mensaje');
-            $table->timestamps('fechaHora');
+            $table->timestamps();
 
-            $table->foreign('idUsuario')->references('idUsuario')->on('tbl_usuario');
-            $table->foreign('idPublicacion')->references('idPublicacion')->on('tbl_publicacion');
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idPublicacion')->unsigned();
+
+            $table->foreign('idUsuario','fk_usuarioMensaje')->references('idUsuario')->on('tbl_usuario');
+            $table->foreign('idPublicacion','fk_publicacionMensaje')->references('idPublicacion')->on('tbl_publicacion');
 
         });
         
         Schema::create('tbl_razonReporte', function (Blueprint $table) {
             $table->increments('idRazonReporte');
             $table->string('titulo');
+            $table->timestamps();
+            
         });
         Schema::create('tbl_publicacionReportada', function (Blueprint $table) {
             $table->increments('idPublicacionReportada');
-            $table->integer('idPublicacion');
-            $table->timestamps('fechaHora');
-            $table->integer('idRazonReporte');
+            $table->timestamps();
 
-            $table->foreign('idPublicacionReportada')->references('idPublicacionReportada')->on('tbl_publicacionReportada');
-            $table->foreign('idPublicacion')->references('idPublicacion')->on('tbl_publicacion');
-            $table->foreign('idRazonReporte')->references('idRazonReporte')->on('tbl_razonReporte');
+            $table->integer('idPublicacion')->unsigned();
+            $table->integer('idRazonReporte')->unsigned();
+
+            $table->foreign('idPublicacion','fk_publicacionPubReportada')->references('idPublicacion')->on('tbl_publicacion');
+            $table->foreign('idRazonReporte','fk_razonReportePubReportada')->references('idRazonReporte')->on('tbl_razonReporte');
 
         });
         Schema::create('tbl_comentario', function (Blueprint $table) {
             $table->increments('idComentario');
-            $table->integer('idUsuario');
-            $table->integer('idPublicacion');
-            $table->timestamps('fechaHora');
+            $table->timestamps();
 
-            $table->foreign('idUsuario')->references('idUsuario')->on('tbl_usuario');
-            $table->foreign('idPublicacion')->references('idPublicacion')->on('tbl_publicacion');
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idPublicacion')->unsigned();
+
+            $table->foreign('idUsuario','fk_usuarioComentario')->references('idUsuario')->on('tbl_usuario');
+            $table->foreign('idPublicacion','fk_publicacionComentario')->references('idPublicacion')->on('tbl_publicacion');
 
         });
     }

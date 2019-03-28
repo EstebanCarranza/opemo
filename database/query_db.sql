@@ -94,7 +94,8 @@ create table tbl_recuperado
     descripcion text,
 
     foreign key (idUbicacion) references tbl_ubicacion (idUbicacion),
-    foreign key (idMunicipio) references tbl_municipio (idMunicipio)
+    foreign key (idMunicipio) references tbl_municipio (idMunicipio),
+    foreign key (idUsuario) references tbl_usuario (idUsuario)
 );
 create table tbl_mensajes
 (
@@ -116,7 +117,7 @@ create table tbl_publicacionReportada
 (
     idPublicacionReportada int not null primary key auto_increment,
     idPublicacion int not null,
-    fecha timestamp default current_timestam,
+    fecha timestamp default current_timestamp,
     idRazonReporte int not null
 );
 create table tbl_comentario

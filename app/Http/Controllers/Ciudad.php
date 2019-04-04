@@ -20,7 +20,7 @@ class Ciudad extends Controller
     }*/
     public function index()
     {
-        $ciudades = DB::table('tbl_ciudad')->get();
+        $ciudades = DB::table('tbl_ciudad')->select('titulo')->where('areaMetropolitana', true)->get();
         foreach($ciudades as $ciudad)
         {
             echo $ciudad->titulo . "<br>";

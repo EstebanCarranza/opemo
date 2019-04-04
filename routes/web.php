@@ -75,6 +75,7 @@ Route::get('/profile',                   function(){return view('pages.profile')
 //Route::get('/test-01','Ciudad@index');
 
 Route::resource('Ciudad', 'Ciudad');
+Route::resource('testimonio', 'testimonioController');
 
 
 

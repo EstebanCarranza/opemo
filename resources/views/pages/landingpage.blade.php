@@ -12,6 +12,7 @@
     <h4>Testimonios</h4>
 </div>
 <?php
+/*
     $testimonioTitulo = [
         '0' => 'Muy bueno',
         '1' => 'Lo recomiendo',
@@ -28,21 +29,20 @@
         '4' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',
         '5' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas'
     ];
+    */
 ?>
-@for($i = 0; $i < sizeof($testimonioTitulo); $i++)
-<div class="col l4 m6 s12">
-    <div class="card card-testimonio">
-        <div class="card-content">
-            <span class="card-title">{{$testimonioTitulo[$i]}}</span>
-            <p>
-                {{$testimonioDescripcion[$i]}}
-            </p>
+@if(isset($testimoniosList))
+    @foreach($testimoniosList as $testimonio)
+    <div class="col l4 m6 s12">
+        <div class="card card-testimonio">
+            <div class="card-content">
+                <span class="card-title">{{$testimonio->getIdTestimonio()}}-{{$testimonio->getTitulo()}}</span>
+                <p>
+                    {{$testimonio->getDescripcion()}}
+                </p>
+            </div>
         </div>
     </div>
-</div>
-@endfor
-
-
-
-
+    @endforeach
+@endif
 @stop

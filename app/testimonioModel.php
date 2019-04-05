@@ -27,27 +27,28 @@ class testimonioModel extends Model
 
     public function getIdTestimonio()
     {
-         $this->idTestimonio;
+        return $this->idTestimonio;
     }
     public function getTitulo()
     {
-         $this->titulo;
+         return $this->titulo;
     }
     public function getDescripcion()
     {
-         $this->descripcion;
+        return $this->descripcion;
     }
+    
     public function getMostrarTestimonio()
     {
-         $this->mostrarTestimonio;
+        return $this->mostrarTestimonio;
     }
     public function getCreated_at()
     {
-         $this->created_at;
+        return $this->created_at;
     }
     public function getUpdated_at()
     {
-         $this->updated_at;
+        return $this->updated_at;
     }
     public function setIdTestimonio($idTestimonioN)
     {

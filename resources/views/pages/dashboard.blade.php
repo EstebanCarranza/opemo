@@ -27,13 +27,13 @@
                     <div class="card-content">
                     <a class="activator"><i class="material-icons right">more_vert</i></a>
                     <span class="card-title activator grey-text text-darken-4">
-                    Mis respuestas</span>
-                    <p><a href="/my-answers">Abrir</a></p>
+                    Mensajes</span>
+                    <p><a href="/messages">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Mis respuestas<i class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4">Mensajes<i class="material-icons right">close</i></span>
                         <p>
-                           Aquí podrás ver las respuestas de los reclamos que hayas hecho
+                           Aquí podrás ver los mensajes de conversación sobre los reclamos que hayas hecho
                         </p>
                     </div>
                 </div>

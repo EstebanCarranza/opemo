@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::resource('/', 'testimonioController');
+/*
 Route::get('/', function ($showCarousel = true) {
-    return view('pages.landingpage')->with('showCarousel',$showCarousel);
-});
+    //return view('pages.landingpage')->with('showCarousel',$showCarousel);
+    
+});*/
 Route::get('/publication-list', function($cardTitle = 'Publicaciones')
 {
     return view('pages.publist')->with('cardTitle',$cardTitle);
@@ -61,7 +63,7 @@ Route::get('/my-publications',          function($cardTitle = 'Mis publicaciones
 Route::get('/my-ubications',            function($cardTitle = 'Mis ubicaciones', $login = true){return view('pages.ubications')->with('cardTitle',$cardTitle);});
 Route::get('/my-recovery-objects',      function(){return view('pages.dashboard');});
 Route::get('/my-user-reports',          function(){return view('pages.report-users');});
-Route::get('/my-answers',          function(){return view('pages.answers');});
+Route::get('/messages',          function(){return view('pages.answers');});
 Route::get('/descartar',          function(){return view('pages.answers');});
 
 //<\------------------------------------ CONTROL-PANEL ---------------------------------/>
@@ -70,3 +72,16 @@ Route::get('/edit-publication',          function(){return view('forms.edit-publ
 Route::get('/results',                   function($cardTitle = 'Resultados de busqueda', $login = true){return view('pages.results')->with('cardTitle',$cardTitle);});
 //<\------------------------------------ EDITS -----------------------------------------/>
 Route::get('/profile',                   function(){return view('pages.profile');});
+
+
+//Route::get('/test-01','Ciudad@index');
+
+Route::resource('Ciudad', 'Ciudad');
+Route::resource('testimonio', 'testimonioController');
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,7 +1,7 @@
 
 
 <ul id="slide-out" class="sidenav">
-  @if($login)
+  @if(!Auth::guest())
     <li>
       <div class="user-view">
         <div class="background orange">
@@ -9,8 +9,8 @@
         </div>
         
         <a href="#user"><img class="circle" src="{{$UserPhotoProfile}}"></a>
-        <a href="#name"><span class="white-text name">Esteban Carranza</span></a>
-        <a href="#email"><span class="white-text email">esteban.carranza@outlook.com</span></a>
+        <a href="#name"><span class="white-text name">{{Auth::user()->name}}</span></a>
+        <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
       </div>
     </li>
     <li><a href="/my-profile">Crear publicación</a></li>
@@ -25,6 +25,18 @@
     
     <li><div class="divider"></div></li>
     <li><a href="#!">Usuarios reportados</a></li>
+
+    <li><div class="divider"></div></li>
+    <li>
+      <a href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+        Cerrar sesión
+      </a>
+    </li>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      {{ csrf_field() }}
+    </form>
   @else
   <li><div class="user-view">
       <div class="background orange">

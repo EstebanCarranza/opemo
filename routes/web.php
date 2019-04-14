@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::resource('/', 'testimonioController');
+/*
 Route::get('/', function ($showCarousel = true) {
-    return view('pages.landingpage')->with('showCarousel',$showCarousel);
-});
+    //return view('pages.landingpage')->with('showCarousel',$showCarousel);
+    
+});*/
 Route::get('/publication-list', function($cardTitle = 'Publicaciones')
 {
     return view('pages.publist')->with('cardTitle',$cardTitle);
@@ -75,6 +77,7 @@ Route::get('/profile',                   function(){return view('pages.profile')
 //Route::get('/test-01','Ciudad@index');
 
 Route::resource('Ciudad', 'Ciudad');
+Route::resource('testimonio', 'testimonioController');
 
 
 

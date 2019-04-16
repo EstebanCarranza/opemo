@@ -1,3 +1,34 @@
+<p align="left">
+  <strong>Repositorio:&nbsp</strong>
+  <label>https://github.com/EstebanCarranza/opemo</label>
+</p>
+<p align="left">
+  <strong>Sitio web hosteado:&nbsp</strong>
+  <label>http://opemo.herokuapp.com/</label>
+</p>
+<p align="left">
+  <strong>Instrucciones de instalación</strong>
+  <ul>
+    <li>Descargar el repositorio</li>
+    <li>Asegurarse de tener instalado composer, php 7 y mysql</li>
+    <li>Copiar el archivo de enviroment (.env) a la raíz del proyecto</li>
+    <li>Actualizar composer utilizando el comando: composer update</li>
+    <li>Ejecutar las migraciones: php artisan migrate</li>
+    <li>Si aparece algún error actualizar la migración: php artisan migrate:refresh</li>
+    <li>Ejecutar el seed testimonio: php artisan db:seed --class=testimonio</li>
+    <li>Ejecutar el seed razonReporte: php artisan db:seed --class=razonReporte</li>
+    <li>Ejecutar el seed pais: php artisan db:seed --class=pais</li>
+    <li>Ejecutar el seed estado: php artisan db:seed --class=estado</li>
+    <li>Ejecutar el seed ciudad: php artisan db:seed --class=ciudad</li>
+    <li>Ejecutar el seed ubicaciones: php artisan db:seed --class=ubicaciones</li>
+    <li>Ejecutar el servidor: php artisan serve </li>
+   </ul>
+</p>
+
+
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

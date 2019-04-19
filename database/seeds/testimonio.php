@@ -11,6 +11,8 @@ class testimonio extends Seeder
      */
     public function run()
     {
+        //ejecutar el seed: php artisan db:seed --class=testimonio
+        //si no aparece actualiar composer => composer update
         DB::table('tbl_testimonio')->insert(array(
             'titulo'=>'Muy bueno',
             'descripcion'=>'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',

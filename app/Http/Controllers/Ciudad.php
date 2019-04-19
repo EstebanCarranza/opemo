@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+//use App\Ciudad;
 
 class Ciudad extends Controller
 {
@@ -18,13 +19,17 @@ class Ciudad extends Controller
         $table = DB::table($table)->where('areaMetropolitana', true);
         return $table;
     }*/
+    
     public function index()
     {
         $ciudades = DB::table('tbl_ciudad')->select('titulo')->where('areaMetropolitana', true)->get();
         foreach($ciudades as $ciudad)
         {
-            echo $ciudad->titulo . "<br>";
+            echo $ciudad->idCiudad . " - " . $ciudad->titulo . "<br>";
+
         }
+
+        //$ciudadM = new Ciudad();
             
     }
 

@@ -41,7 +41,7 @@
       <li title="Buscar"><a id="btnSearch"><i class="material-icons">search</i></a></li>
       <li title="Mi cuenta">
         <a id="btnUserLog" class="">
-          @if($login)
+          @if(!Auth::guest())
             <img src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @else
             <img src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
@@ -52,7 +52,7 @@
       </ul>
      
         <a id="navMobileProfile" href="#" data-target="slide-out" class="sidenav-trigger right">
-          @if($login)  
+          @if(!Auth::guest())  
             <img id="imgProfile" src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @else
             <img id="imgProfile" src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">

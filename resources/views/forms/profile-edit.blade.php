@@ -29,6 +29,12 @@
         <div class="col l6 s12"><!-- PANEL RIGHT -->
           <span class="black-text">
             <div class="input-field col l6 s12">
+              <input id="pAlias" type="text" class="validate">
+              <label for="pAlias">Alias</label>
+            </div>
+          </span>
+          <span class="black-text">
+            <div class="input-field col l6 s12">
               <input id="pName" type="text" class="validate">
               <label for="pName">Nombre</label>
             </div>
@@ -88,6 +94,7 @@
     {
       if(habilitar)
       {
+        $("#pAlias").removeAttr("disabled");
         $("#pName").removeAttr("disabled");
         $("#pApellido").removeAttr("disabled");
         $("#pCorreo").removeAttr("disabled");
@@ -96,6 +103,7 @@
         $("#btnSave").removeClass("disabled");
       }
       else{
+        $("#pAlias").prop("disabled",true);
         $("#pName").prop("disabled",true);
         $("#pApellido").prop("disabled",true);
         $("#pCorreo").prop("disabled",true);

@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@if(Auth::guest())
+  <script>window.location = "{{url('/')}}";</script>
+@endif
 <?php 
   $imgProfile = "img/catbox.jpg";
   $imgCover = "img/getty.jpg";
@@ -41,7 +44,8 @@
       </ul>
     </div>
     <div id="test1" class="col s12 row">
-        <div class="input-field col l6 m6 s12">
+    <div class="col s6">
+        <div class="input-field col l12 m12 s12">
           <h1> Bio </h1>
           <div class="input-field col s12 flow-text">
             <input id="pBio" type="text" class="validate" value="Este es mi perfil para blablabla juas juas xdxdxd">
@@ -51,29 +55,34 @@
             &nbsp;
           </p>
         </div>
-       <div class="input-field col l6 m6 s12">
-          <input id="pNombre" type="text" class="validate">
-          <label for="pNombre">Nombre</label>
         </div>
-        <div class="input-field col l6 m6 s12">
-          <input id="pApellido" type="text" class="validate">
-          <label for="pApellido">Apellido</label>
+        <div class="col s6">
+          <div class="input-field col l12 m12 s12">
+            <input id="pAlias" type="text" class="validate" value="{{Auth::user()->name}}">
+            <label for="pAlias">Alias</label>
+          </div>
+          <div class="input-field col l12 m12 s12">
+            <input id="pNombre" type="text" class="validate">
+            <label for="pNombre">Nombre</label>
+          </div>
+          <div class="input-field col l12 m12 s12">
+            <input id="pApellido" type="text" class="validate">
+            <label for="pApellido">Apellido</label>
+          </div>
+          <div class="input-field col l12 m12 s12">
+            <input id="pCorreo" type="text" class="validate" value="{{Auth::user()->email}}">
+            <label for="pCorreo">Correo electrónico</label>
+          </div>
+          <div class="input-field col l12 m12 s12">      
+            <input id="pFechaNac" type="text" class="datepicker" >
+             <label for="pFechaNac">Fecha de nacimiento</label>
+          </div>
+          <div class="input-field col l6 s12 row offset-l6">
+            <a id="btnEdit" class="waves-effect waves-light btn col l5 s5 primary-color orange"><i class="material-icons">mode_edit</i></a>
+            <label class="col l1 s1">&nbsp;</label>
+            <a id="btnSave" class="waves-effect waves-light btn col l6 s6 offset-l1 offset-s1 primary-color orange disabled"><i class="material-icons">save</i></a>
+          </div>                
         </div>
-        <div class="input-field col l6 m6 s12">
-          <input id="pCorreo" type="text" class="validate">
-          <label for="pCorreo">Correo electrónico</label>
-        </div>
-        <div class="input-field col l6 m6 s12">
-        
-           <input id="pFechaNac" type="text" class="datepicker" >
-           <label for="pFechaNac">Fecha de nacimiento</label>
-        </div>
-        <div class="input-field col l6 s12 row offset-l6">
-          <a id="btnEdit" class="waves-effect waves-light btn col l5 s5 primary-color orange"><i class="material-icons">mode_edit</i></a>
-          <label class="col l1 s1">&nbsp;</label>
-          <a id="btnSave" class="waves-effect waves-light btn col l6 s6 offset-l1 offset-s1 primary-color orange disabled"><i class="material-icons">save</i></a>
-        </div>                
-        
     </div>
     <div id="test2" class="col s12">
     <h4 class="col s12">Cambiar contraseña </h4>
@@ -178,6 +187,7 @@ var timeMouseoutProfilePicture = 100;
     {
       if(habilitar)
       {
+        $("#pAlias").removeAttr("disabled");
         $("#pNombre").removeAttr("disabled");
         $("#pBio").removeAttr("disabled");
         $("#pApellido").removeAttr("disabled");
@@ -188,6 +198,7 @@ var timeMouseoutProfilePicture = 100;
         $("#btnSave").removeClass("disabled");
       }
       else{
+        $("#pAlias").prop("disabled",true);
         $("#pNombre").prop("disabled",true);
         $("#pBio").prop("disabled",true);
         $("#pApellido").prop("disabled",true);

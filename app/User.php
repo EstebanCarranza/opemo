@@ -14,9 +14,17 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = "tbl_usuario";
+    protected $primaryKey = "idUsuario";
+    protected $email = "correo";
+    protected $fillable = [
+        'alias', 'correo', 'contrasenia'
+    ];
+
+    /*
     protected $fillable = [
         'name', 'email', 'password',
-    ];
+    ];*/
 
     /**
      * The attributes that should be hidden for arrays.
@@ -24,6 +32,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'tokenRecuperacion',
     ];
+    /*
+    protected $hidden = [
+        'password', 'remember_token',
+    ];*/
 }

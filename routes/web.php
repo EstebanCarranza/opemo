@@ -16,10 +16,10 @@ Route::get('/', function ($showCarousel = true) {
     //return view('pages.landingpage')->with('showCarousel',$showCarousel);
     
 });*/
-Route::get('/publication-list', function($cardTitle = 'Publicaciones')
+/*Route::get('/publication-list', function($cardTitle = 'Publicaciones')
 {
     return view('pages.publist')->with('cardTitle',$cardTitle);
-});
+});*/
 Route::get('/publication', function()
 {
     return view('pages.publication');
@@ -86,4 +86,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/pub', 'publicacionController');
+Route::resource('/publication-list', 'publicacionController',[
+    'as' => 'pub'
+]);
+

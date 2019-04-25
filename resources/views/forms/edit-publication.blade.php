@@ -2,12 +2,12 @@
 <?php $title = "Mochila perdida en la macroplaza"; ?>
 @section('title', $title)
 @section('content')
-<form method="post" enctype='multipart/form-data' action="/pub">
+<form method="post" enctype='multipart/form-data' action="{{url('publication-list')}}">
     {{ csrf_field() }}
     <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
 <div class ="row">
     <div class="input-field col s12">
-        <input name="titulo" id="pubTitulo" type="text" class="validate center" required value="{{$title}}">
+        <input name="titulo" id="pubTitulo" type="text" class="validate center" required>
         <label for="pubTitulo">Titulo</label>
     </div>
 </div>
@@ -119,9 +119,11 @@ $(document).ready(function(){
     $('.modal').modal();
     $('.datepicker').datepicker({
         autoClose : true,
-        format : 'dd/mm/yyyy'
+        format : 'yyyy-mm-dd'
+    });//'dd/mm/yyyy'
+    $('.timepicker').timepicker({
+        twelveHour : false
     });
-    $('.timepicker').timepicker();
     $('select').formSelect();
     $('input#input_text, textarea#epDescripcionLarga').characterCounter();
     $('.materialboxed').materialbox();

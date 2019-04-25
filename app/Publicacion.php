@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Publicacion extends Model
 {
@@ -19,6 +20,8 @@ class Publicacion extends Model
     protected $idPublicacionEstado;
     protected $idCiudad;
     protected $idUsuario;
+
+
 
     public function __constructor()
     {
@@ -39,7 +42,7 @@ class Publicacion extends Model
     
     public function setIdPublicacion($idPublicacionN){$this->idPublicacion = $idPublicacionN;}
     public function setTitulo($tituloN){$this->titulo = $tituloN;}
-    public function setPathImgVideo($pathImgVideoN){$this->pathImgVideo = $tituloN;}
+    public function setPathImgVideo($pathImgVideoN){$this->pathImgVideo = $pathImgVideoN;}
     public function setFecha($fechaN){$this->fecha = $fechaN;}
     public function setHora($horaN){$this->hora = $horaN;}
     public function setDescripcion($descripcionN){$this->descripcion = $descripcionN;}
@@ -49,4 +52,23 @@ class Publicacion extends Model
     public function setIdPublicacionEstado($idPublicacionEstadoN){$this->idPublicacionEstado = $idPublicacionEstadoN;}
     public function setIdCiudad($idCiudadN){$this->idCiudad = $idCiudadN;}
     public function setIdUsuario($idUsuarioN){$this->idUsuario = $idUsuarioN;}
+
+
+    
+    public function insert(Publicacion $publicacionN)
+    {
+         DB::table($this->table)->insert(array(
+            'titulo'        =>          $publicacionN->getTitulo(),
+            'fecha'         =>          $publicacionN->getFecha(),
+            'hora'          =>          $publicacionN->getHora(),
+            'idUbicacion'   =>          $publicacionN->getIdUbicacion(),
+            'idCiudad'      =>          $publicacionN->getIdCiudad(),
+            'idPublicacionEstado' =>    3,
+            'pathVistaPrevia' =>        $publicacionN->getPathImgVideo(),
+            'descripcion'   =>          $publicacionN->getDescripcion(),
+            'pathImgVideo'   =>         $publicacionN->getPathImgVideo(),
+            'idUsuario'      =>         $publicacionN->getIdUsuario()
+        ));
+        return true;
+    }
 }

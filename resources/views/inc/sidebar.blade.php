@@ -13,15 +13,16 @@
         <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
       </div>
     </li>
-    <li><a href="/my-profile">Crear publicación</a></li>
+    <li><a href="/edit-publication">Crear publicación</a></li>
     <li><a href="/my-profile">Crear ubicación</a></li>
     
     <li><div class="divider"></div></li>
-    <li><a href="/my-profile">Dashboard</a></li>
-    <li><a href="/my-publications">Mis perfil</a></li>
-    <li><a href="/my-ubications">Mis publicaciones</a></li>
-    <li><a href="/my-recovery-objects">Mis ubicaciones</a></li>
-    <li><a href="/my-user-reports">Mis objetos recuperados</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/my-profile">Mis perfil</a></li>
+    <li><a href="/my-publications">Mis publicaciones</a></li>
+    <li><a href="/my-ubications">Mis ubicaciones</a></li>
+    <li><a href="/my-recovery-objects">Mis objetos recuperados</a></li>
+    <!-- my-user-reports -->
     
     <li><div class="divider"></div></li>
     <li><a href="#!">Usuarios reportados</a></li>

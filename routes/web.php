@@ -85,3 +85,5 @@ Route::resource('testimonio', 'testimonioController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/pub', 'publicacionController');

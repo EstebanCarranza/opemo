@@ -2,32 +2,46 @@
 <?php $title = "Mochila perdida en la macroplaza"; ?>
 @section('title', $title)
 @section('content')
+<form method="post" enctype='multipart/form-data' action="/pub">
+    {{ csrf_field() }}
+    <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
 <div class ="row">
     <div class="input-field col s12">
-        <input id="pubTitulo" type="text" class="validate center" required value="{{$title}}">
+        <input name="titulo" id="pubTitulo" type="text" class="validate center" required value="{{$title}}">
         <label for="pubTitulo">Titulo</label>
     </div>
 </div>
    
 <div class="row card-panel">
-<div class="col l6">
+    <div class="col l6">
 
         <img class="col l12 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
+        <div class="col l12 s12">
+            <div class="file-field input-field">
+                <div class="btn orange">
+                    <span>File</span>
+                    <input name="imgPublicacion" type="file">
+                </div>
+                <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text" value="Clic aqui para subir tu imagen">
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col l6 s12 ">
         <h5 class='card-title flex-content'>Fecha y hora</h5>
             <div class="input-field col l6 s12">
-                <input id="pubFecha" type="text" class="validate datepicker" required>
+                <input name="fecha" id="pubFecha" type="text" class="validate datepicker" required>
                 <label for="pubFecha">Fecha</label>
             </div>
             <div class="input-field col l6 s12">
-                <input id="pubHora" type="text" class="validate timepicker" required>
+                <input name="hora" id="pubHora" type="text" class="validate timepicker" required>
                 <label for="pubHora">Hora</label>
             </div>
         <h5 class='card-title flex-content'>Ubicación</h5>
             
               <div class="input-field col s10">
-                <select>
+                <select name="ubicacion">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
@@ -45,7 +59,7 @@
 
         <h5 class='card-title flex-content'>Municipio</h5>
             <div class="input-field col s12">
-                <select>
+                <select name="municipio">
                     <optgroup label="Monterrey">
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
@@ -63,18 +77,20 @@
             </div>
         <h5 class='card-title flex-content'>Descripción larga</h5>
             <div class="input-field col s12">
-            <textarea id="epDescripcionLarga" class="materialize-textarea" data-length="120"></textarea>
+            <textarea name="descripcionLarga" id="epDescripcionLarga" class="materialize-textarea" data-length="120"></textarea>
             <label for="epDescripcionLarga">Escribe la descripción larga</label>
           </div>
     </div>
-    <div class="col l6 offset-l6 s12 row">
-        <a class="col l12 m12 s12 waves-effect waves-light btn orange" href="/reclam">Guardar borrador</a>
-    </div>
-    <div class="col l6 offset-l6 s12 row">
-        <a class="col l12 m12 s12 waves-effect waves-light btn orange" href="/reclam">Publicar</a>
-    </div>
-</div>
+    <button class="btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Guardar como borrador
+        <i class="material-icons right">send</i>
+    </button>
 
+    <button class="btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Publicar
+        <i class="material-icons right">send</i>
+    </button>
+    <input type="submit" value="Enviar">
+</div>
+</form>
  <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">

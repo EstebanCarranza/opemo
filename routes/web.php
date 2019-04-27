@@ -19,16 +19,14 @@ Route::get('/', function ($showCarousel = true) {
 /*Route::get('/publication-list', function($cardTitle = 'Publicaciones')
 {
     return view('pages.publist')->with('cardTitle',$cardTitle);
-});*/
+});
 Route::get('/publication', function()
 {
     return view('pages.publication');
-});
+});*/
 
-Route::get('/ubications', function($cardTitle = 'Ubicaciones')
-{
-    return view ('pages.ubications')->with('cardTitle',$cardTitle);
-});
+Route::resource('/ubications', 'ubicacionController');
+
 Route::match(['get','post'],'/dashboard', function()
 {
     //Revisar el kernel, por ahora solo está desactivada la seguridad, pero no debe ser así
@@ -76,7 +74,7 @@ Route::get('/profile',                   function(){return view('pages.profile')
 
 //Route::get('/test-01','Ciudad@index');
 
-Route::resource('Ciudad', 'Ciudad');
+Route::resource('Ciudad', 'ciudadController');
 Route::resource('testimonio', 'testimonioController');
 
 
@@ -86,7 +84,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/publication-list', 'publicacionController',[
-    'as' => 'pub'
-]);
+Route::resource('/publication-list', 'publicacionController');
 
+Route::get('/image/publication/', 'helperImageController@getPublicationPhoto');

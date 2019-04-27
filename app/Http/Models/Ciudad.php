@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,12 +8,12 @@ class Ciudad extends Model
 {
     protected $table = 'tbl_ciudad';
 
-    public $idCiudad;
-    public $titulo;
-    public $created_at;
-    public $updated_at;
-    public $idEstado;
-    public $areaMetropolitana;
+    protected $idCiudad;
+    protected $titulo;
+    protected $created_at;
+    protected $updated_at;
+    protected $idEstado;
+    protected $areaMetropolitana;
 
     public function getIdCiudad()
     {
@@ -63,7 +63,5 @@ class Ciudad extends Model
     {
         $this->areaMetropolitana = $areaMetropolitanaN;
     }
-    
-    
     
 }

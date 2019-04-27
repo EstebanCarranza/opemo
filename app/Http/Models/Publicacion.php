@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\imageHelperController;
 
 class Publicacion extends Model
 {
@@ -21,7 +22,7 @@ class Publicacion extends Model
     protected $idCiudad;
     protected $idUsuario;
 
-
+    public function getTableName(){return $this->table;}
 
     public function __constructor()
     {
@@ -63,7 +64,7 @@ class Publicacion extends Model
             'hora'          =>          $publicacionN->getHora(),
             'idUbicacion'   =>          $publicacionN->getIdUbicacion(),
             'idCiudad'      =>          $publicacionN->getIdCiudad(),
-            'idPublicacionEstado' =>    3,
+            'idPublicacionEstado' =>    $publicacionN->getIdPublicacionEstado(),
             'pathVistaPrevia' =>        $publicacionN->getPathImgVideo(),
             'descripcion'   =>          $publicacionN->getDescripcion(),
             'pathImgVideo'   =>         $publicacionN->getPathImgVideo(),
@@ -71,4 +72,5 @@ class Publicacion extends Model
         ));
         return true;
     }
+
 }

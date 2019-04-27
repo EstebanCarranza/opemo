@@ -13,8 +13,8 @@
         <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
       </div>
     </li>
-    <li><a href="/edit-publication">Crear publicación</a></li>
-    <li><a href="/my-profile">Crear ubicación</a></li>
+    <li><a href="/publication-list/create">Crear publicación</a></li>
+    <li><a href="/ubications/create">Crear ubicación</a></li>
     
     <li><div class="divider"></div></li>
     <li><a href="/dashboard">Dashboard</a></li>

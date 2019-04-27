@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Publicacion;
+use App\Http\Models\Publicacion;
 use Illuminate\Http\File;
+
 
 class publicacionController extends Controller
 {
@@ -15,12 +16,12 @@ class publicacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    protected $table = "tbl_publicacion";
      
 
     public function index()
     {
-        return view('pages.publist')->with('cardTitle','Publicaciones')
+        return view('publicaciones.index')->with('cardTitle','Publicaciones')
                 ->with('publicationList', $this->publicationList());
     }
 
@@ -32,6 +33,7 @@ class publicacionController extends Controller
     public function create()
     {
         //
+        return view('publicaciones.create');   
     }
 
     /**
@@ -50,9 +52,10 @@ class publicacionController extends Controller
         $var->setFecha($request->input('fecha'));
         $var->setHora($request->input('hora'));
         $var->setIdUbicacion($request->input('ubicacion'));
-        $var->setIdCiudad($request->input('municipio'));
+        $var->setIdCiudad(1);
         $var->setDescripcion($request->input('descripcionLarga'));
         $var->setIdUsuario($request->input('idUsuario'));
+        $var->setIdPublicacionEstado(3);
         
         $pathPublicacion = "users/".$user_info->id."/publicaciones/".time();
         Storage::makeDirectory($pathPublicacion);
@@ -76,22 +79,6 @@ class publicacionController extends Controller
 
         $var->insert($var);
 
-        /*
-        DB::table('tbl_publicacion')->insert(array(
-            'titulo'        =>  $var->getTitulo(),
-            'fecha'         => $var->getFecha(),
-            'hora'          => $var->getHora(),
-            'idUbicacion'   =>  $var->getIdUbicacion(),
-            'idCiudad'      =>  $var->getIdCiudad(),
-            'idPublicacionEstado' => 3,
-            'pathVistaPrevia' => $var->getPathImgVideo(),
-            'descripcion'   =>  $var->getDescripcion(),
-            'pathImgVideo'   => $var->getPathImgVideo(),
-            'idUsuario'      => $var->getIdUsuario()
-        ));*/
-        //'hora'          =>  $var->getHora(),
-        //'fecha'         =>  $var->getFecha(),
-        //'pathImgVideo'  =>  $var->getPathImgVideo()  
         return view('pages.dashboard');    
 
     }
@@ -104,38 +91,29 @@ class publicacionController extends Controller
      */
     public function show($id)
     {
-        
-        $publicacion = DB::table('tbl_publicacion')->select()->where('idPublicacion', $id)->get();
+        $publicacion = DB::table($this->table)->select()->where('idPublicacion', $id)->first();
+        $data = new publicacion();
+        $data->setIdPublicacion($publicacion->idPublicacion);
+        $data->setTitulo($publicacion->titulo);
+        $data->setPathImgVideo($publicacion->pathImgVideo);
+        $data->setFecha($publicacion->fecha);
+        $data->setHora($publicacion->hora);
+        $data->setDescripcion($publicacion->descripcion);
+        $data->setCreated_at($publicacion->created_at);
+        $data->setUpdated_at($publicacion->updated_at);
+        $data->setIdUbicacion($publicacion->idUbicacion);
+        $data->setIdPublicacionEstado($publicacion->idPublicacionEstado);
+        $data->setIdCiudad($publicacion->idCiudad);
+        $data->setIdUsuario($publicacion->idUsuario);
 
-        $publicacionList = array();
         
-        foreach($publicacion as $publicacion)
-        {
-            $data = new publicacion();
-
-            $data->setIdPublicacion($publicacion->idPublicacion);
-            $data->setTitulo($publicacion->titulo);
-            $data->setPathImgVideo($publicacion->pathImgVideo);
-            $data->setFecha($publicacion->fecha);
-            $data->setHora($publicacion->hora);
-            $data->setDescripcion($publicacion->descripcion);
-            $data->setCreated_at($publicacion->created_at);
-            $data->setUpdated_at($publicacion->updated_at);
-            $data->setIdUbicacion($publicacion->idUbicacion);
-            $data->setIdPublicacion($publicacion->idPublicacionEstado);
-            $data->setIdCiudad($publicacion->idCiudad);
-            $data->setIdUsuario($publicacion->idUsuario);
-            array_push($publicacionList, $data);
-            //echo $data->titulo . "- " . $data->descripcion . "<br>";
-        }
-             $response = response()->make(Storage::get( $publicacionList[0]->getPathImgVideo()), 200);
-            $response->header("Content-Type", 'image/png');
-            return $response;
+       return view("publicaciones.show")->with('publicacionData', $data);
     
     }
+
     public function publicationList()
     {
-         $publicacion = DB::table('tbl_publicacion')->select()->get();
+         $publicacion = DB::table($this->table)->select()->get();
 
         $publicacionList = array();
         

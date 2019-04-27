@@ -1,12 +1,12 @@
 @extends('layouts.master')
-<?php $title = "Mochila perdida en la macroplaza"; ?>
-@section('title', $title)
+@section('title', $publicacionData->getTitulo())
 @section('content')
-<div class ="row"><h3 class="col s12 flow-text center">{{$title}}</h3></div>
+<div class ="row"><h3 class="col s12 flow-text center">{{$publicacionData->getTitulo()}}</h3></div>
    
 <div class="row card-panel">
     <div class="col l6">
-    <img class="col l12 s12 materialboxed" data-caption='{{$title}}' src="http://wallpapers.ae/wp-content/uploads/2015/01/Pier-Night-HD-Picture.jpg">
+    <img class="col l12 s12 materialboxed" data-caption='{{$publicacionData->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacionData->getIdPublicacion())}}">
+    
      <div class="col s12 l12">
      <a href="/profile">
         <div class="card-panel z-depth-1 report-size ">
@@ -33,14 +33,14 @@
       </div>
     <div class="col l6 s12 ">
         <h5 class='card-title flex-content'>Fecha y hora</h5>
-            <p class='cart-text flex-content'>17/02/2019 12:52 a. m.</p>
+            <p class='cart-text flex-content'>{{$publicacionData->getFecha()}}&nbsp;{{$publicacionData->getHora()}}</p>
         <h5 class='card-title flex-content'>Ubicación</h5>
             <p class='card-text flex-content'>Macroplaza</p>
         <h5 class='card-title flex-content'>Municipio</h5>
             <p class='card-text flex-content'>Monterrey, N.L., México</p>
         <h5 class='card-title flex-content'>Descripción larga</h5>
             <p class='cart-text flex-content'>
-                Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo 'Contenido aquí, contenido aquí'. Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de 'Lorem Ipsum' va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).
+                {{$publicacionData->getDescripcion()}}
             </p>
     </div>
     <div class="col l6 offset-l6 s12 row">
@@ -129,6 +129,8 @@ $(document).ready(function(){
     $('.modal').modal();
     $('input#input_text, textarea#txtRazonReporte').characterCounter();
   });
+  
   </script>
+  
 @stop
 

@@ -60,6 +60,7 @@ class InitBD extends Migration
             $table->increments('idUbicacion');
             $table->string('titulo');
             $table->text('descripcion');
+            $table->text('pathUbicacion');
             $table->timestamps();
             
             $table->integer('idCiudad')->unsigned();

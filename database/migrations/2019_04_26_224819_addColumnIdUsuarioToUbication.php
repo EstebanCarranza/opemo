@@ -15,7 +15,7 @@ class AddColumnIdUsuarioToUbication extends Migration
     {
           Schema::table('tbl_ubicacion', function (Blueprint $table) {
             $table->integer('idUsuario')->unsigned()->default(1);
-            $table->foreign('idUsuario','fk_ubicacionUsuarioK')->references('idUsuario')->on('tbl_usuario');
+            $table->foreign('idUsuario','fk_ubicacionUsuarioK')->references('id')->on('users');
         });
     }
 

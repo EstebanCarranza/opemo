@@ -25,6 +25,11 @@ Route::get('/publication', function()
     return view('pages.publication');
 });*/
 
+
+Route::any('/errors/{error_message?}', function($error_message = "Algo anda mal :(") {
+    return view("pages.errors")->with('error_message',$error_message);
+});
+
 Route::resource('/ubications', 'ubicacionController');
 
 Route::match(['get','post'],'/dashboard', function()
@@ -87,3 +92,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/publication-list', 'publicacionController');
 
 Route::get('/image/publication/', 'helperImageController@getPublicationPhoto');
+Route::get('/image/ubication/', 'helperImageController@getUbicationPhoto');
+
+Route::get('/data/ubication/', 'helperDataController@getUbicationsForUser');

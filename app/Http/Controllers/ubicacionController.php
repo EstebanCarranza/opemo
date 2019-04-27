@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Http\Models\Ubicacion;
+use App\Http\Database\ubicacionDatabase;
 
 class ubicacionController extends Controller
 {
@@ -13,7 +15,9 @@ class ubicacionController extends Controller
      */
     public function index()
     {
-        return view ('ubicaciones.index')->with('cardTitle','Ubicaciones');
+        $db = new ubicacionDatabase();
+        return view ('ubicaciones.index')->with('cardTitle','Ubicaciones')
+        ->with('ubicationList', $db->getUbicationList());
     }
 
     /**
@@ -34,7 +38,33 @@ class ubicacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //
+        $user_info = \Auth::user();
+        $var = new Ubicacion();
+        $db = new ubicacionDatabase();
+
+        $var->setTitulo($request->input('titulo'));
+        $var->setDescripcion($request->input('descripcionLarga'));
+        $var->setIdCiudad($request->input('municipio'));
+        $var->setPathUbicacion($request->input('imgUbicacion'));
+        
+        $var->setIdUsuario($user_info->id);
+        
+        $pathUbicacion = "users/".$user_info->id."/ubicaciones/".time();
+        Storage::makeDirectory($pathUbicacion);
+
+        $media_file = $request->file('imgUbicacion');
+        if($media_file)
+        {
+            //$media_file->getClientOriginalName()
+            $name_file = time()."_".$user_info->id."_".substr($media_file->getClientOriginalName(), -5);
+            $var->setPathUbicacion($pathUbicacion."/".$name_file);
+            Storage::putFileAs($pathUbicacion, $media_file,$name_file);
+        }else 
+            $var->setPathUbicacion('no data');
+
+        if($db->insert($var)){return view('pages.dashboard');}
+        else {return view('pages.errors')->with('error_message', 'No se pudo subir el contenido intenta más tarde');}
     }
 
     /**

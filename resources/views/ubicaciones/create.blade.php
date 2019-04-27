@@ -1,15 +1,15 @@
 @extends('layouts.master')
 @section('content')
-  <form method="post" action="/ubications">
+  <form method="post" enctype='multipart/form-data' action="{{url('ubications')}}">
     <div class="row card-panel">
     <div class="col l6">
-            <img id="imagen-perfil-vista-previa" class="col l12 s12 materialboxed" src="{{asset('img/default.png')}}">
+            <img id="imagen-ubicacion-vista-previa" class="col l12 s12 materialboxed" src="{{asset('img/default.png')}}">
             <output class="col l12 s12 materialboxed" id='list-perfil'></output>
             <div class="col l12 s12">
                 <div class="file-field input-field">
                     <div class="btn orange">
                         <span>Cargar</span>
-                        <input id='imagen-perfil' name='imgPublicacion' type="file" required>
+                        <input id='imagen-ubicacion' name='imgUbicacion' type="file" required>
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" value="Clic aqui para subir tu imagen">
@@ -17,13 +17,13 @@
                 </div>
             </div>
         </div>
-      <div class="col s6">
+      <div class="col l6 s12">
         <h4 class="col s12">
           Crear ubicación
         </h4>
         <div class="col s12">
           <div class="input-field col s12">
-            <input id="pubCrearUbicacion" type="text" class="validate" required>
+            <input id="pubCrearUbicacion" name="titulo" type="text" class="validate" required>
             <label for="pubCrearUbicacion">Escribe la ubicación</label>
           </div>
         </div>
@@ -118,7 +118,7 @@ function archivo_perfil(evt)
                     return function(e) 
                     {
                         // Creamos la imagen.
-                        document.getElementById('imagen-perfil-vista-previa').style.display = 'none';
+                        document.getElementById('imagen-ubicacion-vista-previa').style.display = 'none';
                         
                         if(objectType == 1)
                             document.getElementById("list-perfil").innerHTML = ['<img width="100%" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');    
@@ -132,7 +132,7 @@ function archivo_perfil(evt)
         }
     }
     
-    document.getElementById('imagen-perfil').addEventListener('change', archivo_perfil, false);
+    document.getElementById('imagen-ubicacion').addEventListener('change', archivo_perfil, false);
 					
 </script>
 @stop

@@ -54,12 +54,9 @@
             <h5 class='card-title flex-content'>Ubicación</h5>
                 
                 <div class="input-field col s10">
-                    <select name="ubicacion">
-                        <option value="" disabled selected>Elige una ubicación</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        </select>
+                    <select class="insert-ciudad" name="ubicacion" id="cbxCiudades">
+                        <option value="-1" disabled selected>Elige una ubicación</option>    
+                    </select>
                     <label>Elige una ubicación</label>
                 </div>
                 <div class="input-field col s2">
@@ -76,11 +73,11 @@
                 <label for="epDescripcionLarga">Escribe la descripción larga</label>
             </div>
         </div>
-        <button class="btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Guardar como borrador
+        <button class="disabled btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Guardar como borrador
             <i class="material-icons right">send</i>
         </button>
 
-        <button class="btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Publicar
+        <button id="btnCrear" class="btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Publicar
             <i class="material-icons right">send</i>
         </button>
     </div>
@@ -152,6 +149,36 @@ $(document).ready(function(){
     $('select').formSelect();
     $('input#input_text, textarea#epDescripcionLarga').characterCounter();
     $('.materialboxed').materialbox();
+    $("#btnCrear").addClass("disabled");
+    $("select[name=ubicacion").change(function()
+    {
+     $("#btnCrear").removeClass("disabled");
+    });
+    getCiudades();
+    function getCiudades()
+    {
+      $.ajax({
+            url: '/data/ubication/',
+            async: 'true',
+            type: 'GET',
+            dataType: 'json',
+
+            success: function (respuesta) {
+            for(var i = 0; i < respuesta.length; i++)
+            {
+                //agregar el option al combo de html
+                $(".insert-ciudad").append("<option value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
+                //actualizar el combobox de materialized
+                $('select').formSelect();
+              
+            } 
+            },
+            error: function (x, h, r) {
+                alert("Error: " + x + h + r);
+
+            }
+        });
+    }
   });
   </script>
   <script>		

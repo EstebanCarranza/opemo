@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Models\Publicacion;
 use App\Http\StaticData\tbl_publicacion;
+use App\Http\Models\Ubicacion;
+use App\Http\Database\ubicacionDatabase;
 
 class helperImageController extends Controller
 {
@@ -32,6 +34,29 @@ class helperImageController extends Controller
             {
                 $data->setPathImgVideo($publicacion->pathImgVideo);
                 $response = response()->make(Storage::get($data->getPathImgVideo()), 200);
+                $response->header("Content-Type", 'image/png');
+                return $response;
+            }
+            else {return "Imagen no encontrada";}
+        }else {
+            return "Los datos ingresados no son correctos";
+        }
+        
+    }
+     public function getUbicationPhoto(Request $request)
+    {
+        $dbUbicacion = new ubicacionDatabase();
+        //Si no manda ID solamente retornará la leyenda que este en el "else"
+        if($request->id)
+        {
+            $id = $request->id;
+            $data = new Ubicacion();
+            $ubiData = DB::table($data->getTableName())->select($dbUbicacion->getPathUbicacion())
+            ->where($dbUbicacion->getIdUbicacion(), $id)->first();
+            if($ubiData)
+            {
+                $data->setPathUbicacion($ubiData->pathUbicacion);
+                $response = response()->make(Storage::get($data->getPathUbicacion()), 200);
                 $response->header("Content-Type", 'image/png');
                 return $response;
             }

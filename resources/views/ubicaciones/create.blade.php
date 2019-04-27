@@ -91,7 +91,7 @@ $(document).ready(function(){
   });
   </script>
    <script>		
-function archivo_perfil(evt) 
+    function archivo_perfil(evt) 
     {
         var files = evt.target.files; // FileList object
         var objectType = 0;

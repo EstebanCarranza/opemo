@@ -1,32 +1,32 @@
 <?php
 
-namespace App\Http\Models;
+namespace App\Http\Database;
+use App\Http\Models\Usuario;
+use Illuminate\Support\Facades\DB;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+class usuarioDatabase
 {
-    protected $table = 'users';
-    protected $idUsuario;
-    protected $alias;
-    protected $correo;
-    protected $contrasenia;
-    protected $tokenRecuperacion;
-    protected $nombre;
-    protected $apellidoPaterno;
-    protected $pathAvatar;
-    protected $pathPortada;
-    protected $bio;
-    protected $fechaNacimiento;
-    protected $bloqueado;
-    protected $created_at ;
-    protected $updated_at ;
-
+    protected $table = "users";
+    protected $idUsuario = "id";
+    protected $alias = "name";
+    protected $correo = "email";
+    protected $contrasenia = "password";
+    protected $tokenRecuperacion = "remember_token";
+    protected $nombre = "nombre";
+    protected $apellidoPaterno = "apellido_pat";
+    protected $pathAvatar = "pathAvatar";
+    protected $pathPortada = "pathPortada";
+    protected $bio = "bio";
+    protected $fechaNacimiento = "fechaNacimiento";
+    protected $bloqueado = "bloqueado";
+    protected $created_at = "created_at";
+    protected $updated_at = "updated_at";
+    
     public function __construct()
     {
-        
-    }
 
+    }
     public function getTable(){return $this->table;}
     public function getIdUsuario(){return $this->idUsuario;}
     public function getAlias(){return $this->alias;}
@@ -57,4 +57,25 @@ class Usuario extends Model
     public function setBloqueado($bloqueadoN){$this->bloqueado = $bloqueadoN ;}
     public function setCreated_at($created_atN){$this->created_at = $created_atN ;}
     public function setUpdated_at($updated_atN){$this->updated_at = $updated_atN ;}
+
+    public function getUsuarioForId($id)
+    {
+        $userData = new Usuario();
+        $dbUser = DB::table($this->table)->select(
+            $this->idUsuario,
+            $this->alias, $this->correo, $this->pathAvatar, $this->pathPortada, $this->bio,
+            $this->fechaNacimiento, $this->bloqueado
+        )->where($this->idUsuario, $id)->first();
+        
+        $userData->setIdUsuario($dbUser->id);
+        $userData->setAlias($dbUser->name);
+        $userData->setCorreo($dbUser->email);
+        $userData->setPathAvatar($dbUser->pathAvatar);
+        $userData->setPathPortada($dbUser->pathPortada);
+        $userData->setBio($dbUser->bio);
+        $userData->setFechaNacimiento($dbUser->fechaNacimiento);
+        $userData->setBloqueado($dbUser->bloqueado);
+
+        return $userData;
+    }
 }

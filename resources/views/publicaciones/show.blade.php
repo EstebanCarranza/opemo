@@ -12,11 +12,11 @@
         <div class="card-panel z-depth-1 report-size ">
           <div class="row valign-wrapper">
             <div class="col s2">
-              <img src="img/profile.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+              <img src="{{url('/image/profile/avatar?id='.$publicacionData->getIdUsuario())}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
             </div>
             <div class="col s10">
               <div  class="black-text">
-                Nombre de usuario
+                {{$publicacionData->getIdUsuario()}}Nombre de usuario
               </div>
               <div>
                     <i class="material-icons">star</i>

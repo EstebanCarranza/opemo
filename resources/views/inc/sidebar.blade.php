@@ -5,10 +5,10 @@
     <li>
       <div class="user-view">
         <div class="background orange">
-          <img src="{{$UserPhotoCover}}">
+          <img src="{{url('/image/profile/cover?id='.Auth::user()->id)}}">
         </div>
         
-        <a href="#user"><img class="circle" src="{{$UserPhotoProfile}}"></a>
+        <a href="#user"><img class="circle" src="{{url('/image/profile/avatar?id='.Auth::user()->id)}}"></a>
         <a href="#name"><span class="white-text name">{{Auth::user()->name}}</span></a>
         <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
       </div>
@@ -18,7 +18,7 @@
     
     <li><div class="divider"></div></li>
     <li><a href="/dashboard">Dashboard</a></li>
-    <li><a href="/my-profile">Mis perfil</a></li>
+    <li><a href="{{url('/profile/')}}">Mis perfil</a></li>
     <li><a href="/my-publications">Mis publicaciones</a></li>
     <li><a href="/my-ubications">Mis ubicaciones</a></li>
     <li><a href="/my-recovery-objects">Mis objetos recuperados</a></li>

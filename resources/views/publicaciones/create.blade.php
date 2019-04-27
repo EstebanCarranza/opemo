@@ -51,10 +51,9 @@
                     <input name="hora" id="pubHora" type="text" class="validate timepicker" required>
                     <label for="pubHora">Hora</label>
                 </div>
-            <h5 class='card-title flex-content'>Ubicación</h5>
-                
+                 <h5 class='card-title flex-content'>Ubicación</h5>
                 <div class="input-field col s10">
-                    <select class="insert-ciudad" name="ubicacion" id="cbxCiudades">
+                    <select class="insert-ubicacion" name="ubicacion" id="cbxUbicacion">
                         <option value="-1" disabled selected>Elige una ubicación</option>    
                     </select>
                     <label>Elige una ubicación</label>
@@ -100,34 +99,14 @@
       <p>
       
         <h5 class='card-title flex-content'>Municipio</h5>
-          <div class="input-field col s12">
-                <select name="municipio">
-                    <option value="" disabled selected>Elige un municipio</option>
-                    <option value="1">Monterrey</option>
-                    <option value="2">San Pedro Garza García</option>
-                    <option value="3">San Nicolás</option>
-                    </select>
-                <label>Elige un municipio</label>
-            </div>
-            <!--
+        <div class="col s12">
             <div class="input-field col s12">
-                <select name="municipio">
-                    <optgroup label="Monterrey">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                    </optgroup>
-                    <optgroup label="San Pedro Garza García">
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                    </optgroup>
-                    <optgroup label="San Nicolás">
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                    </optgroup>
+                <select name="municipio" class="insert-ciudad" id="cbxCiudad">
+                <option value='-1' disabled selected>Elige un municipio</option>
                 </select>
                 <label>Elige un municipio</label>
             </div>
-            -->
+        </div>
       </p>
     </div>
     <div class="modal-footer">
@@ -150,28 +129,50 @@ $(document).ready(function(){
     $('input#input_text, textarea#epDescripcionLarga').characterCounter();
     $('.materialboxed').materialbox();
     $("#btnCrear").addClass("disabled");
+
     $("select[name=ubicacion").change(function()
     {
      $("#btnCrear").removeClass("disabled");
     });
-    getCiudades();
-    function getCiudades()
+    getUbicaciones();
+    function getUbicaciones()
     {
       $.ajax({
             url: '/data/ubication/',
             async: 'true',
             type: 'GET',
             dataType: 'json',
-
             success: function (respuesta) {
-            for(var i = 0; i < respuesta.length; i++)
-            {
-                //agregar el option al combo de html
-                $(".insert-ciudad").append("<option value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
-                //actualizar el combobox de materialized
-                $('select').formSelect();
-              
-            } 
+                for(var i = 0; i < respuesta.length; i++)
+                {
+                    //agregar el option al combo de html
+                    $(".insert-ubicacion").append("<option value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
+                    //actualizar el combobox de materialized
+                    $('select').formSelect();
+                } 
+            },
+            error: function (x, h, r) {
+                alert("Error: " + x + h + r);
+
+            }
+        });
+    }
+    getCiudades();
+    function getCiudades()
+    {
+      $.ajax({
+            url: '/Ciudad/',
+            async: 'true',
+            type: 'GET',
+            dataType: 'json',
+            success: function (respuesta) {
+                for(var i = 0; i < respuesta.length; i++)
+                {
+                    //agregar el option al combo de html
+                    $(".insert-ciudad").append("<option value='"+respuesta[i].idCiudad+"'>"+respuesta[i].titulo+"</option>");
+                    //actualizar el combobox de materialized
+                    $('select').formSelect();
+                } 
             },
             error: function (x, h, r) {
                 alert("Error: " + x + h + r);

@@ -12,7 +12,7 @@
                     <span class="card-title activator grey-text text-darken-4">
                     Mi perfil
                     </span>
-                    <p><a href="/my-profile">Abrir</a></p>
+                    <p><a href="{{url('/profile')}}">Abrir</a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Mi perfil<i class="material-icons right">close</i></span>

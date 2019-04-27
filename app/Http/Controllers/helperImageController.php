@@ -9,6 +9,7 @@ use App\Http\Models\Publicacion;
 use App\Http\StaticData\tbl_publicacion;
 use App\Http\Models\Ubicacion;
 use App\Http\Database\ubicacionDatabase;
+use App\Http\Database\usuarioDatabase;
 
 class helperImageController extends Controller
 {
@@ -57,6 +58,48 @@ class helperImageController extends Controller
             {
                 $data->setPathUbicacion($ubiData->pathUbicacion);
                 $response = response()->make(Storage::get($data->getPathUbicacion()), 200);
+                $response->header("Content-Type", 'image/png');
+                return $response;
+            }
+            else {return "Imagen no encontrada";}
+        }else {
+            return "Los datos ingresados no son correctos";
+        }
+        
+    }
+     public function getProfileAvatarPhoto(Request $request)
+    {
+        $dbUsuario = new usuarioDatabase();
+        //Si no manda ID solamente retornará la leyenda que este en el "else"
+        if($request->id)
+        {
+            $id = $request->id;
+            $userData = DB::table($dbUsuario->getTable())->select($dbUsuario->getPathAvatar())
+            ->where($dbUsuario->getIdUsuario(), $id)->first();
+            if($userData)
+            {
+                $response = response()->make(Storage::get($userData->pathAvatar), 200);
+                $response->header("Content-Type", 'image/png');
+                return $response;
+            }
+            else {return "Imagen no encontrada";}
+        }else {
+            return "Los datos ingresados no son correctos";
+        }
+        
+    }
+    public function getProfileCoverPhoto(Request $request)
+    {
+        $dbUsuario = new usuarioDatabase();
+        //Si no manda ID solamente retornará la leyenda que este en el "else"
+        if($request->id)
+        {
+            $id = $request->id;
+            $userData = DB::table($dbUsuario->getTable())->select($dbUsuario->getPathPortada())
+            ->where($dbUsuario->getIdUsuario(), $id)->first();
+            if($userData)
+            {
+                $response = response()->make(Storage::get($userData->pathPortada), 200);
                 $response->header("Content-Type", 'image/png');
                 return $response;
             }

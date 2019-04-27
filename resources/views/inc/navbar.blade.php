@@ -48,7 +48,7 @@
       <li title="Mi cuenta">
         <a id="btnUserLog" class="">
           @if(!Auth::guest())
-            <img src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+            <img src="{{url('/image/profile/avatar?id='.Auth::user()->id)}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @else
             <img src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @endif

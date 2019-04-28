@@ -11,37 +11,37 @@ class estado extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_estado')->insert(array('titulo' => 'Aguascalientes, Aguascalientes','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Baja California, Mexicali','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Baja California Sur, La Paz','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Campeche, San Francisco de Campeche','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Chihuahua, Chihuahua','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Chiapas, Tuxtla Gutiérrez','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Coahuila, Saltillo','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Colima, Colima','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Durango, Victoria de Durango','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Guanajuato, Guanajuato','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Guerrero, Chilpancingo de los Bravo','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Hidalgo, Pachuca de Soto','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Jalisco, Guadalajara','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'México, Toluca de Lerdo','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Michoacán, Morelia','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Morelos, Cuernavaca','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Nayarit, Tepic','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Nuevo León, Monterrey','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Oaxaca, Oaxaca de Juárez','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Puebla, Puebla de Zaragoza','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Querétaro, Santiago de Querétaro','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Quintana Roo, Chetumal','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'San Luis Potosí, San Luis Potosí','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Sinaloa, Culiacán Rosales','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Sonora, Hermosillo','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Tabasco, Villahermosa','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Tamaulipas, Ciudad Victoria','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Tlaxcala, Tlaxcala de Xicohténcatl','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Veracruz, Xalapa-Enríquez','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Yucatán, Mérida','idPais'=>1));
-        DB::table('tbl_estado')->insert(array('titulo' => 'Zacatecas, Zacatecas','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Aguascalientes','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Baja California','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Baja California Sur','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Campeche','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Chihuahua','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Chiapas','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Coahuila','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Colima','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Durango','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Guanajuato','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Guerrero','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Hidalgo','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Jalisco','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'México','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Michoacán','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Morelos','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Nayarit','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Nuevo León','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Oaxaca','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Puebla','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Querétaro','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Quintana Roo','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'San Luis Potosí','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Sinaloa','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Sonora','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Tabasco','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Tamaulipas','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Tlaxcala','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Veracruz','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Yucatán','idPais'=>1));
+        DB::table('tbl_estado')->insert(array('titulo' => 'Zacatecas','idPais'=>1));
         $this->command->info('Estados agregados correctamente');
         //ejecutar el seed: php artisan db:seed --class=estado
     }

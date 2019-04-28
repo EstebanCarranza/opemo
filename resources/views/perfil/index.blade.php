@@ -1,28 +1,35 @@
 @extends('layouts.master')
-<?php
- $imgCover = "";
- $imgProfile = "";
-?>
 @section('content')
 
 <div class="col s12 card-panel row cover-main">
   <div class="cover" >
     <div><!-- PORTADA -->
-      <img id="imagen-ubicacion-vista-previa" src="{{url('/image/profile/cover?id='.$usuario->getIdUsuario())}}" class="ec-img-cover ec-img-shadow-profile" style="width:100%;">
-      <output id='list-perfil'></output>
-      <div class="file-field input-field ec-btn-file-input-cover">
-        <div class="btn row orange">
-          <input id='imagen-ubicacion' type="file" class="col s12 l1" accept="image/*">
-          <span class="material-icons" style="line-height:42px;">mode_edit</span>
+      @if(isset($me))
+        <img id="imagen-ubicacion-vista-previa" src="{{url('/image/profile/cover?id='.$usuario->getIdUsuario())}}" class="ec-img-cover ec-img-shadow-profile" style="width:100%;">
+        <output id='list-perfil'></output>
+        <div class="file-field input-field ec-btn-file-input-cover">
+          <div class="btn row orange waves-effect waves-light">
+            <input id='imagen-ubicacion' type="file" class="col s12 l1" accept="image/*">
+            <span class="material-icons" style="line-height:42px;">mode_edit</span>
         </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" style="width:0%;">
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" style="width:0%;">
+          </div>
         </div>
-      </div>
+      @else
+        <img id="imagen-ubicacion-vista-previa" src="{{url('/image/profile/cover?id='.$usuario->getIdUsuario())}}" class="ec-img-cover" style="width:100%;">
+        <div class="col s2 offset-s10 ec-cover-ubication-follow">
+          <div class="btn row orange waves-effect waves-light">
+            Seguir
+          </div>
+        </div>
+        
+          
+      @endif
+
     </div>
-    
+    @if(isset($me))
      <img  src="{{url('/image/profile/avatar?id='.$usuario->getIdUsuario())}}" class="ec-img-avatar ec-img-profile ec-img-shadow-profile">
-     
      <div class="file-field input-field ec-btn-file-input">
       <div class="btn row orange">
         <input type="file" class="col s12 l1" accept="image/*">
@@ -32,6 +39,9 @@
         <input class="file-path validate" type="text" style="width:0%;">
       </div>
     </div>
+    @else
+      <img  src="{{url('/image/profile/avatar?id='.$usuario->getIdUsuario())}}" class="ec-img-avatar ec-img-profile">
+    @endif
   </div>
 </div>
 
@@ -39,10 +49,17 @@
   <div class="row col s12">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="" href="#test1">Información</a></li>
-        <li class="tab col s3"><a class="" href="#test2">Seguridad</a></li>
-        <li class="tab col s3 "><a class="" href="#test3">Seguidores</a></li>
-        <li class="tab col s3"><a href="#test4">Seguidos</a></li>
+        @if(isset($me))
+          <li class="tab col s3"><a class="" href="#test1">Información</a></li>
+          <li class="tab col s3"><a class="" href="#test2">Seguridad</a></li>
+          <li class="tab col s3 "><a class="" href="#test3">Seguidores</a></li>
+          <li class="tab col s3"><a href="#test4">Seguidos</a></li>
+        @else
+          <li class="tab col s4"><a class="" href="#test1">Información</a></li>
+          <li class="tab col s4 "><a class="" href="#test3">Seguidores</a></li>
+          <li class="tab col s4"><a href="#test4">Seguidos</a></li>
+        @endif
+       
       </ul>
     </div>
     <div id="test1" class="col s12 row">
@@ -78,13 +95,16 @@
             <input id="pFechaNac" type="text" class="datepicker" >
             <label for="pFechaNac">Fecha de nacimiento</label>
           </div>
-          <div class="input-field col l6 s12 row offset-l6">
-            <a id="btnEdit" class="waves-effect waves-light btn col l5 s5 primary-color orange"><i class="material-icons">mode_edit</i></a>
-            <label class="col l1 s1">&nbsp;</label>
-            <a id="btnSave" class="waves-effect waves-light btn col l6 s6 offset-l1 offset-s1 primary-color orange disabled"><i class="material-icons">save</i></a>
-          </div>                
+          @if(isset($me))
+            <div class="input-field col l6 s12 row offset-l6">
+              <a id="btnEdit" class="waves-effect waves-light btn col l5 s5 primary-color orange"><i class="material-icons">mode_edit</i></a>
+              <label class="col l1 s1">&nbsp;</label>
+              <a id="btnSave" class="waves-effect waves-light btn col l6 s6 offset-l1 offset-s1 primary-color orange disabled"><i class="material-icons">save</i></a>
+            </div>     
+          @endif     
         </div>
     </div>
+    @if(isset($me))
     <div id="test2" class="col s12">
     <h4 class="col s12">Cambiar contraseña </h4>
       <div class="input-field col s6">
@@ -101,6 +121,7 @@
           <a id="btnSavePassword" class="waves-effect waves-light btn col l6 s6 offset-l1 offset-s1 primary-color orange disabled"><i class="material-icons">save</i></a>
         </div>       
     </div>
+    @endif
     <div id="test3" class="col s12">
       <div class="card-panel z-depth-0 col s12">
         @for($i = 0; $i < 10; $i++)

@@ -17,10 +17,12 @@ class publicacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $table = "tbl_publicacion";
+    protected $view = "vListaPublicacion";
      
 
     public function index()
     {
+
         return view('publicaciones.index')->with('cardTitle','Publicaciones')
                 ->with('publicationList', $this->publicationList());
     }
@@ -52,10 +54,11 @@ class publicacionController extends Controller
         $var->setFecha($request->input('fecha'));
         $var->setHora($request->input('hora'));
         $var->setIdUbicacion($request->input('ubicacion'));
-        $var->setIdCiudad(1);
+        //$var->setIdCiudad(1);
         $var->setDescripcion($request->input('descripcionLarga'));
         $var->setIdUsuario($request->input('idUsuario'));
         $var->setIdPublicacionEstado(3);
+        
         
         $pathPublicacion = "users/".$user_info->id."/publicaciones/".time();
         Storage::makeDirectory($pathPublicacion);
@@ -91,10 +94,11 @@ class publicacionController extends Controller
      */
     public function show($id)
     {
-        $publicacion = DB::table($this->table)->select()->where('idPublicacion', $id)->first();
+        $publicacion = DB::table($this->view)->select()->where('idPublicacion', $id)->first();
         $data = new publicacion();
         $data->setIdPublicacion($publicacion->idPublicacion);
-        $data->setTitulo($publicacion->titulo);
+        //titulo cambia a tituloPublicacion por la vista vListaPublicacion
+        $data->setTitulo($publicacion->tituloPublicacion);
         $data->setPathImgVideo($publicacion->pathImgVideo);
         $data->setFecha($publicacion->fecha);
         $data->setHora($publicacion->hora);
@@ -105,24 +109,27 @@ class publicacionController extends Controller
         $data->setIdPublicacionEstado($publicacion->idPublicacionEstado);
         $data->setIdCiudad($publicacion->idCiudad);
         $data->setIdUsuario($publicacion->idUsuario);
-
+        //datos de la vista vListaPublicacion
+        $data->setNombreUsuario($publicacion->name);
+        $data->setTituloUbicacion($publicacion->tituloUbicacion);
+        $data->setTituloPublicacionEstado($publicacion->tituloPublicacionEstado);
+        $data->setTituloCiudad($publicacion->tituloCiudad);
+        $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
         
-       return view("publicaciones.show")->with('publicacionData', $data);
+        return view("publicaciones.show")->with('publicacionData', $data);
     
     }
 
     public function publicationList()
     {
-         $publicacion = DB::table($this->table)->select()->get();
-
+        $dbPublicacion = DB::table($this->view)->select()->get();
         $publicacionList = array();
-        
-        foreach($publicacion as $publicacion)
+        foreach($dbPublicacion as $publicacion)
         {
             $data = new publicacion();
-
             $data->setIdPublicacion($publicacion->idPublicacion);
-            $data->setTitulo($publicacion->titulo);
+            //titulo cambia a tituloPublicacion por la vista vListaPublicacion
+            $data->setTitulo($publicacion->tituloPublicacion);
             $data->setPathImgVideo($publicacion->pathImgVideo);
             $data->setFecha($publicacion->fecha);
             $data->setHora($publicacion->hora);
@@ -133,12 +140,17 @@ class publicacionController extends Controller
             $data->setIdPublicacionEstado($publicacion->idPublicacionEstado);
             $data->setIdCiudad($publicacion->idCiudad);
             $data->setIdUsuario($publicacion->idUsuario);
+            //datos de la vista vListaPublicacion
+            $data->setNombreUsuario($publicacion->name);
+            $data->setTituloUbicacion($publicacion->tituloUbicacion);
+            $data->setTituloPublicacionEstado($publicacion->tituloPublicacionEstado);
+            $data->setTituloCiudad($publicacion->tituloCiudad);
+            $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
+            //agregar publicaciones al arreglo de objetos
             array_push($publicacionList, $data);
-            //echo $data->titulo . "- " . $data->descripcion . "<br>";
+
         }
-             //$response = response()->make(Storage::get( $publicacionList[0]->getPathImgVideo()), 200);
-            //$response->header("Content-Type", 'image/png');
-            return $publicacionList;
+        return $publicacionList;
     }
 
     /**

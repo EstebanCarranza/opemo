@@ -11,7 +11,7 @@ class pais extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_pais')->insert(array('idPais' => 1, 'titulo' => 'Estados Unidos Mexicanos'));
+        DB::table('tbl_pais')->insert(array('idPais' => 1, 'titulo' => 'México'));
         $this->command->info('Paises agregados correctamente');
         //ejecutar el seed: php artisan db:seed --class=pais
     }

@@ -19,9 +19,8 @@ class perfilController extends Controller
         $userData = new usuarioDatabase();
         $usuario = new Usuario();
         $usuario = $userData->getUsuarioForId($user_info->id);
-
-        //echo $usuario->getIdUsuario().  "<br>". $usuario->getAlias();
-        return view('perfil.index')->with('usuario', $usuario);
+        return view('perfil.index')->with('usuario', $usuario)
+        ->with('me', true);
     }
 
     /**
@@ -53,8 +52,13 @@ class perfilController extends Controller
      */
     public function show($id)
     {
-        //
-        return view('perfil.show');
+        $userData = new usuarioDatabase();
+        $usuario = new Usuario();
+        $usuario = $userData->getUsuarioForId($id);
+        if($id == \Auth::user()->id )
+            return view('perfil.index')->with('usuario', $usuario)->with('me', true);    
+        else
+            return view('perfil.index')->with('usuario', $usuario);
     }
 
     /**

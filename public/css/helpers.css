@@ -102,6 +102,17 @@
   
   
 }
+.ec-cover-ubication-follow
+{
+  position:absolute;
+  bottom:calc(12px - 16px); 
+  /*right:calc(15% - 16px);*/
+  z-index:2;
+}
+.ec-cover-ubication-follow div.btn
+{
+  width:100%;
+}
 .report-size
 {
 animation-duration: 0.3s;

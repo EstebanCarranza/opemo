@@ -8,7 +8,7 @@
     <img class="col l12 s12 materialboxed" data-caption='{{$publicacionData->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacionData->getIdPublicacion())}}">
     
      <div class="col s12 l12">
-     <a href="/profile">
+     <a href="{{url('/profile/'.$publicacionData->getIdUsuario())}}">
         <div class="card-panel z-depth-1 report-size ">
           <div class="row valign-wrapper">
             <div class="col s2">
@@ -16,7 +16,7 @@
             </div>
             <div class="col s10">
               <div  class="black-text">
-                {{$publicacionData->getIdUsuario()}}Nombre de usuario
+                {{$publicacionData->getNombreUsuario()}}
               </div>
               <div>
                     <i class="material-icons">star</i>
@@ -35,9 +35,9 @@
         <h5 class='card-title flex-content'>Fecha y hora</h5>
             <p class='cart-text flex-content'>{{$publicacionData->getFecha()}}&nbsp;{{$publicacionData->getHora()}}</p>
         <h5 class='card-title flex-content'>Ubicación</h5>
-            <p class='card-text flex-content'>Macroplaza</p>
+            <p class='card-text flex-content'>{{$publicacionData->getTituloUbicacion()}}</p>
         <h5 class='card-title flex-content'>Municipio</h5>
-            <p class='card-text flex-content'>Monterrey, N.L., México</p>
+            <p class='card-text flex-content'>{{$publicacionData->getTituloCiudadCompleta()}}</p>
         <h5 class='card-title flex-content'>Descripción larga</h5>
             <p class='cart-text flex-content'>
                 {{$publicacionData->getDescripcion()}}

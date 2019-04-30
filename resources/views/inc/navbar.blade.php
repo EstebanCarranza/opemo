@@ -23,9 +23,15 @@
         <i class="material-icons">menu</i>
       </a>
       
-      <a id="navLogo" href="/" class="brand-logo">
-        OPEMO
-      </a>
+       @if(!Auth::guest())
+        <a id="navLogo" href="/dashboard" class="brand-logo">
+          OPEMO
+        </a>
+      @else
+        <a id="navLogo" href="/" class="brand-logo">
+          OPEMO
+        </a>
+      @endif
      <form id="frmSearch" action="/results">
         <div class="input-field">
           <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
@@ -42,7 +48,7 @@
       <li title="Mi cuenta">
         <a id="btnUserLog" class="">
           @if(!Auth::guest())
-            <img src="{{$UserPhotoProfile}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+            <img src="{{url('/image/profile/avatar?id='.Auth::user()->id)}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @else
             <img src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @endif

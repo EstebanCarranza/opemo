@@ -11,7 +11,7 @@ class publicacionEstado extends Seeder
      */
     public function run()
     {
-        //
+        //ejecutar el seed: php artisan db:seed --class=publicacionEstado
         DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 1, 'titulo' => 'Reportada'));
         DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 2, 'titulo' => 'Bloqueada'));
         DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 3, 'titulo' => 'Normal'));

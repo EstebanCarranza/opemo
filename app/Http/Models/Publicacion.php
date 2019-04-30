@@ -20,7 +20,6 @@ class Publicacion extends Model
     protected $updated_at;
     protected $idUbicacion;
     protected $idPublicacionEstado;
-    protected $idCiudad;
     protected $idUsuario;
 
     protected $vNombreUsuario;
@@ -45,7 +44,6 @@ class Publicacion extends Model
     public function getUpdated_at(){return $this->update_at;}
     public function getIdUbicacion(){return $this->idUbicacion;}
     public function getIdPublicacionEstado(){return $this->idPublicacionEstado;}
-    public function getIdCiudad(){return $this->idCiudad;}
     public function getIdUsuario(){return $this->idUsuario;}
     
     //get data for view vListaPublicacion
@@ -65,7 +63,6 @@ class Publicacion extends Model
     public function setUpdated_at($updated_atN){$this->updated_at = $updated_atN;}
     public function setIdUbicacion($idUbicacionN){$this->idUbicacion = $idUbicacionN;}
     public function setIdPublicacionEstado($idPublicacionEstadoN){$this->idPublicacionEstado = $idPublicacionEstadoN;}
-    public function setIdCiudad($idCiudadN){$this->idCiudad = $idCiudadN;}
     public function setIdUsuario($idUsuarioN){$this->idUsuario = $idUsuarioN;}
 
     //set data for view vListaPublicacion (not insert in database)
@@ -84,7 +81,6 @@ class Publicacion extends Model
             'fecha'         =>          $publicacionN->getFecha(),
             'hora'          =>          $publicacionN->getHora(),
             'idUbicacion'   =>          $publicacionN->getIdUbicacion(),
-            'idCiudad'      =>          $publicacionN->getIdCiudad(),
             'idPublicacionEstado' =>    $publicacionN->getIdPublicacionEstado(),
             'pathVistaPrevia' =>        $publicacionN->getPathImgVideo(),
             'descripcion'   =>          $publicacionN->getDescripcion(),

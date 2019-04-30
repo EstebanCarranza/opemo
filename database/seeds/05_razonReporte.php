@@ -11,6 +11,7 @@ class razonReporte extends Seeder
      */
     public function run()
     {
+        //ejecutar el seed: php artisan db:seed --class=razonReporte
         DB::table('tbl_razonReporte')->insert(array('titulo' => 'Información falsa'));
         DB::table('tbl_razonReporte')->insert(array('titulo' => 'Es ofensivo'));
         DB::table('tbl_razonReporte')->insert(array('titulo' => 'Tiene contenido inapropiado'));

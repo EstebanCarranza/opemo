@@ -11,7 +11,7 @@ class ciudad extends Seeder
      */
     public function run()
     {           
-        
+        //ejecutar el seed: php artisan db:seed --class=ciudad
         DB::table('tbl_ciudad')->insert(array('titulo'=>'Abasolo ','idEstado'=>18));
         DB::table('tbl_ciudad')->insert(array('titulo'=>'Agualeguas ','idEstado'=>18));
         DB::table('tbl_ciudad')->insert(array('titulo'=>'Allende','idEstado'=>18));

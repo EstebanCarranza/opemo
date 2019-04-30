@@ -11,6 +11,7 @@ class estado extends Seeder
      */
     public function run()
     {
+        //ejecutar el seed: php artisan db:seed --class=estado
         DB::table('tbl_estado')->insert(array('titulo' => 'Aguascalientes','idPais'=>1));
         DB::table('tbl_estado')->insert(array('titulo' => 'Baja California','idPais'=>1));
         DB::table('tbl_estado')->insert(array('titulo' => 'Baja California Sur','idPais'=>1));

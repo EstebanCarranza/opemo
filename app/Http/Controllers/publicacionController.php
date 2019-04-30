@@ -107,7 +107,6 @@ class publicacionController extends Controller
         $data->setUpdated_at($publicacion->updated_at);
         $data->setIdUbicacion($publicacion->idUbicacion);
         $data->setIdPublicacionEstado($publicacion->idPublicacionEstado);
-        $data->setIdCiudad($publicacion->idCiudad);
         $data->setIdUsuario($publicacion->idUsuario);
         //datos de la vista vListaPublicacion
         $data->setNombreUsuario($publicacion->name);
@@ -138,7 +137,6 @@ class publicacionController extends Controller
             $data->setUpdated_at($publicacion->updated_at);
             $data->setIdUbicacion($publicacion->idUbicacion);
             $data->setIdPublicacionEstado($publicacion->idPublicacionEstado);
-            $data->setIdCiudad($publicacion->idCiudad);
             $data->setIdUsuario($publicacion->idUsuario);
             //datos de la vista vListaPublicacion
             $data->setNombreUsuario($publicacion->name);

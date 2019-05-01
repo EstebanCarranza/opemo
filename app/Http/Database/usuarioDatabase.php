@@ -78,4 +78,34 @@ class usuarioDatabase
 
         return $userData;
     }
+    public function updatePathAvatar(Usuario $user)
+    {
+        //echo $user->getIdUsuario()."-".$user->getPathAvatar();
+        DB::table($user->getTable())
+            ->where($this->idUsuario, $user->getIdUsuario())
+            ->update([$this->pathAvatar => $user->getPathAvatar()]);
+        return true;
+    }
+    public function updatePathPortada(Usuario $user)
+    {
+        //echo $user->getIdUsuario()."-".$user->getPathAvatar();
+        DB::table($user->getTable())
+            ->where($this->idUsuario, $user->getIdUsuario())
+            ->update([$this->pathPortada => $user->getPathPortada()]);
+        return true;
+    }
+    public function updateInfo(Usuario $user)
+    {
+         DB::table($user->getTable())
+            ->where($this->idUsuario, $user->getIdUsuario())
+            ->update([
+                $this->alias => $user->getAlias(),
+                $this->correo => $user->getCorreo(),
+                $this->nombre => $user->getNombre(),
+                $this->apellidoPaterno => $user->getApellidoPaterno(),
+                $this->bio => $user->getBio(),
+                $this->fechaNacimiento => $user->getFechaNacimiento()
+            ]);
+        return true;
+    }
 }

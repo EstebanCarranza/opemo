@@ -78,9 +78,16 @@ class helperImageController extends Controller
             ->where($dbUsuario->getIdUsuario(), $id)->first();
             if($userData)
             {
-                $response = response()->make(Storage::get($userData->pathAvatar), 200);
-                $response->header("Content-Type", 'image/png');
-                return $response;
+                if($request->path)
+                {
+                    return $userData->getPathAvatar();
+                }
+                else {
+                    $response = response()->make(Storage::get($userData->pathAvatar), 200);
+                    $response->header("Content-Type", 'image/png');
+                    return $response;    
+                }
+                
             }
             else {return "Imagen no encontrada";}
         }else {

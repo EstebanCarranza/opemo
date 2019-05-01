@@ -53,7 +53,7 @@ Route::get('/termcon',              function(){return view('info.terminos-condic
 Route::get('/frequent-questions',   function(){return view('info.frecuent-questions');});
 Route::get('/report-users',         function(){return view('info.report-users');});
 //<\------------------------------------ INFO -------------------------------------/>
-Route::any('/test',                 function(){return view('pages.test');});
+Route::any('/test',                 function(){return view('test');});
 //</------------------------------------ ACTIONS ------------------------------------\>
 Route::match(['get','post'],'/send-reclam', function(){return view('pages.dashboard');});
 Route::match(['get','post'],'/send-login',  function(){return view('pages.dashboard');});

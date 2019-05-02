@@ -44,7 +44,8 @@ class InitBD extends Migration
         Schema::create('tbl_estado', function (Blueprint $table) {
             $table->increments('idEstado');
             $table->string('titulo',100);
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->integer('idPais')->unsigned();
 
@@ -54,7 +55,8 @@ class InitBD extends Migration
             $table->increments('idCiudad');
             $table->string('titulo',100);
             $table->boolean('areaMetropolitana')->default(false);
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             
             $table->integer('idEstado')->unsigned();
 
@@ -66,7 +68,8 @@ class InitBD extends Migration
             $table->string('email',50)->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps(); 
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('alias',10)->nullable();
             $table->string('nombre',50)->nullable();
             $table->string('apellido_pat',50)->nullable();            
@@ -79,7 +82,8 @@ class InitBD extends Migration
          Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email',50)->index();
             $table->string('token');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
         Schema::create('tbl_ubicacion', function (Blueprint $table) {
             $table->increments('idUbicacion');
@@ -87,7 +91,8 @@ class InitBD extends Migration
             $table->text('descripcion');
             $table->text('pathUbicacion');
             
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             
             $table->integer('idCiudad')->unsigned();
             $table->integer('idUsuario')->unsigned();
@@ -108,7 +113,8 @@ class InitBD extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->text('descripcion');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             
             $table->integer('idUbicacion')->unsigned();
             $table->integer('idPublicacionEstado')->unsigned();
@@ -122,7 +128,8 @@ class InitBD extends Migration
         Schema::create('tbl_puntuacion', function (Blueprint $table) {
             $table->increments('idPuntuacion');
             $table->enum('puntuacion',['1','2','3','4','5']);
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
              
             $table->integer('idUsuario')->unsigned();
             $table->integer('idPublicacion')->unsigned();
@@ -138,7 +145,8 @@ class InitBD extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->text('descripcion');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             
             $table->integer('idUsuario')->unsigned();
             $table->integer('idUbicacion')->unsigned();
@@ -152,7 +160,8 @@ class InitBD extends Migration
         Schema::create('tbl_mensaje', function (Blueprint $table) {
             $table->increments('idMensaje');
             $table->text('mensaje');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->integer('idUsuario')->unsigned();
             $table->integer('idPublicacion')->unsigned();
@@ -169,7 +178,8 @@ class InitBD extends Migration
         });
         Schema::create('tbl_publicacionReportada', function (Blueprint $table) {
             $table->increments('idPublicacionReportada');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->integer('idPublicacion')->unsigned();
             $table->integer('idRazonReporte')->unsigned();
@@ -180,7 +190,8 @@ class InitBD extends Migration
         });
         Schema::create('tbl_comentario', function (Blueprint $table) {
             $table->increments('idComentario');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->integer('idUsuario')->unsigned();
             $table->integer('idPublicacion')->unsigned();
@@ -194,7 +205,8 @@ class InitBD extends Migration
             $table->string('titulo');
             $table->string('descripcion');
             $table->boolean('mostrarTestimonio');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

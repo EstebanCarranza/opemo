@@ -14,7 +14,7 @@
                     <div class="card-footer">
                         
                         <small class="text-muted truncate">
-                            1 min&nbsp;<br>
+                            {{$publicacion->getAntiguedad()}}&nbsp;<br>
                             {{$publicacion->getTituloUbicacion()}},
                             {{$publicacion->getTituloCiudadCompleta()}}
                         </small>
@@ -29,7 +29,7 @@
                     </p>  
                     <div class="card-footer">
                         <small class="text-muted truncate">
-                            1min &nbsp;<br>
+                            {{$publicacion->getAntiguedad()}}&nbsp;<br>
                             {{$publicacion->getTituloUbicacion()}},
                             {{$publicacion->getTituloCiudadCompleta()}}
                         </small>

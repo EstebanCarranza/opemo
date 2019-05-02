@@ -113,6 +113,7 @@ class perfilController extends Controller
                     $var->setPathAvatar($pathProfile."/".$name_file);
                     Storage::putFileAs($pathProfile, $img_avatar,$name_file);
                     $db->updatePathAvatar($var);
+                    return redirect('profile');  
                 }
             }
             break;
@@ -125,37 +126,33 @@ class perfilController extends Controller
                     $var->setPathPortada($pathProfile."/".$name_file);
                     Storage::putFileAs($pathProfile, $img_cover,$name_file);
                     $db->updatePathPortada($var);
+                    return redirect('profile');  
                 }
             }
             break;
             case "edit-info":
             {
-                /*$var->setBio($request->input('bio'));
+                $var->setBio($request->input('bio'));
                 $var->setAlias($request->input('alias'));
                 $var->setNombre($request->input('nombre'));
                 $var->setApellidoPaterno($request->input('apellidoPaterno'));
                 $var->setCorreo($request->input('correo'));
-                $var->setFechaNacimiento($request->input('fechaNacimiento'));*/
-                $x = $request->input('bio');
-                echo "bio: ".$request->input('bio')."<br>x:".$x."<br>".
-                    "alias: ".$request->input('alias')."<br>".
-                    "nombre: ".$request->input('nombre')."<br>".
-                    "apellidoPaterno: ".$request->input('apellidoPaterno')."<br>".
-                    "correo: ".$request->input('correo')."<br>".
-                    "fechaNacimiento: ".$request->input('fechaNacimiento')."<br>"
-                    ;
-                //$db->updateInfo($var);
-                
+                $var->setFechaNacimiento($request->input('fechaNacimiento'));
+                $db->updateInfo($var);
+                return redirect('profile'); 
             }
             break;
             case "edit-password":
             {
 
+                $password = $request->input('password');
+                $db->updatePassword(bcrypt($password), $user_info->id);
+                return redirect('profile'); 
             }
             break;
             default:break;
         }
-       return redirect('profile');         
+      //        
        
     }
 

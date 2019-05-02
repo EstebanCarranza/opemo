@@ -76,6 +76,10 @@ class ubicacionController extends Controller
     public function show($id)
     {
         //
+        $var = new Ubicacion();
+        $db = new ubicacionDatabase();
+        $var = $db->getUbicationForId($id);
+        return view('ubicaciones.show')->with('ubicacion', $var);
     }
 
     /**
@@ -87,6 +91,7 @@ class ubicacionController extends Controller
     public function edit($id)
     {
         //
+        
     }
 
     /**

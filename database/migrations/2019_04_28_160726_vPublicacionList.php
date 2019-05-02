@@ -26,7 +26,8 @@ class VPublicacionList extends Migration
                     pub.idPublicacionEstado, pe.titulo as tituloPublicacionEstado,
                     ub.idCiudad, ci.titulo as tituloCiudad,
                     concat(ci.titulo, ', ', es.titulo, ', ', pa.titulo) as tituloCiudadCompleto,
-                    pub.titulo as tituloPublicacion, pub.pathImgVideo, pub.fecha, pub.hora, pub.descripcion, pub.created_at, pub.updated_at, pub.pathVistaPrevia
+                    pub.titulo as tituloPublicacion, pub.pathImgVideo, pub.fecha, pub.hora, pub.descripcion, pub.created_at, pub.updated_at, pub.pathVistaPrevia,
+                    fnObtenerAntiguedad(pub.created_at) as antiguedad
                     From tbl_publicacion as pub
                     inner join users as us on pub.idUsuario = us.id
                     inner join tbl_ubicacion as ub on pub.idUbicacion = ub.idUbicacion

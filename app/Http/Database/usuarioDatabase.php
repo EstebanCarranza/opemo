@@ -61,14 +61,16 @@ class usuarioDatabase
     public function getUsuarioForId($id)
     {
         $userData = new Usuario();
-        $dbUser = DB::table($this->table)->select(
+        $dbUser = DB::table($userData->getTable())->select(
             $this->idUsuario,
             $this->alias, $this->correo, $this->pathAvatar, $this->pathPortada, $this->bio,
-            $this->fechaNacimiento, $this->bloqueado
+            $this->fechaNacimiento, $this->bloqueado, $this->nombre, $this->apellidoPaterno
         )->where($this->idUsuario, $id)->first();
         
         $userData->setIdUsuario($dbUser->id);
         $userData->setAlias($dbUser->name);
+        $userData->setNombre($dbUser->nombre);
+        $userData->setApellidoPaterno($dbUser->apellido_pat);
         $userData->setCorreo($dbUser->email);
         $userData->setPathAvatar($dbUser->pathAvatar);
         $userData->setPathPortada($dbUser->pathPortada);
@@ -77,5 +79,43 @@ class usuarioDatabase
         $userData->setBloqueado($dbUser->bloqueado);
 
         return $userData;
+    }
+    public function updatePassword($passwordN, $idN)
+    {
+        $user = new Usuario();
+        DB::table($user->getTable())
+            ->where($this->idUsuario, $idN)
+            ->update([$this->contrasenia => $passwordN]);
+        return true;
+    }
+    public function updatePathAvatar(Usuario $user)
+    {
+        //echo $user->getIdUsuario()."-".$user->getPathAvatar();
+        DB::table($user->getTable())
+            ->where($this->idUsuario, $user->getIdUsuario())
+            ->update([$this->pathAvatar => $user->getPathAvatar()]);
+        return true;
+    }
+    public function updatePathPortada(Usuario $user)
+    {
+        //echo $user->getIdUsuario()."-".$user->getPathAvatar();
+        DB::table($user->getTable())
+            ->where($this->idUsuario, $user->getIdUsuario())
+            ->update([$this->pathPortada => $user->getPathPortada()]);
+        return true;
+    }
+    public function updateInfo(Usuario $user)
+    {
+         DB::table($user->getTable())
+            ->where($this->idUsuario, $user->getIdUsuario())
+            ->update([
+                $this->alias => $user->getAlias(),
+                $this->correo => $user->getCorreo(),
+                $this->nombre => $user->getNombre(),
+                $this->apellidoPaterno => $user->getApellidoPaterno(),
+                $this->bio => $user->getBio(),
+                $this->fechaNacimiento => $user->getFechaNacimiento()
+            ]);
+        return true;
     }
 }

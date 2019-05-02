@@ -114,6 +114,8 @@ class publicacionController extends Controller
         $data->setTituloPublicacionEstado($publicacion->tituloPublicacionEstado);
         $data->setTituloCiudad($publicacion->tituloCiudad);
         $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
+        //datos de la funcion antiguedad (dentro de la vista vListaPublicacion)
+        $data->setAntiguedad($publicacion->antiguedad);
         
         return view("publicaciones.show")->with('publicacionData', $data);
     
@@ -144,6 +146,8 @@ class publicacionController extends Controller
             $data->setTituloPublicacionEstado($publicacion->tituloPublicacionEstado);
             $data->setTituloCiudad($publicacion->tituloCiudad);
             $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
+            //datos de la funcion antiguedad (dentro de la vista vListaPublicacion)
+            $data->setAntiguedad($publicacion->antiguedad);
             //agregar publicaciones al arreglo de objetos
             array_push($publicacionList, $data);
 

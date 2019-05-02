@@ -13,8 +13,8 @@
                     <p><a href="{{url('/ubications/'.$ubicacion->getIdUbicacion())}}">Abrir</a>@if(!Auth::guest())&nbsp;&nbsp;<a href='/edit-publication'>Editar</a>@endif</p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
-                            1 min&nbsp;
-                            Ubicacion ejemplo
+                            {{$ubicacion->getAntiguedad()}} &nbsp;
+                            {{$ubicacion->getTituloCiudadCompleta()}}
                         </small>
                     </div>
                 </div>
@@ -26,8 +26,8 @@
                     </p>  
                     <div class="card-footer">
                         <small class="text-muted truncate">
-                            1min &nbsp;
-                            Ubicacion ejemplo
+                            {{$ubicacion->getAntiguedad()}} &nbsp;
+                            {{$ubicacion->getTituloCiudadCompleta()}}
                         </small>
                     </div>
                 </div>

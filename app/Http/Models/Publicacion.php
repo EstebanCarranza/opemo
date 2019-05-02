@@ -27,6 +27,9 @@ class Publicacion extends Model
     protected $vTituloPublicacionEstado;
     protected $vTituloCiudad; 
     protected $vTituloCiudadCompleta;
+    
+    //para el resultado de la funcion antiguedad
+    protected $antiguedad;
 
     public function getTableName(){return $this->table;}
 
@@ -52,6 +55,9 @@ class Publicacion extends Model
     public function getTituloCiudad(){return $this->vTituloCiudad;}
     public function getTituloCiudadCompleta(){return $this->vTituloCiudadCompleta;}
     public function getNombreUsuario(){return $this->vNombreUsuario;}
+
+    //get data for function antiguedad
+    public function getAntiguedad(){return $this->antiguedad;}
     
     public function setIdPublicacion($idPublicacionN){$this->idPublicacion = $idPublicacionN;}
     public function setTitulo($tituloN){$this->titulo = $tituloN;}
@@ -67,11 +73,12 @@ class Publicacion extends Model
 
     //set data for view vListaPublicacion (not insert in database)
     public function setTituloUbicacion($vTituloUbicacionN){$this->vTituloUbicacion = $vTituloUbicacionN;}
-    public function setTituloPublicacionEstado($vTituloPublicacionEstadoN){return $this->vTituloPublicacionEstado = $vTituloPublicacionEstadoN;}
-    public function setTituloCiudad($vTituloCiudadN){return $this->vTituloCiudad = $vTituloCiudadN;}
-    public function setTituloCiudadCompleta($vTituloCiudadCompletaN){return $this->vTituloCiudadCompleta = $vTituloCiudadCompletaN;}
-    public function setNombreUsuario($vNombreUsuarioN){return $this->vNombreUsuario = $vNombreUsuarioN;}
-    
+    public function setTituloPublicacionEstado($vTituloPublicacionEstadoN){ $this->vTituloPublicacionEstado = $vTituloPublicacionEstadoN;}
+    public function setTituloCiudad($vTituloCiudadN){ $this->vTituloCiudad = $vTituloCiudadN;}
+    public function setTituloCiudadCompleta($vTituloCiudadCompletaN){ $this->vTituloCiudadCompleta = $vTituloCiudadCompletaN;}
+    public function setNombreUsuario($vNombreUsuarioN){ $this->vNombreUsuario = $vNombreUsuarioN;}
+    //set data for function antiguedad
+    public function setAntiguedad($antiguedadN){$this->antiguedad = $antiguedadN;}
 
     
     public function insert(Publicacion $publicacionN)

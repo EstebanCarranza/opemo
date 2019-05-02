@@ -7,30 +7,30 @@
     <div class="col l6">
     <img class="col l12 s12 materialboxed" data-caption='{{$publicacionData->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacionData->getIdPublicacion())}}">
     
-     <div class="col s12 l12">
-     <a href="{{url('/profile/'.$publicacionData->getIdUsuario())}}">
-        <div class="card-panel z-depth-1 report-size ">
-          <div class="row valign-wrapper">
-            <div class="col s2">
-              <img src="{{url('/image/profile/avatar?id='.$publicacionData->getIdUsuario())}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col s10">
-              <div  class="black-text">
-                {{$publicacionData->getNombreUsuario()}}
-              </div>
-              <div>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
+    <div class="col s12 l12">    
+        <a href="{{url('/profile/'.$publicacionData->getIdUsuario())}}">
+            <div class="card-panel z-depth-1 report-size ">
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img src="{{url('/image/profile/avatar?id='.$publicacionData->getIdUsuario())}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                    </div>
+                    <div class="col s10">
+                        <div class="black-text">
+                            {{$publicacionData->getNombreUsuario()}}
+                        </div>
+                        <div>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
-        </div>
         </a>
-      </div>
-      </div>
+    </div>
+    </div>
     <div class="col l6 s12 ">
         <h5 class='card-title flex-content'>Fecha y hora</h5>
             <p class='cart-text flex-content'>{{$publicacionData->getFecha()}}&nbsp;{{$publicacionData->getHora()}}</p>

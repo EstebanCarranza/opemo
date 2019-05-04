@@ -59,10 +59,12 @@ class perfilController extends Controller
         $userData = new usuarioDatabase();
         $usuario = new Usuario();
         $usuario = $userData->getUsuarioForId($id);
+        $seguir = new seguirController();
         if($id == \Auth::user()->id )
             return view('perfil.index')->with('usuario', $usuario)->with('me', true);    
         else
-            return view('perfil.index')->with('usuario', $usuario);
+            return view('perfil.index')->with('usuario', $usuario)->with('seguir',$seguir->getSeguir($id));
+        
     }
 
     /**

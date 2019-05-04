@@ -12,10 +12,20 @@
         @include('perfil.edit-cover')
       @else
         <img id="imagen-ubicacion-vista-previa" src="{{url('/image/profile/cover?id='.$usuario->getIdUsuario())}}" class="ec-img-cover" style="width:100%;">
-        <div class="col s2 offset-s10 ec-cover-ubication-follow">
-          <div class="btn row orange waves-effect waves-light">
-            Seguir
-          </div>
+        <div class="col row offset-s8 ec-cover-ubication-follow" style="width:100%;">
+         @if(isset($seguir))
+          <form method="post" action="/seguir">
+            {{csrf_field()}}  
+            <input type="hidden" name="idUsuarioSiguiendo" value="{{$usuario->getIdUsuario()}}">
+            <button class="btn col s3 row waves-effect waves-light orange" type="submit" name="action">
+                @if($seguir)
+                  Dejar de seguir
+                @else
+                    Seguir
+                @endif
+            </button>
+          </form>
+          @endif
         </div>
       @endif
     </div><!-- </PORTADA> -->
@@ -29,6 +39,7 @@
       @include('perfil.edit-avatar')    
     @else
       <img  src="{{url('/image/profile/avatar?id='.$usuario->getIdUsuario())}}" class="ec-img-avatar ec-img-profile">
+
     @endif
     <!-- </AVATAR> -->
   </div>

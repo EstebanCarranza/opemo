@@ -65,7 +65,6 @@ class helperImageController extends Controller
         }else {
             return "Los datos ingresados no son correctos";
         }
-        
     }
      public function getProfileAvatarPhoto(Request $request)
     {

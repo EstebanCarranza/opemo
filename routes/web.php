@@ -103,3 +103,4 @@ Route::get('/image/profile/avatar/','helperImageController@getProfileAvatarPhoto
 Route::get('/image/profile/cover/','helperImageController@getProfileCoverPhoto');
 
 Route::get('/data/ubication/', 'helperDataController@getUbicationsForUser');
+Route::post('/seguir', 'seguirController@seguir');

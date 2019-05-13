@@ -1,5 +1,8 @@
 @extends('layouts.cards')
-@section('title', 'Ubicaciones')
+@if(isset($cardTitle))
+    @section('title', $cardTitle)
+@endif
+@if(!isset($me)) {{$me = false}} @endif
 @section('body')
 @foreach($ubicationList as $ubicacion)
 <div class='col l4 m6 s12 animated-card card-row-custom-size'>
@@ -10,7 +13,10 @@
                 <div class='card-content'>
                     <a href="#" class=""><i class='material-icons right activator'>more_vert</i></a>
                     <span class='card-title  grey-text text-darken-4 truncate'>{{$ubicacion->getTitulo()}}</span>
-                    <p><a href="{{url('/ubications/'.$ubicacion->getIdUbicacion())}}">Abrir</a>@if(!Auth::guest())&nbsp;&nbsp;<a href='/edit-publication'>Editar</a>@endif</p>
+                    <p>
+                        <a href="{{url('/ubications/'.$ubicacion->getIdUbicacion())}}">Abrir</a>
+                        @if($me)&nbsp;&nbsp;<a href="{{url('/ubications/'.$ubicacion->getIdUbicacion().'/edit')}}">Editar</a>@endif
+                    </p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
                             {{$ubicacion->getAntiguedad()}} &nbsp;

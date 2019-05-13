@@ -9,25 +9,26 @@ use App\Http\Database\seguirDatabase;
 class seguirController extends Controller
 {
     //
-    public function getSeguidoresList($id)
+    public function getSeguidoresList()
     {
         $user_info = \Auth::User();
 
-        $dbListaSeguidores = \DB::table('tbl_seguir')->select()
-            ->where('idUsuarioSeguidor', $user_info->id)
-            ->where('idUsuarioSiguiendo',$id)
+        $dbListaSeguidores = \DB::table('vSeguir')->select()
+            ->where('idUsuarioSiguiendo',$user_info->id)
             ->get();
         
+        return response()->json($dbListaSeguidores);
         
     }
-    public function getSiguiendoList($id)
+    public function getSiguiendoList()
     {
         $user_info = \Auth::User();
 
-        $dbListaSiguiendo = \DB::table('tbl_seguir')->select()
+        $dbListaSiguiendo = \DB::table('vSeguir')->select()
             ->where('idUsuarioSeguidor', $user_info->id)
-            ->where('idUsuarioSiguiendo',$id)
             ->get();
+        
+        return response()->json($dbListaSiguiendo);
     }
 
     public function getSeguir($id)
@@ -71,7 +72,11 @@ class seguirController extends Controller
                     ->where($dbSeguir->getIdUsuarioSiguiendo(), $data->getIdUsuarioSiguiendo())
                     ->delete();
                //return back()->withInput(['id' => $data->getIdUsuarioSiguiendo(), 'seguir'=>true]);
-               return back();
+               $seguir = true;
+               $data = array();
+                array_push($data, $seguir);
+                return response()->json($data);
+               //return back();
             }
             else {
                     DB::table($dbSeguir->getTable())->insert(
@@ -83,7 +88,11 @@ class seguirController extends Controller
                         )
                     );
                    // return back()->withInput(['id' => $data->getIdUsuarioSiguiendo(), 'seguir' => false]);
-                   return back();
+                   $seguir = false;
+                   $data = array();
+                   array_push($data, $seguir);
+                   return response()->json($data);
+                   //return back();
             }
                     
         }

@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Models\Publicacion;
 use Illuminate\Http\File;
-
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Models\Comentario;
+use App\Http\Database\comentarioDatabase;
 
 class publicacionController extends Controller
 {
@@ -19,14 +21,20 @@ class publicacionController extends Controller
     protected $table = "tbl_publicacion";
     protected $view = "vListaPublicacion";
      
-
+    
     public function index()
     {
 
         return view('publicaciones.index')->with('cardTitle','Publicaciones')
-                ->with('publicationList', $this->publicationList());
+                ->with('publicationList', $this->getPublicationList());
     }
-
+    public function indexMyPublications()
+    {
+        $user_info = \Auth::user();
+        return view('publicaciones.index')->with('cardTitle','Mis publicaciones')
+                ->with('publicationList', $this->getMyPublicationList($user_info->id))
+                ->with('me', true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -94,6 +102,9 @@ class publicacionController extends Controller
      */
     public function show($id)
     {
+        //$comentario = Comentario::find(1);
+        //return var_dump($comentario);
+        
         $publicacion = DB::table($this->view)->select()->where('idPublicacion', $id)->first();
         $data = new publicacion();
         $data->setIdPublicacion($publicacion->idPublicacion);
@@ -116,14 +127,49 @@ class publicacionController extends Controller
         $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
         //datos de la funcion antiguedad (dentro de la vista vListaPublicacion)
         $data->setAntiguedad($publicacion->antiguedad);
+
         
         return view("publicaciones.show")->with('publicacionData', $data);
     
     }
 
-    public function publicationList()
+    public function getPublicationList()
     {
         $dbPublicacion = DB::table($this->view)->select()->get();
+        $publicacionList = array();
+        foreach($dbPublicacion as $publicacion)
+        {
+            $data = new publicacion();
+            $data->setIdPublicacion($publicacion->idPublicacion);
+            //titulo cambia a tituloPublicacion por la vista vListaPublicacion
+            $data->setTitulo($publicacion->tituloPublicacion);
+            $data->setPathImgVideo($publicacion->pathImgVideo);
+            $data->setFecha($publicacion->fecha);
+            $data->setHora($publicacion->hora);
+            $data->setDescripcion($publicacion->descripcion);
+            $data->setCreated_at($publicacion->created_at);
+            $data->setUpdated_at($publicacion->updated_at);
+            $data->setIdUbicacion($publicacion->idUbicacion);
+            $data->setIdPublicacionEstado($publicacion->idPublicacionEstado);
+            $data->setIdUsuario($publicacion->idUsuario);
+            //datos de la vista vListaPublicacion
+            $data->setNombreUsuario($publicacion->name);
+            $data->setTituloUbicacion($publicacion->tituloUbicacion);
+            $data->setTituloPublicacionEstado($publicacion->tituloPublicacionEstado);
+            $data->setTituloCiudad($publicacion->tituloCiudad);
+            $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
+            //datos de la funcion antiguedad (dentro de la vista vListaPublicacion)
+            $data->setAntiguedad($publicacion->antiguedad);
+            //agregar publicaciones al arreglo de objetos
+            array_push($publicacionList, $data);
+
+        }
+        return $publicacionList;
+    }
+    public function getMyPublicationList($id)
+    {
+        $dbPublicacion = DB::table($this->view)->select()
+        ->where('idUsuario', $id)->get();
         $publicacionList = array();
         foreach($dbPublicacion as $publicacion)
         {

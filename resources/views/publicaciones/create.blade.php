@@ -52,19 +52,13 @@
                     <label for="pubHora">Hora</label>
                 </div>
                  <h5 class='card-title flex-content'>Ubicación</h5>
-                <div class="input-field col s10">
+                <div class="input-field col s12">
                     <select class="insert-ubicacion" name="ubicacion" id="cbxUbicacion">
                         <option value="-1" disabled selected>Elige una ubicación</option>    
                     </select>
                     <label>Elige una ubicación</label>
                 </div>
-                <div class="input-field col s2">
-                <a href="#modal1" class="modal-trigger waves-effect waves-light btn primary-color orange">
-                    <i class="material-icons">
-                        add
-                    </i>
-                    </a>
-                </div>
+                
 
             <h5 class='card-title flex-content'>Descripción larga</h5>
                 <div class="input-field col s12">
@@ -81,39 +75,7 @@
         </button>
     </div>
 </form>
- <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>
-        Crear ubicación
-      </h4>
-      <h6 class="col s12">
-        Escribe la nueva ubicación y presiona aceptar para guardarla    
-      </h6>
-      <p>
-        <div class="input-field col s12">
-            <input id="pubCrearUbicacion" type="text" class="validate" required>
-            <label for="pubCrearUbicacion">Escribe la ubicación</label>
-        </div>
-      </p>
-      <p>
-      
-        <h5 class='card-title flex-content'>Municipio</h5>
-        <div class="col s12">
-            <div class="input-field col s12">
-                <select name="municipio" class="insert-ciudad" id="cbxCiudad">
-                <option value='-1' disabled selected>Elige un municipio</option>
-                </select>
-                <label>Elige un municipio</label>
-            </div>
-        </div>
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a>
-    </div>
-  </div>
+
 
  <script>
 $(document).ready(function(){
@@ -180,6 +142,8 @@ $(document).ready(function(){
             }
         });
     }
+
+    
   });
   </script>
   <script>		

@@ -14,17 +14,15 @@
         <img id="imagen-ubicacion-vista-previa" src="{{url('/image/profile/cover?id='.$usuario->getIdUsuario())}}" class="ec-img-cover" style="width:100%;">
         <div class="col row offset-s8 ec-cover-ubication-follow" style="width:100%;">
          @if(isset($seguir))
-          <form method="post" action="/seguir">
             {{csrf_field()}}  
-            <input type="hidden" name="idUsuarioSiguiendo" value="{{$usuario->getIdUsuario()}}">
-            <button class="btn col s3 row waves-effect waves-light orange" type="submit" name="action">
+            <input id="idUsuarioSiguiendo" type="hidden" name="idUsuarioSiguiendo" value="{{$usuario->getIdUsuario()}}">
+            <button id="btnSeguir" class="btn col s3 row waves-effect waves-green orange" type="submit" name="action">
                 @if($seguir)
                   Dejar de seguir
                 @else
                     Seguir
                 @endif
             </button>
-          </form>
           @endif
         </div>
       @endif
@@ -50,8 +48,8 @@
           @if(isset($me))
             <li class="tab col s3"><a class="" href="#test1">Información</a></li>
             <li class="tab col s3"><a class="" href="#test2">Seguridad</a></li>
-            <li class="tab col s3 "><a class="" href="#test3">Seguidores</a></li>
-            <li class="tab col s3"><a href="#test4">Seguidos</a></li>
+            <li class="tab col s3 " id="getSeguidores"><a class="" href="#test3">Seguidores</a></li>
+            <li class="tab col s3" id="getSeguidos"><a href="#test4">Seguidos</a></li>
           @else
             <li class="tab col s4"><a class="" href="#test1">Información</a></li>
             <li class="tab col s4 "><a class="" href="#test3">Seguidores</a></li>
@@ -141,59 +139,14 @@
         </form>
       </div>
       @endif
-      <div id="test3" class="col s12">
-        <div class="card-panel z-depth-0 col s12">
-          @for($i = 0; $i < 10; $i++)
-            <div class="col l4 m6 s12">
-              <div class="card card-control-panel">
-                <div class="card-content">
-                  <div class="card-image cover">
-                    <img src="{{url('/image/profile/cover?id='.Auth::user()->id)}}" class=""> 
-                    <img src="{{url('/image/profile/avatar?id='.Auth::user()->id)}}" class="ec-img-seguidor"> 
-                  </div>
-                  <p>
-                    &nbsp;
-                  </p>
-                  <span class="card-title grey-text text-darken-4">
-                    Perfil de x persona
-                  </span>  
-                  <p>
-                    <a href="/profile">Ver perfil</a>
-                      &nbsp;
-                    <a href="/profile">Eliminar</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          @endfor
-        </div>
+      <div id="test3" class="">
+          <div id="listSeguidores" class="row">
+          </div>
+        
       </div>
       <div id="test4" class="col s12">
-        <div class="card-panel z-depth-0 col s12">
-          @for($i = 0; $i < 10; $i++)
-            <div class="col l4 m6 s12">
-              <div class="card card-control-panel">
-                <div class="card-content">
-                  <div class="card-image cover">
-                    <img src="{{url('/image/profile/cover?id='.Auth::user()->id)}}" class=""> 
-                    <img src="{{url('/image/profile/avatar?id='.Auth::user()->id)}}" class="ec-img-seguidor"> 
-                  </div>
-                  <p>
-                    &nbsp;
-                  </p>
-                  <span class="card-title grey-text text-darken-4">
-                    Perfil de x persona
-                  </span>  
-                  <p>
-                    <a href="/my-profile">Ver perfil</a>
-                      &nbsp;
-                    <a href="/my-profile">Eliminar</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          @endfor
-        </div>
+         <div id="listSeguidos" class="row">
+          </div>
       </div>
 
     </div>
@@ -373,9 +326,164 @@
         
       });
     }
+  $("#btnSeguir").click(function()
+  {
+    seguirUsuario();
+  });
+    function seguirUsuario()
+    {
+        var idUsuarioSiguiendo = $("#idUsuarioSiguiendo").val();
+        var token = '{{csrf_token()}}';
+        var data = {
+                    idUsuarioSiguiendo:idUsuarioSiguiendo,
+                    _token:token
+                };
+        
+      $.ajax({
+        url: '/seguir',
+        async: 'true',
+        type: 'POST',
+        data: data,
+        success: function (respuesta) {
+          //debugger;
+          if(respuesta[0])
+          {
+            $("#btnSeguir").html("Seguir");
+          }else
+          {
+            $("#btnSeguir").html("Dejar de seguir");
+          }
+          
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
 
-    
+        }
+
+        });
+    }
+
+    $("#getSeguidores").click(function(){
+      getSeguidores();
+    });
+    function getSeguidores()
+    {
+      $.ajax({
+        url: '/seguidores',
+        async: 'true',
+        type: 'get',
+        success: function (respuesta) {
+          //debugger;
+          $("#listSeguidores").html("");
+          for(var i= 0; i < respuesta.length; i++)
+          {
+            var card = 
+            "<div class='col l4 m6 s12 animated-card card-row-custom-size'>"+
+              "<div class='card small hoverable card-custom-size'>"+
+                  "<div class='card-image waves-effect waves-block waves-light'>"+
+                      "<img class='activator' src='/image/profile/cover?id="+respuesta[i].idUsuarioSeguidor+"'>"+
+                      "<img class='activator ec-img-seguidor' src='/image/profile/avatar?id="+respuesta[i].idUsuarioSeguidor+"'>"+
+                  "</div>"+
+                  "<div class='card-content'>"+
+                      "<a href='#' class=''><i class='material-icons right activator'>more_vert</i></a>"+
+                      "<span class='card-title  grey-text text-darken-4 truncate'>"+respuesta[i].nombreSeguidor+"</span>"+
+                       "<p>"+
+                          "<a href='profile/"+respuesta[i].idUsuarioSeguidor+"'>Ir al perfil</a>"+
+                      "</p>"+
+                      "<div class='card-footer'>"+
+                          "<small class='text-muted truncate'>"+
+                             respuesta[i].antiguedad + "&nbsp;"+
+                          "</small>"+
+                      "</div>"+
+                  "</div>"+
+                  "<div class='card-reveal'>"+
+                      "<div><i class='material-icons right card-title'>close</i></div>"+
+                      "<span class='card-title grey-text text-darken-4'>"+respuesta[i].nombreSeguidor+"</span>"+
+                      "<div class='row'>"+
+                      "<p class='col s12'>"+
+                          "<a class='col s12' href='profile/"+respuesta[i].idUsuarioSeguidor+"'>Ir al perfil</a>"+
+                      "</p>"+
+                      "<p class='col s12'>"+
+                          "<a class='col s12' href='profile/"+respuesta[i].idUsuarioSeguidor+"'>Ir al perfil</a>"+
+                      "</p>"+
+                      "<p class='col s12'>"+
+                          "<a class='col s12' href='profile/"+respuesta[i].idUsuarioSeguidor+"'>Ir al perfil</a>"+
+                      "</p>"+
+                      "</div>"+
+                      "<div class='card-footer'>"+
+                          "<small class='text-muted truncate'>"+
+                             respuesta[i].antiguedad +
+                          "</small>"+
+                      "</div>"+
+                  "</div>"+
+              "</div>"+
+            "</div>";
+            $("#listSeguidores").append(card);
+
+          }
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+
+        }
+
+      });
+    }
+    $("#getSeguidos").click(function(){
+      getSeguidos();
+    });
+    function getSeguidos()
+    {
+      $.ajax({
+        url: '/seguidos',
+        async: 'true',
+        type: 'get',
+        success: function (respuesta) {
+          $("#listSeguidos").html("");
+          for(var i= 0; i < respuesta.length; i++)
+          {
+            var card = 
+            "<div class='col l4 m6 s12 animated-card card-row-custom-size'>"+
+              "<div class='card small hoverable card-custom-size'>"+
+                  "<div class='card-image waves-effect waves-block waves-light'>"+
+                      "<img class='activator' src='/image/profile/cover?id="+respuesta[i].idUsuarioSiguiendo+"'>"+
+                      "<img class='activator ec-img-seguidor' src='/image/profile/avatar?id="+respuesta[i].idUsuarioSiguiendo+"'>"+
+                  "</div>"+
+                  "<div class='card-content'>"+
+                      "<a href='#' class=''><i class='material-icons right activator'>more_vert</i></a>"+
+                      "<span class='card-title  grey-text text-darken-4 truncate'>"+respuesta[i].nombreSiguiendo+"</span>"+
+                      "<p>"+
+                        
+                          "<a href='profile/"+respuesta[i].idUsuarioSiguiendo+"'>Ir al perfil</a>"+
+                      "</p>"+
+                      "<div class='card-footer'>"+
+                          "<small class='text-muted truncate'>"+
+                             respuesta[i].antiguedad + "&nbsp;"+
+                          "</small>"+
+                      "</div>"+
+                  "</div>"+
+                  "<div class='card-reveal'>"+
+                      "<div><i class='material-icons right card-title'>close</i></div>"+
+                      "<span class='card-title grey-text text-darken-4'>"+respuesta[i].nombreSiguiendo+"</span>"+
+                      "<p class='flow-text'>"+
+                      "</p>  "+
+                      "<div class='card-footer'>"+
+                          "<small class='text-muted truncate'>"+
+                             respuesta[i].antiguedad +
+                          "</small>"+
+                      "</div>"+
+                  "</div>"+
+              "</div>"+
+            "</div>";
+            $("#listSeguidos").append(card);
+
+          }
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+        }
+      });
+    }
   });
 </script>
-
 @stop

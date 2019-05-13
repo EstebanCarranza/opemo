@@ -10,27 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/*
-Route::get('/', function ($showCarousel = true) {
-    //return view('pages.landingpage')->with('showCarousel',$showCarousel);
-    
-});*/
-/*Route::get('/publication-list', function($cardTitle = 'Publicaciones')
-{
-    return view('pages.publist')->with('cardTitle',$cardTitle);
-});
-Route::get('/publication', function()
-{
-    return view('pages.publication');
-});*/
-
-
 Route::any('/errors/{error_message?}', function($error_message = "Algo anda mal :(") {
     return view("pages.errors")->with('error_message',$error_message);
 });
-
-
 
 Route::match(['get','post'],'/dashboard', function()
 {
@@ -62,8 +44,8 @@ Route::match(['get','post'],'/send-contact', function(){return view('pages.dashb
 //<\------------------------------------ ACTIONS ------------------------------------/>
 //</------------------------------------ CONTROL-PANEL ---------------------------------\>
 //Route::get('/my-profile',               function(){return view('perfil.show');});
-Route::get('/my-publications',          function($cardTitle = 'Mis publicaciones', $login = true){return view('pages.publist')->with('cardTitle',$cardTitle);});
-Route::get('/my-ubications',            function($cardTitle = 'Mis ubicaciones', $login = true){return view('pages.ubications')->with('cardTitle',$cardTitle);});
+Route::get('/my-publications',          'publicacionController@indexMyPublications');
+Route::get('/my-ubications',            'ubicacionController@indexMyUbications');
 Route::get('/my-recovery-objects',      function(){return view('pages.dashboard');});
 Route::get('/my-user-reports',          function(){return view('pages.report-users');});
 Route::get('/messages',          function(){return view('pages.answers');});
@@ -95,6 +77,9 @@ Route::resource('/ubications', 'ubicacionController');
 Route::resource('/profile','perfilController');
 Route::resource('Ciudad', 'ciudadController');
 Route::resource('testimonio', 'testimonioController');
+Route::resource('/razonReporte','razonReporteController');
+Route::resource('/comentario', 'comentarioController');
+
 
 //Helpers
 Route::get('/image/publication/', 'helperImageController@getPublicationPhoto');
@@ -103,4 +88,7 @@ Route::get('/image/profile/avatar/','helperImageController@getProfileAvatarPhoto
 Route::get('/image/profile/cover/','helperImageController@getProfileCoverPhoto');
 
 Route::get('/data/ubication/', 'helperDataController@getUbicationsForUser');
+Route::get('/data/comments/','helperDataController@getCommentList');
 Route::post('/seguir', 'seguirController@seguir');
+Route::get('/seguidores', 'seguirController@getSeguidoresList');
+Route::get('/seguidos', 'seguirController@getSiguiendoList');

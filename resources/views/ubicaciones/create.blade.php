@@ -1,15 +1,53 @@
 @extends('layouts.master')
+<?php /*create and edit mode (editMode = true)*/ ?>
+<?php
+  $title = "Crear ubicacion";
+  $nombreUbicacion = "";
+  $descripcionLarga ="";
+  $idMunicipio = -1;
+  $helperEdit = false;
+?>
+@if(isset($editMode)) 
+  @if($editMode)
+    <?php
+      $title = "Editar ubicacion";
+      $nombreUbicacion = $ubicacion->getTitulo();
+      $descripcionLarga = $ubicacion->getDescripcion();
+      $idMunicipio = $ubicacion->getIdCiudad();
+      $helperEdit = false;
+    ?>
+  @endif
+@else
+  {{$editMode = false}}
+@endif
+@section('title', $title)
 @section('content')
+@if($editMode)
+  <form  method="POST" enctype='multipart/form-data' action="{{url('ubications',[$ubicacion->getIdUbicacion()])}}">
+    {{ method_field('PATCH') }}
+@else
   <form method="post" enctype='multipart/form-data' action="{{url('ubications')}}">
+@endif
+    {{ csrf_field() }}
     <div class="row card-panel">
     <div class="col l6">
-            <img id="imagen-ubicacion-vista-previa" class="col l12 s12 materialboxed" src="{{asset('img/default.png')}}">
+            @if($editMode)
+              <img id="imagen-ubicacion-vista-previa" class="col l12 s12 materialboxed" src="{{url('/image/ubication?id='.$ubicacion->getIdUbicacion())}}">
+            @else
+              <img id="imagen-ubicacion-vista-previa" class="col l12 s12 materialboxed" src="{{asset('img/default.png')}}">
+            @endif
+            
             <output class="col l12 s12 materialboxed" id='list-perfil'></output>
             <div class="col l12 s12">
                 <div class="file-field input-field">
                     <div class="btn orange">
                         <span>Cargar</span>
-                        <input id='imagen-ubicacion' name='imgUbicacion' type="file" required>
+                        <input type="hidden" id="helperEdit" name="helperEdit" value="{{$helperEdit}}">
+                        @if($helperEdit)
+                          <input id='imagen-ubicacion' name='imgUbicacion' type="file" required>
+                        @else
+                          <input id='imagen-ubicacion' name='imgUbicacion' type="file" >
+                        @endif
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" value="Clic aqui para subir tu imagen">
@@ -19,24 +57,25 @@
         </div>
       <div class="col l6 s12">
         <h4 class="col s12">
-          Crear ubicación
+          {{$title}}
         </h4>
         <div class="col s12">
           <div class="input-field col s12">
-            <input id="pubCrearUbicacion" name="titulo" type="text" class="validate" required>
+            <input id="pubCrearUbicacion" name="titulo" type="text" class="validate" value="{{$nombreUbicacion}}" required>
             <label for="pubCrearUbicacion">Escribe la ubicación</label>
           </div>
         </div>
         <div class="col s12">
           <div class="input-field col s12">
-            <textarea name="descripcionLarga" id="epDescripcionLarga" class="materialize-textarea" data-length="1000" required></textarea>
+            <textarea name="descripcionLarga" id="epDescripcionLarga" class="materialize-textarea" data-length="1000" required>{{$descripcionLarga}}</textarea>
             <label for="epDescripcionLarga">Escribe la descripción larga</label>
           </div>
         </div>
         <div class="col s12">
           <div class="input-field col s12">
+            <input type="hidden" id="selectId" value="{{$idMunicipio}}">
             <select name="municipio" class="insert-ciudad" id="cbxCiudades">
-              <option value='-1' disabled selected>Elige un municipio</option>
+              
             </select>
             <label>Elige un municipio</label>
           </div>
@@ -57,9 +96,33 @@ $(document).ready(function(){
     $('.materialboxed').materialbox();
     getCiudades();
     $("#btnCrear").addClass("disabled");
-    $("select[name=municipio").change(function()
+    function validar_edit()
     {
-     $("#btnCrear").removeClass("disabled");
+      
+      if(
+          $("#cbxCiudades").find(":selected").val() != -1 && 
+          $("#pubCrearUbicacion").val() != "" && 
+          $("#epDescripcionLarga").val() != ""
+        )
+          $("#btnCrear").removeClass("disabled");
+        else
+          $("#btnCrear").addClass("disabled");
+          
+    }
+    
+    $("select[name=municipio]").change(function()
+    {
+      
+      validar_edit(); 
+    });
+    $("#pubCrearUbicacion").keyup(function()
+    {
+      validar_edit();
+      
+    });
+    $("#epDescripcionLarga").keyup(function()
+    {
+      validar_edit();
     });
     function getCiudades()
     {
@@ -70,14 +133,24 @@ $(document).ready(function(){
         dataType: 'json',
 
         success: function (respuesta) {
+          var idCiudadSelected = $("#selectId").val();
+          if(idCiudadSelected == -1)
+            $(".insert-ciudad").append("<option selected value='-1' disabled>Elige un municipio</option>");
+          else
+            $(".insert-ciudad").append("<option value='-1' disabled>Elige un municipio</option>");
+          
           for(var i = 0; i < respuesta.length; i++)
           {
             //agregar el option al combo de html
-            $(".insert-ciudad").append("<option value='"+respuesta[i].idCiudad+"'>"+respuesta[i].titulo+"</option>");
+            if(idCiudadSelected == respuesta[i].idCiudad)
+              $(".insert-ciudad").append("<option selected value='"+respuesta[i].idCiudad+"'>"+respuesta[i].titulo+"</option>");
+            else
+              $(".insert-ciudad").append("<option value='"+respuesta[i].idCiudad+"'>"+respuesta[i].titulo+"</option>");
             //actualizar el combobox de materialized
             $('select').formSelect();
 
           } 
+          
             //$(".insert-ciudad").html(respuesta);
             //debugger;
         },
@@ -117,6 +190,8 @@ $(document).ready(function(){
                 {
                     return function(e) 
                     {
+                        //Activar la edición de la imagen
+                        $("#helperEdit").val(true);
                         // Creamos la imagen.
                         document.getElementById('imagen-ubicacion-vista-previa').style.display = 'none';
                         

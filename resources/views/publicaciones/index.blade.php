@@ -1,4 +1,8 @@
 @extends('layouts.cards')
+@if(isset($cardTitle))
+    @section('title', $cardTitle)
+@endif
+@if(!isset($me)) {{$me = false}} @endif
 @section('body')
 @foreach($publicationList as $publicacion)
 <div class='col l4 m6 s12 animated-card card-row-custom-size'>
@@ -10,7 +14,10 @@
                     <a href="#" class=""><i class='material-icons right activator'>more_vert</i></a>
                     <span class='card-title  grey-text text-darken-4 truncate'>{{$publicacion->getTitulo()}}</span>
                     
-                    <p><a href="{{url('/publication-list/'.$publicacion->getIdPublicacion())}}">Abrir</a>@if(!Auth::guest())&nbsp;&nbsp;<a href='/edit-publication'>Editar</a>@endif</p>
+                    <p>
+                        <a href="{{url('/publication-list/'.$publicacion->getIdPublicacion())}}">Abrir</a>
+                        @if($me)&nbsp;&nbsp;<a href='/edit-publication'>Editar</a>@endif
+                    </p>
                     <div class="card-footer">
                         
                         <small class="text-muted truncate">

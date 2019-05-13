@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class ubicacionDatabase
 {
     protected $table = "tbl_ubicacion";
-    
+
     protected $idUbicacion = "idUbicacion";
     protected $titulo = "titulo";
     protected $descripcion = "descripcion";
@@ -42,6 +42,29 @@ class ubicacionDatabase
         ));
         return true;
     }
+    public function updateOnlyInfo(Ubicacion $data)
+    {
+        DB::table($this->table)
+            ->where($this->idUbicacion, $data->getIdUbicacion())
+            ->update([
+                $this->titulo => $data->getTitulo(),
+                $this->descripcion => $data->getDescripcion(),
+                $this->idCiudad  => $data->getIdCiudad()
+        ]);
+        return true;
+    }
+    public function updateAllData(Ubicacion $data)
+    { 
+        DB::table($this->table)
+            ->where($this->idUbicacion, $data->getIdUbicacion())
+            ->update([
+                $this->titulo => $data->getTitulo(),
+                $this->descripcion => $data->getDescripcion(),
+                $this->idCiudad  => $data->getIdCiudad(),
+                $this->pathUbicacion => $data->getPathUbicacion()
+            ]);
+        return true;
+    }
     public function getUbicationForId($id)
     {
         $data = new Ubicacion();
@@ -72,6 +95,35 @@ class ubicacionDatabase
         
         foreach($ubicaciones as $ubicacion)
         {
+            $data = new Ubicacion();
+            $data->setIdUbicacion($ubicacion->idUbicacion);
+            $data->setTitulo($ubicacion->titulo);
+            $data->setDescripcion($ubicacion->descripcion);
+            $data->setPathUbicacion($ubicacion->pathUbicacion);
+            $data->setIdCiudad($ubicacion->idCiudad);
+            $data->setCreated_at($ubicacion->created_at);
+            $data->setUpdated_at($ubicacion->updated_at);
+            //exclusivo de la vista
+            $data->setTituloCiudad($ubicacion->tituloCiudad);
+            $data->setTituloCiudadCompleta($ubicacion->tituloCiudadCompleta);
+            $data->setAlias($ubicacion->name);
+            $data->setPathAvatar($ubicacion->pathAvatar);
+            $data->setAntiguedad($ubicacion->antiguedad);
+            array_push($ubicacionList, $data);
+           
+        }
+        return $ubicacionList;
+    }
+     public function getMyUbicationList($id)
+    {
+        $data = new Ubicacion();
+        $ubicaciones = DB::table($data->getViewShow())->select()
+        ->where($this->getIdUsuario(), $id)->get();
+        $ubicacionList = array();
+        
+        foreach($ubicaciones as $ubicacion)
+        {
+            $data = new Ubicacion();
             $data->setIdUbicacion($ubicacion->idUbicacion);
             $data->setTitulo($ubicacion->titulo);
             $data->setDescripcion($ubicacion->descripcion);

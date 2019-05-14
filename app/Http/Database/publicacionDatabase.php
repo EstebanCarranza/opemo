@@ -1,46 +1,36 @@
 <?php
 
-namespace App\Http\Models;
-
-use Illuminate\Database\Eloquent\Model;
+namespace App\Http\Database;
+use App\Http\Models\Ubicacion;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\imageHelperController;
 
-class Publicacion extends Model
+
+class publicacionDatabase
 {
     protected $table = 'tbl_publicacion';
     protected $view = 'vListaPublicacion';
-    protected $idPublicacion;
-    protected $titulo;
-    protected $pathImgVideo;
-    protected $fecha;
-    protected $hora;
-    protected $descripcion;
-    protected $created_at;
-    protected $updated_at;
-    protected $idUbicacion;
-    protected $idPublicacionEstado;
-    protected $idUsuario;
+    protected $idPublicacion = "idPublicacion";
+    protected $titulo = "titulo";
+    protected $pathVistaPrevia = "pathVistaPrevia";
+    protected $pathImgVideo = "pathImgVideo";
+    protected $fecha = "fecha";
+    protected $hora = "hora";
+    protected $descripcion = "descripcion";
+    protected $created_at = "created_at";
+    protected $updated_at = "updated_at";
+    protected $idUbicacion = "idUbicacion";
+    protected $idPublicacionEstado = "idPublicacionEstado";
+    protected $idUsuario = "idUsuario";
 
-    protected $vNombreUsuario;
-    protected $vTituloUbicacion;
-    protected $vTituloPublicacionEstado;
-    protected $vTituloCiudad; 
-    protected $vTituloCiudadCompleta;
+    protected $vNombreUsuario = "nombreUsuario";
+    protected $vTituloUbicacion = "tituloUbicacion";
+    protected $vTituloPublicacionEstado = "tituloPublicacionEstado";
+    protected $vTituloCiudad = "tituloCiudad"; 
+    protected $vTituloCiudadCompleta = "tituloCiudadCompleta";
     
     //para el resultado de la funcion antiguedad
-    protected $antiguedad;
+    protected $antiguedad = "antiguedad";
 
-    public function getTableName(){return $this->table;}
-
-    public function __constructor()
-    {
-
-    }
-    public function comments()
-    {
-        return $this->hasMany(Comentario::class);
-    }
     public function getIdPublicacion(){ return $this->idPublicacion;}
     public function getTitulo(){return $this->titulo;}
     public function getPathImgVideo(){return $this->pathImgVideo;}
@@ -84,19 +74,18 @@ class Publicacion extends Model
     //set data for function antiguedad
     public function setAntiguedad($antiguedadN){$this->antiguedad = $antiguedadN;}
 
-    
     public function insert(Publicacion $publicacionN)
     {
          DB::table($this->table)->insert(array(
-            'titulo'        =>          $publicacionN->getTitulo(),
-            'fecha'         =>          $publicacionN->getFecha(),
-            'hora'          =>          $publicacionN->getHora(),
-            'idUbicacion'   =>          $publicacionN->getIdUbicacion(),
-            'idPublicacionEstado' =>    $publicacionN->getIdPublicacionEstado(),
-            'pathVistaPrevia' =>        $publicacionN->getPathImgVideo(),
-            'descripcion'   =>          $publicacionN->getDescripcion(),
-            'pathImgVideo'   =>         $publicacionN->getPathImgVideo(),
-            'idUsuario'      =>         $publicacionN->getIdUsuario()
+            $this->titulo        =>          $publicacionN->getTitulo(),
+            $this->fecha         =>          $publicacionN->getFecha(),
+            $this->hora          =>          $publicacionN->getHora(),
+            $this->idUbicacion   =>          $publicacionN->getIdUbicacion(),
+            $this->idPublicacionEstado =>    $publicacionN->getIdPublicacionEstado(),
+            $this->pathVistaPrevia =>        $publicacionN->getPathImgVideo(),
+            $this->descripcion   =>          $publicacionN->getDescripcion(),
+            $this->pathImgVideo   =>         $publicacionN->getPathImgVideo(),
+            $this->idUsuario      =>         $publicacionN->getIdUsuario()
         ));
         return true;
     }

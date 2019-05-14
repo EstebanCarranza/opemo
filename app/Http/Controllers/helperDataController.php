@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Models\Ubicacion;
 use App\Http\Database\ubicacionDatabase;
+use App\Http\Database\comentarioDatabase;
 
 
 class helperDataController extends Controller
@@ -30,6 +31,21 @@ class helperDataController extends Controller
                 ->where($dbUbicacion->getIdUsuario(), $user_info->id)->get();
 
          return response()->json($ubiData);
+    }
+    public function getCommentList(Request $request)
+    {
+        if($request->id)
+        {
+            $dbComentarios = new comentarioDatabase();
+            $comentarios = $dbList = DB::table($dbComentarios->getView())->select()
+                ->where($dbComentarios->getIdPublicacion(), $request->id)
+                ->orderBy('created_at', 'asc')
+                ->get();
+            
+            return response()->json($comentarios);
+            //return var_dump($comentarios);
+        }
+       
     }
     
    

@@ -19,7 +19,14 @@ class ubicacionController extends Controller
         return view ('ubicaciones.index')->with('cardTitle','Ubicaciones')
         ->with('ubicationList', $db->getUbicationList());
     }
-
+    public function indexMyUbications()
+    {
+        $user_info = \Auth::user();
+        $db = new ubicacionDatabase();
+        return view ('ubicaciones.index')->with('cardTitle','Mis ubicaciones')
+        ->with('ubicationList', $db->getMyUbicationList($user_info->id))
+        ->with('me', true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -46,7 +53,7 @@ class ubicacionController extends Controller
         $var->setTitulo($request->input('titulo'));
         $var->setDescripcion($request->input('descripcionLarga'));
         $var->setIdCiudad($request->input('municipio'));
-        $var->setPathUbicacion($request->input('imgUbicacion'));
+        //$var->setPathUbicacion($request->input('imgUbicacion'));
         
         $var->setIdUsuario($user_info->id);
         
@@ -91,7 +98,12 @@ class ubicacionController extends Controller
     public function edit($id)
     {
         //
-        
+        $var = new Ubicacion();
+        $db = new ubicacionDatabase();
+        $var = $db->getUbicationForId($id);
+        return view('ubicaciones.create')
+        ->with('editMode', true)
+        ->with('ubicacion', $var);
     }
 
     /**
@@ -104,8 +116,35 @@ class ubicacionController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+       $user_info = \Auth::user();
+        $var = new Ubicacion();
+        $db = new ubicacionDatabase();
 
+        $var->setIdUbicacion($id);
+        $var->setTitulo($request->input('titulo'));
+        $var->setDescripcion($request->input('descripcionLarga'));
+        $var->setIdCiudad($request->input('municipio'));
+       // $var->setPathUbicacion($request->input('imgUbicacion'));
+        
+        $var->setIdUsuario($user_info->id);
+
+        $media_file = $request->file('imgUbicacion');
+        if($media_file)
+        {
+            $pathUbicacion = "users/".$user_info->id."/ubicaciones/".time();
+            Storage::makeDirectory($pathUbicacion);
+            //$media_file->getClientOriginalName()
+            $name_file = time()."_".$user_info->id."_".substr($media_file->getClientOriginalName(), -5);
+            $var->setPathUbicacion($pathUbicacion."/".$name_file);
+            Storage::putFileAs($pathUbicacion, $media_file,$name_file);
+            if($db->updateAllData($var)){return redirect('/my-ubications');}
+        }
+        else 
+        {
+            if($db->updateOnlyInfo($var)){return redirect('/my-ubications');}
+        }
+        
+    }
     /**
      * Remove the specified resource from storage.
      *

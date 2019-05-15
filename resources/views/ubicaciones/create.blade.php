@@ -190,6 +190,8 @@ $(document).ready(function(){
                 {
                     return function(e) 
                     {
+                      var element = document.getElementById("btnCrear");
+                        element.classList.remove("disabled");
                         //Activar la edición de la imagen
                         $("#helperEdit").val(true);
                         // Creamos la imagen.

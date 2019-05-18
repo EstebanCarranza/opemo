@@ -43,21 +43,32 @@
                 {{$publicacionData->getDescripcion()}}
             </p>
     </div>     
-    <div class="col l6 offset-l6 s12 row">
-        <a class="col l12 m12 s12 waves-effect waves-light btn orange" href="/reclam">Reclamar objeto</a>
-    </div>
-    <div class="col l6 offset-l6 s12 row">
-        <a class="col l12 m12 s12 waves-effect waves-light btn orange modal-trigger" href="#reportar">Reportar publicación</a>
-    </div>
+    @if(!Auth::guest() && !$me)
+        <div class="col l6 offset-l6 s12 row">
+            <a id="reportarPublicacion" class="col l12 m12 s12 waves-effect waves-light btn red modal-trigger" href="#reportar">
+                Reportar publicación <i class="material-icons right">report</i>
+            </a>
+        </div>
+        <div class="col l6 offset-l6 s12 row">
+            <a id="reclamarObjeto" class="col l12 m12 s12 waves-effect waves-light btn orange modal-trigger" href="#mdlContactar">
+                <i class="material-icons right">question_answer</i> Reclamar objeto
+            </a>
+        </div>
+    @endif
 </div>
 
- <div id="commentList"></div>
 
+
+
+
+ <div id="commentList"></div>
+@if(!Auth::guest())
 <div class="row card-panel z-depth-1">
     <div class="col s12">
         <div class="z-depth-0">
             <div class="row valign-wrapper">
                 <div class="col s2">
+                    
                     <img src="{{url('/image/profile/avatar?id='.\Auth::user()->id)}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
                 </div>
                 <div class="col s10">
@@ -83,8 +94,7 @@
     </div>
 </div>
 
-
-        <!-- Modal Structure -->
+    <!-- Modal Structure -->
   <div id="reportar" class="modal modal-fixed-footer">
     <form method="post" action="{{url('/razonReporte')}}">
         {{csrf_field()}}
@@ -117,10 +127,41 @@
     </div>
   </div>
 
+    <!-- Modal Structure -->
+  <div id="mdlContactar" class="modal modal-fixed-footer">
+    <form method="POST" action="{{url('reclamo')}}">
+        {{ csrf_field() }}
+        <div class="modal-content">
+        <h4>Contactar a {{$publicacionData->getNombreUsuario()}}</h4>
+        <div class="input-field col s12">
+                <input type="hidden" name="idPublicacion" value="{{$publicacionData->getIdPublicacion()}}">
+            <textarea name="descripcion" id="txtContactar" class="materialize-textarea"></textarea>
+            <label for="txtContactar">
+                Escribe un mensaje para que {{$publicacionData->getNombreUsuario()}}
+                entienda la razón de tu reclamo
+            </label>
+            </div>  
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-orange btn-flat">Cerrar ventana</a>
+            <a id="btnMensaje" href="#!" class="modal-close waves-effect waves-orange btn-flat">
+            <i class="material-icons right">question_answer</i>Enviar mensaje
+        </a>
+        </div>
+    </form>
+  </div>
+          
+@endif
+
+
+
  <script>
 $(document).ready(function(){
     $('.materialboxed').materialbox();
     $('.modal').modal();
+    $('input#input_text, textarea#txtContactar').characterCounter();
+
+
     getRazonReporte();
     function getRazonReporte()
     {
@@ -176,6 +217,10 @@ $(document).ready(function(){
             enviarComentario();
         //alert(idUsuario + "." + idPublicacion);
     });
+    $("#btnMensaje").click(function()
+    {
+        enviarReclamo();
+    });
     $("#pubComentario").keypress(function(e) {
         if(e.which == 13) {
          if($("#pubComentario").val() != "")
@@ -200,6 +245,7 @@ $(document).ready(function(){
         type: 'POST',
         data: data,
         success: function (respuesta) {
+            $("#reportarPublicacion").addClass("disabled");
             $("#msgReporteTitle").html("Reporte realizado correctamente");
           $("#msgReporte").modal('open');
         },
@@ -213,6 +259,7 @@ $(document).ready(function(){
 
     function enviarComentario()
     {
+        
         var idPublicacion = {{$publicacionData->getIdPublicacion()}};
         var comentario = $("#pubComentario").val();
         var token = '{{csrf_token()}}';
@@ -233,6 +280,38 @@ $(document).ready(function(){
           $("#msgReporteTitle").html("Comentario realizado correctamente");
           $("#msgReporte").modal('open');
           getComentarios();
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+
+        }
+
+        });
+    }
+    function enviarReclamo()
+    {
+
+        var idPublicacion = {{$publicacionData->getIdPublicacion()}};
+        var mensaje = $("#txtContactar").val();
+        var token = '{{csrf_token()}}';
+        var data = {
+                    idPublicacion:idPublicacion,
+                    descripcion:mensaje,
+                    _token:token,
+                    ajax:true
+                };
+      $.ajax({
+        url: '/reclamo',
+        async: 'true',
+        type: 'POST',
+        data: data,
+        success: function (respuesta) {
+            $("#reclamarObjeto").html("<i class='material-icons right'>check</i> Objeto reclamado");
+            
+            $("#reclamarObjeto").addClass("disabled");
+            $("#msgReporteTitle").html("Reclamo realizado correctamente");
+            $("#msgReporte").modal('open');
+            
         },
         error: function (x, h, r) {
             alert("Error: " + x + h + r);

@@ -51,9 +51,13 @@
             <li class="tab col s3 " id="getSeguidores"><a class="" href="#test3">Seguidores</a></li>
             <li class="tab col s3" id="getSeguidos"><a href="#test4">Seguidos</a></li>
           @else
-            <li class="tab col s4"><a class="" href="#test1">Información</a></li>
-            <li class="tab col s4 "><a class="" href="#test3">Seguidores</a></li>
-            <li class="tab col s4"><a href="#test4">Seguidos</a></li>
+            @if(!Auth::guest())
+              <li class="tab col s4"><a class="" href="#test1">Información</a></li>
+              <li class="tab col s4 "><a class="" href="#test3">Seguidores</a></li>
+              <li class="tab col s4"><a href="#test4">Seguidos</a></li>
+            @else
+              <li class="tab col s12"><a class="" href="#test1">Información</a></li>
+            @endif
           @endif
         
         </ul>
@@ -142,7 +146,6 @@
       <div id="test3" class="">
           <div id="listSeguidores" class="row">
           </div>
-        
       </div>
       <div id="test4" class="col s12">
          <div id="listSeguidos" class="row">

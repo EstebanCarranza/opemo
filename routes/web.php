@@ -14,14 +14,9 @@ Route::any('/errors/{error_message?}', function($error_message = "Algo anda mal 
     return view("pages.errors")->with('error_message',$error_message);
 });
 
-Route::match(['get','post'],'/dashboard', function()
-{
-    //Revisar el kernel, por ahora solo está desactivada la seguridad, pero no debe ser así
-    //Se desactivó el middleware VerifyCsrfToken para peticiones POST seguras
-    //Ruta de desactivación: app/Http/Kernel.php
-    //Elemento comentarizado:  \App\Http\Middleware\VerifyCsrfToken::class,
-    return view('pages.dashboard');
-});
+
+Route::resource('dashboard', 'dashboardController');
+
 //</------------------------------------ FORMS ------------------------------------\>
 Route::get('/login',        function(){return view('forms.login');});
 Route::get('/signup',       function(){return view('forms.signup');});
@@ -79,6 +74,7 @@ Route::resource('Ciudad', 'ciudadController');
 Route::resource('testimonio', 'testimonioController');
 Route::resource('/razonReporte','razonReporteController');
 Route::resource('/comentario', 'comentarioController');
+Route::resource('/reclamo', 'publicacionReclamadaController');
 
 
 //Helpers

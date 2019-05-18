@@ -103,6 +103,10 @@
   
   
 }
+.card-dashboard
+{
+  min-height:150px;
+}
 .ec-cover-ubication-follow
 {
   position:absolute;

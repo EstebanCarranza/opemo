@@ -26,7 +26,12 @@
                     <span class='card-title  grey-text text-darken-4 truncate'>{{$publicacion->getTitulo()}}</span>
                      @if($publicacion->getIdPublicacionEstado() == 6) <span><strong>[BORRADOR]</strong></span> @endif
                     <p>
-                        <a href="{{url('/publication-list/'.$publicacion->getIdPublicacion())}}">Abrir</a>
+                        <a href="{{url('/publication-list/'.$publicacion->getIdPublicacion())}}">Ver</a>&nbsp;&nbsp;
+                       <small>
+                       Publicado por:
+                         <a href="{{url('/profile/'.$publicacion->getNombreUsuario())}}">{{$publicacion->getNombreUsuario()}}</a>
+                        </small>
+                        
                         @if($me)&nbsp;&nbsp;<a href={{url('/publication-list/'.$publicacion->getIdPublicacion().'/edit')}}>Editar</a>@endif
                     </p>
                     <div class="card-footer">

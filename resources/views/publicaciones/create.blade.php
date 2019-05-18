@@ -36,15 +36,17 @@
 }
 </style>
 @if($editMode)
-  <form  method="POST" enctype='multipart/form-data' action="{{url('publication-list',[$publicacion->getIdPublicacion()])}}">
+  <form id="frmPublicacion"  method="POST" enctype='multipart/form-data' action="{{url('publication-list',[$publicacion->getIdPublicacion()])}}">
     {{ method_field('PATCH') }}
 @else
-  <form method="post" enctype='multipart/form-data' action="{{url('publication-list')}}">
+  <form id="frmPublicacion" method="post" enctype='multipart/form-data' action="{{url('publication-list')}}">
 @endif
 
     {{ csrf_field() }}
     <div class ="row">
-        <input type="hidden" value="{{$publicacion->getIdPublicacionEstado()}}" name="idPublicacionEstado" id="idPublicacionEstado">
+        <input type="hidden" id="idPublicacion" value="{{$publicacion->getIdPublicacion()}}">
+        <input type="hidden" id="editMode" value="{{$editMode}}">
+        <input type="hidden" value="3" name="idPublicacionEstado" id="idPublicacionEstado">
     </div>
    
     <div class="row card-panel">
@@ -106,8 +108,9 @@
                 <label for="epDescripcionLarga">Escribe la descripción larga</label>
             </div>
         </div>
-        <button id="btnBorrador" class=" btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="button">Guardar como borrador
-            <i class="material-icons right">send</i>
+        <button id="btnBorrador" class=" btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="button">
+            Guardar como borrador
+            <i id="iconBtnBorrador" class="material-icons right">send</i>
         </button>
 
         <button id="btnCrear" class="btn waves-effect waves-light orange col l6 offset-l6 s12 row" name="action" type="submit">Publicar
@@ -224,8 +227,9 @@ $(document).ready(function(){
         var descripcion = $("#epDescripcionLarga").val();
         //var idPublicacionEstado = $("#idPublicacionEstado").val();
         var idPublicacionEstado = 6;
-        var imagen = $("#imagen-publicacion").val();
+        var imagen = $("#imagen-publicacion").serialize();
         var token = '{{csrf_token()}}';
+        var ajax = true;
         var data = {
                     _token:token,
                     titulo:titulo,
@@ -236,17 +240,24 @@ $(document).ready(function(){
                     idPublicacionEstado:idPublicacionEstado,
                     imgPublicacion:imagen,
                     borrador:true,
-                    editMode:{{$editMode}},
-                    id:{{$publicacion->getIdPublicacion()}}
+                    editMode:$("#editMode").val(),
+                    id:$("#idPublicacion").val(),
+                     _method: "PATCH",
+                     ajax
                 };
+
         
       $.ajax({
-        url: '/publication-list/',
+        url: '/publication-list/'+$("#idPublicacion").val(),
         async: 'true',
-        type: 'POST',
+        type: 'PATCH',
         data: data,
         success: function (respuesta) {
-           debugger;
+           //debugger;
+           $("#iconBtnBorrador").html("check");
+           $("#btnBorrador").addClass("green");
+           $("#btnBorrador").removeClass("orange");
+           $("#btnBorrador").html("Guardado como borrador");
         },
         error: function (x, h, r) {
             alert("Error: " + x + h + r);

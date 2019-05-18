@@ -91,16 +91,8 @@ class publicacionController extends Controller
         
 
         $db->insert($var);
-
-        if($request->input('borrador')== true)
-        {
-            $respuesta = 'ok';
-            $rs = array();
-            array_push($rs, $respuesta);
-            return response()->json($rs);
-        }
-        else
-            return redirect('/my-publications');
+        
+        return redirect('/my-publications');
 
     }
 
@@ -137,9 +129,19 @@ class publicacionController extends Controller
         $data->setTituloCiudadCompleta($publicacion->tituloCiudadCompleto);
         //datos de la funcion antiguedad (dentro de la vista vListaPublicacion)
         $data->setAntiguedad($publicacion->antiguedad);
-
         
-        return view("publicaciones.show")->with('publicacionData', $data);
+        if(!\Auth::guest())
+        {
+            if($data->getIdUsuario() == \Auth::user()->id)
+                return view("publicaciones.show")->with('publicacionData', $data)->with('me',true);
+            else
+                return view("publicaciones.show")->with('publicacionData', $data)->with('me',false);
+        }
+        else
+        {
+             return view("publicaciones.show")->with('publicacionData', $data)->with('me',false);
+        }
+      
     
     }
 
@@ -259,6 +261,9 @@ class publicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+    
+        $ajax = $request->input('ajax');
+
         $db = new publicacionDatabase();
         $user_info = \Auth::user();
         $var = new Publicacion();
@@ -271,6 +276,8 @@ class publicacionController extends Controller
         $var->setDescripcion($request->input('descripcionLarga'));
         $var->setIdUsuario($user_info->id);
         $var->setIdPublicacionEstado($request->input('idPublicacionEstado'));
+
+        
         
         
         $pathPublicacion = "users/".$user_info->id."/publicaciones/".time();
@@ -283,16 +290,22 @@ class publicacionController extends Controller
             $name_file = time()."_".$user_info->id."_".substr($media_file->getClientOriginalName(), -5);
             $var->setPathImgVideo($pathPublicacion."/".$name_file);
             Storage::putFileAs($pathPublicacion, $media_file,$name_file);
-           /* \Storage::disk($pathPublicacion)->put(
-                $var->getPathImgVideo(),
-                \File::get($media_file)
-            );*/
 
             $db->updateAllData($var);
         }else 
             $db->updateOnlyInfo($var);
 
-        return redirect('/my-publications');
+        if($ajax)
+        {
+            $actualizado = true;
+            $data = array();
+            array_push($data, $actualizado);
+            return response()->json($data);
+        }
+        else {
+            return redirect('/my-publications');
+        }
+        
     }
 
     /**

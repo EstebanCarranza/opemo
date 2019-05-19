@@ -23,10 +23,10 @@
     <li><a href="/my-ubications">Mis ubicaciones</a></li>
     <li><a href="/my-recovery-objects">Mis objetos recuperados</a></li>
     <!-- my-user-reports -->
-    
+    @if(\Auth::user()->idNivelAcceso == 2)
     <li><div class="divider"></div></li>
-    <li><a href="#!">Usuarios reportados</a></li>
-
+    <li><a href="{{url('/publication-reports')}}">Publicaciones reportadas</a></li>
+    @endif
     <li><div class="divider"></div></li>
     <li>
       <a href="{{ route('logout') }}"

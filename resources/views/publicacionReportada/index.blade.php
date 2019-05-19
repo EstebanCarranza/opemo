@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h4 class="center">Reportes de usuario</h4>
+<h4 class="center">Reportes de publicaciones</h4>
 @for($i=0; $i<10;$i++)
  <div class="col s12 m8 offset-m2 l6">
         <div class="card-panel z-depth-1 report-size">

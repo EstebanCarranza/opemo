@@ -11,47 +11,67 @@ class dashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $cardsData;
-    protected function getData()
+    protected $cardsData = array();
+    protected function getCardsForUser()
     {
-        $this->cardsData = array( 
+        array_push(
+            $this->cardsData, 
             array
             (
                 'title' => 'Mi perfil',
                 'link' => '/profile',
                 'description' => 'Aquí podrás ver los mensajes de conversación sobre los reclamos que hayas hecho'
-            ),
+            )
+        );
+        array_push(
+            $this->cardsData, 
             array
             (
                 'title' => 'Mensajes',
                 'link' => '/messages',
                 'description' => 'Aquí podrás ver los mensajes de conversación sobre los reclamos que hayas hecho'
-            ), 
+            )
+        );
+        array_push(
+            $this->cardsData, 
             array
             (
                 'title' => 'Mis publicaciones',
                 'link' => '/my-publications',
                 'description' => 'Aquí podrás ver, crear, editar y eliminar tus publicaciones creadas'
-            ),
+            )
+        );
+        array_push(
+            $this->cardsData, 
             array
             (
                 'title' => 'Mis ubicaciones',
                 'link' => '/my-ubications',
                 'description' => 'Aquí podrás ver, crear, editar y eliminar tus ubicaciones creadas'
-            ),
+            )
+        );
+        array_push(
+            $this->cardsData, 
             array
             (
                 'title' => 'Mis objetos recuperados',
                 'link' => '/my-recovery-objects',
                 'description' => 'Aquí podrás ver los objetos que has recuperado en opemo'
-            ),
+            )
+        );
+        
+        return $this->cardsData;
+    }
+    protected function getCardsForAdmin()
+    {
+        array_push(
+            $this->cardsData, 
             array
             (
-                'title' => 'Usuarios reportados',
-                'link' => '/my-user-reports',
-                'description' => 'Aquí podrás ver y bloquear a los usuarios que han sido reportados por la comunidad'
+                'title' => 'Publicaciones reportadas',
+                'link' => '/publication-reports',
+                'description' => 'Aquí podrás ver y bloquear las publicaciones que han sido reportadas por la comunidad'
             )
-            
         );
         return $this->cardsData;
     }
@@ -62,7 +82,14 @@ class dashboardController extends Controller
         if(\Auth::guest())
             return redirect('/');
         else
-            return view('pages.dashboard')->with('cardsData',$this->getData());
+        {
+            $this->getCardsForUser();
+            if(\Auth::user()->idNivelAcceso == 2)
+                $this->getCardsForAdmin();
+            
+            return view('pages.dashboard')->with('cardsData',$this->cardsData);
+        }
+            
     }
 
     /**

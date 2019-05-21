@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Models\Ubicacion;
 use App\Http\Database\ubicacionDatabase;
 use App\Http\Database\comentarioDatabase;
+use App\Http\Database\publicacionReportadaDatabase;
 
 
 class helperDataController extends Controller
@@ -46,6 +47,16 @@ class helperDataController extends Controller
             //return var_dump($comentarios);
         }
        
+    }
+    public function getPuReLi(Request $request)
+    {
+        //get Publication Report List
+        $dbPublicacionReportada = new publicacionReportadaDatabase();
+        $lista = DB::table($dbPublicacionReportada->getView())->select()
+                ->orderBy('created_at', 'asc')
+                ->get();
+            
+        return response()->json($lista);
     }
     
    

@@ -65,7 +65,7 @@ Route::resource('testimonio',           'testimonioController');
 Route::resource('/razonReporte',        'razonReporteController');
 Route::resource('/comentario',          'comentarioController');
 Route::resource('/reclamo',             'publicacionReclamadaController');
-Route::resource('/publication-reports',      'publicacionReportadaController');
+Route::resource('/publication-reports', 'publicacionReportadaController');
 
 //Helpers
 Route::get('/image/publication/',       'helperImageController@getPublicationPhoto');
@@ -75,8 +75,11 @@ Route::get('/image/profile/cover/',     'helperImageController@getProfileCoverPh
 
 Route::get('/data/ubication/',          'helperDataController@getUbicationsForUser');
 Route::get('/data/comments/',           'helperDataController@getCommentList');
+Route::get('/data/reports/list/',             'helperDataController@getPuReLi');
+
 Route::post('/seguir',                  'seguirController@seguir');
 Route::get('/seguidores',               'seguirController@getSeguidoresList');
 Route::get('/seguidos',                 'seguirController@getSiguiendoList');
 Route::get('/my-publications',          'publicacionController@indexMyPublications');
 Route::get('/my-ubications',            'ubicacionController@indexMyUbications');
+

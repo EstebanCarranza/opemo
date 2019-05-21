@@ -240,7 +240,7 @@ $(document).ready(function(){
                 };
         
       $.ajax({
-        url: '/publication-reports',
+        url: '/razonReporte',
         async: 'true',
         type: 'POST',
         data: data,

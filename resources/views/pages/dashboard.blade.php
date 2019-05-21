@@ -4,6 +4,7 @@
 @section('content')
 <div class="card-panel z-depth-0 col s12">
     <div class="row">
+        @if(isset($cardsData))
         @for ($i = 0; $i < count($cardsData);$i++)
             <div class="col l4 m6 s12">
                 <div class="card card-control-panel card-dashboard">
@@ -23,6 +24,9 @@
                 </div>
             </div>
         @endfor
+        @else
+            <h5>Recarga la página en un momento cargara el panel de control :)</h5>
+        @endif
     </div>
 </div>
 @stop

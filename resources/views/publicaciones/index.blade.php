@@ -9,13 +9,13 @@
     @php
         switch ($publicacion->getIdPublicacionEstado()) {
             case 3:
-                echo "<div class='card small hoverable card-custom-size'>";
+                echo "<div class='card medium hoverable card-custom-size'>";
             break;
             case 6:
-                echo "<div class='card small hoverable card-custom-size orange lighten-5'>";
+                echo "<div class='card medium hoverable card-custom-size orange lighten-5'>";
             break;
             default:
-            echo "<div class='card small hoverable card-custom-size'>";
+            echo "<div class='card medium hoverable card-custom-size'>";
         }
     @endphp
                 <div class='card-image waves-effect waves-block waves-light'>
@@ -25,21 +25,17 @@
                     <a href="#" class=""><i class='material-icons right activator'>more_vert</i></a>
                     <span class='card-title  grey-text text-darken-4 truncate'>{{$publicacion->getTitulo()}}</span>
                      @if($publicacion->getIdPublicacionEstado() == 6) <span><strong>[BORRADOR]</strong></span> @endif
-                    <p>
-                        <a href="{{url('/publication-list/'.$publicacion->getIdPublicacion())}}">Ver</a>&nbsp;&nbsp;
-                       <small>
-                       Publicado por:
-                         <a href="{{url('/profile/'.$publicacion->getNombreUsuario())}}">{{$publicacion->getNombreUsuario()}}</a>
-                        </small>
                         
-                        @if($me)&nbsp;&nbsp;<a href={{url('/publication-list/'.$publicacion->getIdPublicacion().'/edit')}}>Editar</a>@endif
-                    </p>
-                    <div class="card-footer">
+                        <a href="{{url('/publication-list/'.$publicacion->getIdPublicacion())}}">Ver</a>
+                        @if($me)&nbsp;<a href={{url('/publication-list/'.$publicacion->getIdPublicacion().'/edit')}}>Editar</a>@endif
                         
+                    <div class="card-footer">                        
                         <small class="text-muted truncate">
                             {{$publicacion->getAntiguedad()}}&nbsp;<br>
                             {{$publicacion->getTituloUbicacion()}},
-                            {{$publicacion->getTituloCiudadCompleta()}}
+                            {{$publicacion->getTituloCiudadCompleta()}}<br>
+                             Publicado por:
+                         <a href="{{url('/profile/'.$publicacion->getNombreUsuario())}}">{{$publicacion->getNombreUsuario()}}</a>
                         </small>
                     </div>
                 </div>

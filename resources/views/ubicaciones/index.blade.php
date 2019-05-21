@@ -6,7 +6,7 @@
 @section('body')
 @foreach($ubicationList as $ubicacion)
 <div class='col l4 m6 s12 animated-card card-row-custom-size'>
-            <div class='card small hoverable card-custom-size'>
+            <div class='card medium hoverable card-custom-size'>
                 <div class='card-image waves-effect waves-block waves-light'>
                     <img class='activator' src={{ url('/image/ubication?id='.$ubicacion->getIdUbicacion()) }}>
                 </div>
@@ -19,7 +19,7 @@
                     </p>
                     <div class="card-footer">
                         <small class="text-muted truncate">
-                            {{$ubicacion->getAntiguedad()}} &nbsp;
+                            {{$ubicacion->getAntiguedad()}} <br>
                             {{$ubicacion->getTituloCiudadCompleta()}}
                         </small>
                     </div>

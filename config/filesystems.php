@@ -50,7 +50,25 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' =>  public_path('public'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        'users' => [
+            'driver' => 'local',
+            'root' =>  public_path('users'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        'publicaciones' => [
+            'driver' => 'local',
+            'root' => storage_path('app/publicaciones'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'defaultData' => [
+            'driver' => 'local',
+            'root' => storage_path('app/defaultData'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

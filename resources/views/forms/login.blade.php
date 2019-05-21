@@ -13,7 +13,7 @@
             <label for="logContrasenia">Contraseña</label>
         </div>
         <div class="input-field col s10 offset-s1 row">
-        <button class="btn waves-effect waves-light col s12 orange" type="submit" name="action">
+        <button id="logButton" class="btn waves-effect waves-light col s12 orange" type="submit" name="action">
             Siguiente
             <i class="material-icons right">send</i>
         </button>
@@ -26,3 +26,14 @@
     <li><a class="subheader">¿No tienes cuenta?</a></li>
     <li><a href="#" id="lnkRegistrar">Registrate</a></li>
 </form>
+<script>
+    $(document).ready(function(){
+        $("#logButton").addClass("disabled");
+       $("#logContrasenia").keyup(function()
+       {
+           if($(this).val().length >= 6)    $("#logButton").removeClass("disabled");
+           else $("#logButton").addClass("disabled");
+           
+       });
+    });
+</script>

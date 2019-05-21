@@ -36,7 +36,7 @@
     <div class="col l4 m6 s12">
         <div class="card card-testimonio">
             <div class="card-content">
-                <span class="card-title">{{$testimonio->getIdTestimonio()}}-{{$testimonio->getTitulo()}}</span>
+                <span class="card-title">{{$testimonio->getTitulo()}}</span>
                 <p>
                     {{$testimonio->getDescripcion()}}
                 </p>

@@ -37,7 +37,7 @@
         @yield('content')
         @yield('pagination')
     </section>
-    <div class="fixed-action-btn">
+    <div class="fixed-action-btn-up">
         <a class="ir-arriba btn-floating btn-large">
             <i class="large material-icons">arrow_upward</i>
         </a>

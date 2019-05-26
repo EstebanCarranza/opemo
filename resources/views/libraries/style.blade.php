@@ -7,3 +7,4 @@
 <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
 <link href="{{asset('css/helpers.css')}}" rel="stylesheet">
 <link href="{{asset('css/colors.css')}}" rel="stylesheet">
+<link rel="shortcut icon" href="{{asset('defaultData/opemo.ico')}}" type="image/x-icon"/>

@@ -70,7 +70,7 @@ class ubicacionController extends Controller
         }else 
             $var->setPathUbicacion('no data');
 
-        if($db->insert($var)){return view('pages.dashboard');}
+        if($db->insert($var)){return redirect('/my-ubication');}
         else {return view('pages.errors')->with('error_message', 'No se pudo subir el contenido intenta más tarde');}
     }
 

@@ -63,7 +63,13 @@
             </div>
         </div>
 @endforeach
-
+@if($me)
+<div class="fixed-action-btn">
+        <a class="btn-floating btn-large orange" href="{{url('/publication-list/create')}}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+@endif
 
  
 @stop

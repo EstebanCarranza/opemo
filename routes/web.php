@@ -48,7 +48,7 @@ Route::get('/descartar',          function(){return view('pages.answers');});
 //<\------------------------------------ CONTROL-PANEL ---------------------------------/>
 //</------------------------------------ EDITS -----------------------------------------\>
 Route::get('/edit-publication',          function(){return view('forms.edit-publication');});
-Route::get('/results',                   function($cardTitle = 'Resultados de busqueda', $login = true){return view('pages.results')->with('cardTitle',$cardTitle);});
+//Route::get('/results',                   function($cardTitle = 'Resultados de busqueda', $login = true){return view('pages.results')->with('cardTitle',$cardTitle);});
 //<\------------------------------------ EDITS -----------------------------------------/>
 
 Auth::routes();
@@ -66,6 +66,9 @@ Route::resource('/razonReporte',        'razonReporteController');
 Route::resource('/comentario',          'comentarioController');
 Route::resource('/reclamo',             'publicacionReclamadaController');
 Route::resource('/publication-reports', 'publicacionReportadaController');
+Route::resource('/results', 'busquedaController');
+Route::get('/search', 'busquedaController@getResults');
+
 
 //Helpers
 Route::get('/image/publication/',       'helperImageController@getPublicationPhoto');

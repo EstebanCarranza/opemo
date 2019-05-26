@@ -148,8 +148,9 @@ class publicacionController extends Controller
     public function getPublicationList()
     {
         $db = new publicacionDatabase();
-        $dbPublicacion = DB::table($this->view)->select()
-        ->where($db->getIdPublicacionEstado(),3)->get();
+        $dbPublicacion = DB::table($this->view)->where($db->getIdPublicacionEstado(),3)->paginate(15);
+        /*->select()
+        ->where($db->getIdPublicacionEstado(),3)->get();*/
         $publicacionList = array();
         foreach($dbPublicacion as $publicacion)
         {
@@ -182,8 +183,12 @@ class publicacionController extends Controller
     }
     public function getMyPublicationList($id)
     {
-        $dbPublicacion = DB::table($this->view)->select()
-        ->where('idUsuario', $id)->get();
+        $dbPublicacion = DB::table($this->view)
+        ->where('idUsuario', $id)
+        ->paginate(15);
+        /*$dbPublicacion = DB::table($this->view)
+        ->select()
+        ->where('idUsuario', $id)->get();*/
         $publicacionList = array();
         foreach($dbPublicacion as $publicacion)
         {

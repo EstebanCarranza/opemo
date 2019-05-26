@@ -31,9 +31,9 @@ class VPublicacionReportada extends Migration
                 usr.id,
                 usr.name as nombreUsuario
             FROM 
-            tbl_publicacionreportada as prl
+            tbl_publicacionReportada as prl
             inner join tbl_publicacion as pub on pub.idPublicacion = prl.idPublicacion
-            inner join tbl_razonreporte as rar on rar.idRazonReporte = prl.idRazonReporte
+            inner join tbl_razonReporte as rar on rar.idRazonReporte = prl.idRazonReporte
             inner join users as usr on usr.id = pub.idUsuario
             ;
         ");

@@ -194,7 +194,7 @@ $(document).ready(function(){
             }
         });
     }
-    getCiudades();
+    /*getCiudades();
     function getCiudades()
     {
       $.ajax({
@@ -216,7 +216,7 @@ $(document).ready(function(){
 
             }
         });
-    }
+    }*/
 
     function agregarBorrador()
     {

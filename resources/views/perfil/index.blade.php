@@ -51,9 +51,13 @@
             <li class="tab col s3 " id="getSeguidores"><a class="" href="#test3">Seguidores</a></li>
             <li class="tab col s3" id="getSeguidos"><a href="#test4">Seguidos</a></li>
           @else
-            <li class="tab col s4"><a class="" href="#test1">Información</a></li>
-            <li class="tab col s4 "><a class="" href="#test3">Seguidores</a></li>
-            <li class="tab col s4"><a href="#test4">Seguidos</a></li>
+            @if(!Auth::guest())
+              <li class="tab col s4"><a class="" href="#test1">Información</a></li>
+              <li class="tab col s4" id="getSeguidores"><a class="" href="#test3">Seguidores</a></li>
+              <li class="tab col s4" id="getSeguidos"><a href="#test4">Seguidos</a></li>
+            @else
+              <li class="tab col s12"><a class="" href="#test1">Información</a></li>
+            @endif
           @endif
         
         </ul>
@@ -70,6 +74,13 @@
             <div class="input-field col s12 flow-text">
               <input name="bio" id="pBio" type="text" class="validate ecInputEdit" value="{{$usuario->getBio()}}">
               <label for="pBio">Escribe tu bio</label>
+            </div>
+            <div class="col s12">
+                <i id="star-1" value="1" class='medium star black-text material-icons'>star</i>
+                <i id="star-2" value="2" class='medium star black-text material-icons'>star</i>
+                <i id="star-3" value="3" class='medium star black-text material-icons'>star</i>
+                <i id="star-4" value="4" class='medium star black-text material-icons'>star</i>
+                <i id="star-5" value="5" class='medium star black-text material-icons'>star</i>
             </div>
           </div>
           <p>&nbsp;</p>
@@ -142,7 +153,6 @@
       <div id="test3" class="">
           <div id="listSeguidores" class="row">
           </div>
-        
       </div>
       <div id="test4" class="col s12">
          <div id="listSeguidos" class="row">
@@ -368,12 +378,16 @@
     });
     function getSeguidores()
     {
+      var dataToSend = {
+        id:{{$usuario->getIdUsuario()}}
+      };
       $.ajax({
         url: '/seguidores',
         async: 'true',
+        data:dataToSend,
         type: 'get',
         success: function (respuesta) {
-          //debugger;
+          debugger;
           $("#listSeguidores").html("");
           for(var i= 0; i < respuesta.length; i++)
           {
@@ -434,9 +448,13 @@
     });
     function getSeguidos()
     {
+      var dataToSend = {
+        id:{{$usuario->getIdUsuario()}}
+      };     
       $.ajax({
         url: '/seguidos',
         async: 'true',
+        data:dataToSend,
         type: 'get',
         success: function (respuesta) {
           $("#listSeguidos").html("");
@@ -484,6 +502,89 @@
         }
       });
     }
+
+
+getPuntuacion();
+    function getPuntuacion()
+    {
+      $.ajax({
+        url: "{{url('/puntuacion-total?id='.$usuario->getIdUsuario())}}",
+        async: 'true',
+        type: 'GET',
+        dataType: 'json',
+
+        success: function (respuesta) {
+            
+            $(".star").removeClass("black-text");
+            $(".star").removeClass("orange-text");
+          var data = respuesta.puntuacion;
+          estrellas = 0;
+          switch(data)
+          {
+            case "1": {
+             // debugger;
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("black-text");
+              $("#star-3").addClass("black-text");
+              $("#star-4").addClass("black-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 1;
+              }
+            break;
+            case "2": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("black-text");
+              $("#star-4").addClass("black-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 2;
+              }
+            break;
+            case "3": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("orange-text");
+              $("#star-4").addClass("black-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 3;
+              }
+            break;
+            case "4": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("orange-text");
+              $("#star-4").addClass("orange-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 4;
+              }
+            break;
+            case "5": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("orange-text");
+              $("#star-4").addClass("orange-text");
+              $("#star-5").addClass("orange-text");
+              estrellas = 5;
+              }
+            break;
+            default:{
+                $("#star-1").addClass("black-text");
+                $("#star-2").addClass("black-text");
+                $("#star-3").addClass("black-text");
+                $("#star-4").addClass("black-text");
+                $("#star-5").addClass("black-text");
+                estrellas = 0;
+            }break;
+          }
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+
+        }
+
+        });
+    }   
+
   });
 </script>
 @stop

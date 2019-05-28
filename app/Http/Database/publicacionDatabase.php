@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Database;
-use App\Http\Models\Ubicacion;
+use App\Http\Models\Publicacion;
 use Illuminate\Support\Facades\DB;
 
 
@@ -87,6 +87,38 @@ class publicacionDatabase
             $this->pathImgVideo   =>         $publicacionN->getPathImgVideo(),
             $this->idUsuario      =>         $publicacionN->getIdUsuario()
         ));
+        return true;
+    }
+    public function updateOnlyInfo(Publicacion $publicacionN)
+    {
+        DB::table($this->table)
+            ->where($this->getIdPublicacion(), $publicacionN->getIdPublicacion())
+            ->update([
+                $this->titulo        =>          $publicacionN->getTitulo(),
+                $this->fecha         =>          $publicacionN->getFecha(),
+                $this->hora          =>          $publicacionN->getHora(),
+                $this->idUbicacion   =>          $publicacionN->getIdUbicacion(),
+                $this->idPublicacionEstado =>    $publicacionN->getIdPublicacionEstado(),
+                $this->descripcion   =>          $publicacionN->getDescripcion(),
+                $this->updated_at  => null
+            ]);
+        return true;
+    }
+    public function updateAllData(Publicacion $publicacionN)
+    {
+        DB::table($this->table)
+            ->where($this->getIdPublicacion(), $publicacionN->getIdPublicacion())
+            ->update([
+                $this->titulo        =>          $publicacionN->getTitulo(),
+                $this->fecha         =>          $publicacionN->getFecha(),
+                $this->hora          =>          $publicacionN->getHora(),
+                $this->idUbicacion   =>          $publicacionN->getIdUbicacion(),
+                $this->idPublicacionEstado =>    $publicacionN->getIdPublicacionEstado(),
+                $this->pathVistaPrevia =>        $publicacionN->getPathImgVideo(),
+                $this->descripcion   =>          $publicacionN->getDescripcion(),
+                $this->pathImgVideo   =>         $publicacionN->getPathImgVideo(),
+                $this->updated_at  => null
+            ]);
         return true;
     }
 

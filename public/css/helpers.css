@@ -64,10 +64,19 @@
 	display:none;
 	background:rgba(255,152,0, 0.5);
 	color:#fff;
-	cursor:pointer;
+  cursor:pointer;
 }
 .ir-arriba:hover{
   	background:rgba(255,152,0,1.0);
+}
+.fixed-action-btn-up {
+    position: fixed;
+    right: 50%;
+    left: 50%;
+    bottom: 23px;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 997;
 }
 .ec-title
 {
@@ -102,6 +111,10 @@
   z-index:2;
   
   
+}
+.card-dashboard
+{
+  min-height:150px;
 }
 .ec-cover-ubication-follow
 {

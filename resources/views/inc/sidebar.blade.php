@@ -21,12 +21,12 @@
     <li><a href="{{url('/profile/')}}">Mis perfil</a></li>
     <li><a href="/my-publications">Mis publicaciones</a></li>
     <li><a href="/my-ubications">Mis ubicaciones</a></li>
-    <li><a href="/my-recovery-objects">Mis objetos recuperados</a></li>
+    <li><a href="/messages">Reclamos</a></li>
     <!-- my-user-reports -->
-    
+    @if(\Auth::user()->idNivelAcceso == 2)
     <li><div class="divider"></div></li>
-    <li><a href="#!">Usuarios reportados</a></li>
-
+    <li><a href="{{url('/publication-reports')}}">Publicaciones reportadas</a></li>
+    @endif
     <li><div class="divider"></div></li>
     <li>
       <a href="{{ route('logout') }}"
@@ -40,9 +40,9 @@
     </form>
   @else
   <li><div class="user-view">
-      <div class="background orange">
+      <div class="background orange">        
       </div>
-      <a href="#user"><img class="circle" src="img/profile.png"></a>
+      <a href="#user"><img class="circle" src="{{url('defaultData/avatar_.png')}}"></a>
       <a href="#"><span class="white-text name">Anónimo</span></a>
       <a class="white-text lnkIniciarSesion">Inicia sesión o registrate</a>
     </div></li>
@@ -56,6 +56,8 @@
       <section id="frmRecoveryPassword">
         @include('forms.recovery-password')
       </section>
+
+      
   @endif
 </ul>
 
@@ -96,5 +98,25 @@
            $("#frmRecoveryPassword").toggle( { direction: "left" }, 200 );
         });
 
+
+      @if ($errors->has('name'))            
+            <?php echo "alert('".$errors->first('name') ."');";?>
+      @endif
+      @if ($errors->has('email'))
+            <?php 
+                /*alert('".$errors->first('email') ."');*/
+                echo "
+                    $('#slide-out').sidenav('open');
+                    $('#frmSignUp').toggle( { direction: 'left' }, 200 );
+                    $('#frmLogin').toggle( { direction: 'left' }, 200 );
+                    ";
+                  
+                  echo "$('#logSNombre').val('".old('name')."');";
+                  echo "$('#logSCorreo').val('".old('email')."');";
+                  echo "$('#logSContrasenia').val('".old('password')."');";
+                  echo "$('#logSRepetirContrasenia').val('".old('password_confirmation')."');";
+                  echo "$('#SiUp_errorData').show();";
+            ?>                                    
+        @endif
     });
   </script>

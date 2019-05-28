@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Models\Ubicacion;
 use App\Http\Database\ubicacionDatabase;
 use App\Http\Database\comentarioDatabase;
+use App\Http\Database\publicacionReportadaDatabase;
+use App\Http\Database\publicacionReclamadaDatabase;
 
 
 class helperDataController extends Controller
@@ -20,6 +22,29 @@ class helperDataController extends Controller
     public function index()
     {
        
+    }
+    public function bloquearPublicacionReportada(Request $request)
+    {
+        if($request->id)
+        {
+            DB::table('tbl_publicacionReportada')
+                ->where('idPublicacion',$request->id)
+                ->delete();
+            DB::table('tbl_publicacion')
+                ->where('idPublicacion',$request->id)
+                ->update(['idPublicacionEstado'=>1]);
+            
+        }
+        return redirect('publication-reports');
+    }
+     public function getUbications()
+    {
+        $data = new Ubicacion();
+        $dbUbicacion = new ubicacionDatabase();
+        $ubiData = DB::table($data->getTableName())
+            ->select($dbUbicacion->getIdUbicacion(), $dbUbicacion->getTitulo())->get();
+
+         return response()->json($ubiData);
     }
     public function getUbicationsForUser()
     {
@@ -47,6 +72,52 @@ class helperDataController extends Controller
         }
        
     }
-    
+    public function getPuReLi(Request $request)
+    {
+        //get Publication Report List
+        $dbPublicacionReportada = new publicacionReportadaDatabase();
+        $lista = DB::table($dbPublicacionReportada->getView())->select()
+                ->orderBy('updated_at', 'desc')
+                ->get();
+            
+        return response()->json($lista);
+    }
+    public function getPuMeLi(Request $request)
+    {
+        //get Publication Message List
+        //$dbPublicacionReportada = new publicacionReportadaDatabase();
+        $lista = DB::table('vListaPublicacionReclamada')->select()
+                ->where('idPublicacionEstado',7)
+                ->where('idUsuario', \Auth::user()->id)
+                ->orWhere('idUsuarioReclamador',\Auth::user()->id)
+                ->orderBy('updated_at', 'desc')
+                ->get();
+            
+        return response()->json($lista);
+    }
+    public function deleteReclam(Request $request)
+    {
+        if($request->id)
+        {
+            DB::table('tbl_mensajes')->where('idPublicacionReclamada',$request->id)->delete();
+            DB::table('tbl_publicacionReclamada')->where('idPublicacionReclamada', $request->id)->delete();
+            DB::table('tbl_publicacion')->where('idPublicacion',$request->idPublicacion)->update(['idPublicacionEstado'=>3]);
+        }
+        return redirect('messages');
+    }
+    public function getPuntuacion(Request $request)
+    {
+        if($request->id)
+        {
+            $lista = DB::table('vPuntuacion')->select()->where('idUsuario', $request->id)->first();
+            if($lista)
+                return response()->json($lista);
+            else
+            {
+                $lista = ['puntuacion'=>0, 'idUsuario'=>0];
+                return response()->json($lista);
+            }
+        }
+    }
    
 }

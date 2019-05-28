@@ -68,9 +68,9 @@ class ubicacionController extends Controller
             $var->setPathUbicacion($pathUbicacion."/".$name_file);
             Storage::putFileAs($pathUbicacion, $media_file,$name_file);
         }else 
-            $var->setPathUbicacion('no data');
+            $var->setPathUbicacion('/defaultData/cover.png');
 
-        if($db->insert($var)){return view('pages.dashboard');}
+        if($db->insert($var)){return redirect('/my-ubications');}
         else {return view('pages.errors')->with('error_message', 'No se pudo subir el contenido intenta más tarde');}
     }
 

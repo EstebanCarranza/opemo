@@ -34,7 +34,7 @@
       @endif
      <form id="frmSearch" action="/results">
         <div class="input-field">
-          <input id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
+          <input name="titulo" id="search" type="search" required placeholder="Escribe lo que quieres buscar y presiona enter">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i id="srcClose" class="material-icons" title="Cerrar barra de búsqueda">close</i>
         </div>
@@ -50,7 +50,7 @@
           @if(!Auth::guest())
             <img src="{{url('/image/profile/avatar?id='.Auth::user()->id)}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @else
-            <img src="{{$UserPhotoProfileDefault}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
+            <img src="{{url('defaultData/avatar_.png')}}" class="sidenav-trigger nav-img-profile" data-target="slide-out">
           @endif
         </a>
       </li>
@@ -73,9 +73,11 @@
   <ul class="sidenav" id="mobile-demo">
   <section class="row ec-search-row">
     <div class="input-field col s10 offset-s1 ec-search-div">
-      <input id="navBuscarMobile" type="text" class="validate">
-      <label for="navBuscarMobile">Buscar...</label>
-      <i class="material-icons ec-search-icon">search</i>
+      <form id="frmSearchMobile" action="/results">
+        <input name="titulo" id="navBuscarMobile" type="text" class="validate">
+        <label for="navBuscarMobile">Buscar...</label>
+        <i id="btnSubmitMobile" class="material-icons ec-search-icon">search</i>
+      </form>
     </div>
   </section>
     <li><div class="divider"></div></li>
@@ -103,6 +105,10 @@
       
     });
    
+    $("#btnSubmitMobile").click(function(){
+      $( "#frmSearchMobile" ).submit();
+    });
+
   });
   </script>
   

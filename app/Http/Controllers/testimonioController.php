@@ -43,7 +43,8 @@ class testimonioController extends Controller
         if(!\Auth::User())
         return view('pages.landingpage')->with('testimoniosList',$testimoniosList)->with('showCarousel',true);
         else
-        return view('pages.dashboard');
+        return redirect('dashboard');
+        
         
     }   
 }

@@ -49,7 +49,8 @@ class ubicacionDatabase
             ->update([
                 $this->titulo => $data->getTitulo(),
                 $this->descripcion => $data->getDescripcion(),
-                $this->idCiudad  => $data->getIdCiudad()
+                $this->idCiudad  => $data->getIdCiudad(),
+                $this->updated_at  => null
         ]);
         return true;
     }
@@ -61,7 +62,8 @@ class ubicacionDatabase
                 $this->titulo => $data->getTitulo(),
                 $this->descripcion => $data->getDescripcion(),
                 $this->idCiudad  => $data->getIdCiudad(),
-                $this->pathUbicacion => $data->getPathUbicacion()
+                $this->pathUbicacion => $data->getPathUbicacion(),
+                $this->updated_at  => null
             ]);
         return true;
     }
@@ -90,7 +92,7 @@ class ubicacionDatabase
     public function getUbicationList()
     {
         $data = new Ubicacion();
-        $ubicaciones = DB::table($data->getViewShow())->select()->get();
+        $ubicaciones = DB::table($data->getViewShow())->select()->orderBy('updated_at','desc')->get();
         $ubicacionList = array();
         
         foreach($ubicaciones as $ubicacion)
@@ -118,7 +120,8 @@ class ubicacionDatabase
     {
         $data = new Ubicacion();
         $ubicaciones = DB::table($data->getViewShow())->select()
-        ->where($this->getIdUsuario(), $id)->get();
+        ->where($this->getIdUsuario(), $id)
+        ->orderBy('updated_at','desc')->get();
         $ubicacionList = array();
         
         foreach($ubicaciones as $ubicacion)

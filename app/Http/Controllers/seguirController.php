@@ -9,26 +9,30 @@ use App\Http\Database\seguirDatabase;
 class seguirController extends Controller
 {
     //
-    public function getSeguidoresList()
+    public function getSeguidoresList(Request $request)
     {
-        $user_info = \Auth::User();
-
-        $dbListaSeguidores = \DB::table('vSeguir')->select()
-            ->where('idUsuarioSiguiendo',$user_info->id)
-            ->get();
+        if($request->id)
+        {
+            $dbListaSeguidores = \DB::table('vSeguir')->select()
+                ->where('idUsuarioSiguiendo',$request->id)
+                ->get();
+        }
+        
         
         return response()->json($dbListaSeguidores);
         
     }
-    public function getSiguiendoList()
+    public function getSiguiendoList(Request $request)
     {
-        $user_info = \Auth::User();
-
-        $dbListaSiguiendo = \DB::table('vSeguir')->select()
-            ->where('idUsuarioSeguidor', $user_info->id)
-            ->get();
+        if($request->id)
+        {
+            $dbListaSiguiendo = \DB::table('vSeguir')->select()
+                ->where('idUsuarioSeguidor', $request->id)
+                ->get();
+            
+            return response()->json($dbListaSiguiendo);
+        }
         
-        return response()->json($dbListaSiguiendo);
     }
 
     public function getSeguir($id)

@@ -9,6 +9,7 @@ use App\Http\Models\Ubicacion;
 use App\Http\Database\ubicacionDatabase;
 use App\Http\Database\comentarioDatabase;
 use App\Http\Database\publicacionReportadaDatabase;
+use App\Http\Database\publicacionReclamadaDatabase;
 
 
 class helperDataController extends Controller
@@ -81,6 +82,36 @@ class helperDataController extends Controller
             
         return response()->json($lista);
     }
-    
+    public function getPuMeLi(Request $request)
+    {
+        //get Publication Message List
+        //$dbPublicacionReportada = new publicacionReportadaDatabase();
+        $lista = DB::table('vListaPublicacionReclamada')->select()
+                ->where('idPublicacionEstado',7)
+                ->where('idUsuario', \Auth::user()->id)
+                ->orWhere('idUsuarioReclamador',\Auth::user()->id)
+                ->orderBy('created_at', 'asc')
+                ->get();
+            
+        return response()->json($lista);
+    }
+    public function deleteReclam(Request $request)
+    {
+        if($request->id)
+        {
+            DB::table('tbl_mensajes')->where('idPublicacionReclamada',$request->id)->delete();
+            DB::table('tbl_publicacionReclamada')->where('idPublicacionReclamada', $request->id)->delete();
+            DB::table('tbl_publicacion')->where('idPublicacion',$request->idPublicacion)->update(['idPublicacionEstado'=>3]);
+        }
+        return redirect('messages');
+    }
+    public function getPuntuacion(Request $request)
+    {
+        if($request->id)
+        {
+            $lista = DB::table('vPuntuacion')->select()->where('idUsuario', $request->id)->first();
+            return response()->json($lista);
+        }
+    }
    
 }

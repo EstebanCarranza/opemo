@@ -27,7 +27,7 @@ class dashboardController extends Controller
             $this->cardsData, 
             array
             (
-                'title' => 'Mensajes',
+                'title' => 'Respuestas y mensajes',
                 'link' => '/messages',
                 'description' => 'Aquí podrás ver los mensajes de conversación sobre los reclamos que hayas hecho'
             )
@@ -50,6 +50,7 @@ class dashboardController extends Controller
                 'description' => 'Aquí podrás ver, crear, editar y eliminar tus ubicaciones creadas'
             )
         );
+        /*
         array_push(
             $this->cardsData, 
             array
@@ -58,7 +59,7 @@ class dashboardController extends Controller
                 'link' => '/my-recovery-objects',
                 'description' => 'Aquí podrás ver los objetos que has recuperado en opemo'
             )
-        );
+        );*/
         
         return $this->cardsData;
     }

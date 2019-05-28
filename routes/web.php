@@ -42,7 +42,8 @@ Route::match(['get','post'],'/send-contact', function(){return view('pages.dashb
 
 Route::get('/my-recovery-objects',      function(){return view('pages.dashboard');});
 
-Route::get('/messages',          function(){return view('pages.answers');});
+
+
 Route::get('/descartar',          function(){return view('pages.answers');});
 
 //<\------------------------------------ CONTROL-PANEL ---------------------------------/>
@@ -66,10 +67,12 @@ Route::resource('/razonReporte',        'razonReporteController');
 Route::resource('/comentario',          'comentarioController');
 Route::resource('/reclamo',             'publicacionReclamadaController');
 Route::resource('/publication-reports', 'publicacionReportadaController');
-Route::resource('/results', 'busquedaController');
+Route::resource('/results',             'busquedaController');
+Route::resource('/messages',            'publicacionReclamadaController');
+Route::resource('/puntuacion',            'puntuacionController');
+
+
 Route::get('/search', 'busquedaController@getResults');
-
-
 //Helpers
 Route::get('/image/publication/',       'helperImageController@getPublicationPhoto');
 Route::get('/image/ubication/',         'helperImageController@getUbicationPhoto');
@@ -77,15 +80,19 @@ Route::get('/image/profile/avatar/',    'helperImageController@getProfileAvatarP
 Route::get('/image/profile/cover/',     'helperImageController@getProfileCoverPhoto');
 
 Route::get('/data/ubication/',          'helperDataController@getUbicationsForUser');
-Route::get('/data/ubication/all',          'helperDataController@getUbications');
+Route::get('/data/ubication/all',       'helperDataController@getUbications');
 Route::get('/data/comments/',           'helperDataController@getCommentList');
-Route::get('/data/reports/list/',             'helperDataController@getPuReLi');
+Route::get('/data/reports/list/',       'helperDataController@getPuReLi');
+Route::get('/data/message/list/',       'helperDataController@getPuMeLi');
 Route::get('/bloquear/publicacion',     'helperDataController@bloquearPublicacionReportada');
+Route::get('/reclam/delete',            'helperDataController@deleteReclam');
+Route::get('/puntuacion-total',         'helperDataController@getPuntuacion');
 
 Route::post('/seguir',                  'seguirController@seguir');
 Route::get('/seguidores',               'seguirController@getSeguidoresList');
 Route::get('/seguidos',                 'seguirController@getSiguiendoList');
 Route::get('/my-publications',          'publicacionController@indexMyPublications');
 Route::get('/my-ubications',            'ubicacionController@indexMyUbications');
+
 
 

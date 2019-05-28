@@ -18,6 +18,7 @@ class publicacionEstado extends Seeder
         DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 4, 'titulo' => 'Eliminada'));
         DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 5, 'titulo' => 'Recuperada'));
         DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 6, 'titulo' => 'Guardada como borrador'));
+        DB::table('tbl_publicacionEstado')->insert(array('idPublicacionEstado' => 7, 'titulo' => 'Reclamada'));
         
 
         $this->command->info('Estados de publicacion agregados correctamente');

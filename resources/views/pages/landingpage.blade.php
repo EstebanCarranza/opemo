@@ -12,24 +12,7 @@
     <h4>Testimonios</h4>
 </div>
 <?php
-/*
-    $testimonioTitulo = [
-        '0' => 'Muy bueno',
-        '1' => 'Lo recomiendo',
-        '2' => 'Muchas gracias',
-        '3' => 'De lo mejor',
-        '4' => 'Gracias',
-        '5' => 'Increíble'
-    ];
-    $testimonioDescripcion = [
-        '0' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',
-        '1' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',
-        '2' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',
-        '3' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',
-        '4' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas',
-        '5' => 'Gracias a OPEMO y a un joven caritativo pude recuperar mi cartera con las tarjetas de crédito intactas'
-    ];
-    */
+
 ?>
 @if(isset($testimoniosList))
     @foreach($testimoniosList as $testimonio)

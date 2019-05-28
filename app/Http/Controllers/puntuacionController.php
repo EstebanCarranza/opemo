@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Models\PublicacionReclamada;
-use App\Http\Database\publicacionReclamadaDatabase;
-use Illuminate\Http\Request;
 
-class publicacionReclamadaController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class puntuacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class publicacionReclamadaController extends Controller
     public function index()
     {
         //
-        return view('messages.index');
     }
 
     /**
@@ -36,43 +35,27 @@ class publicacionReclamadaController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $db = new publicacionReclamadaDatabase();
-        $user_info = \Auth::user();
-        $var = new PublicacionReclamada();
+        //
+        DB::table('tbl_puntuacion')->insert(
+            [
+                'puntuacion'=> $request->puntuacion,
+                'idUsuario' => $request->idUsuario,
+                'idPublicacion' => $request->idPublicacion
+            ]
+        );
+        DB::table('tbl_publicacionReclamada')
+            ->where('idPublicacion',$request->idPublicacion)
+            ->delete();
 
-        $ajax = $request->input('ajax');
-        $var->setDescripcion($request->input('descripcion'));
-        $var->setIdPublicacion($request->input('idPublicacion'));
-        $var->setIdUsuarioReclamador($user_info->id);
-
-        
-        $idPublicacionReclamada = $db->insert($var);
-        $var->setIdPublicacionReclamada($idPublicacionReclamada);
-        
-        if($var->getIdPublicacionReclamada() != -1)
-        {
-            if($ajax)
-            {
-                $dataPub = array(
-                    'actualizado' => true,
-                    'idPublicacion' => $var->getIdPublicacion(),
-                    'descripcion' => $var->getDescripcion(),
-                    'idUsuarioReclamador'=>$var->getIdUsuarioReclamador(),
-                    'idPublicacionReclamada' => $var->getIdPublicacionReclamada()
-                );
-                
-                return response()->json($dataPub);
-            }else
-            {
-                return redirect('publication-list/'.$var->getIdPublicacion());
-            }
-        }else
-        {
-            return redirect('dashboard');
-        }
-      
+        DB::table('tbl_publicacion')
+            ->where('idPublicacion',$request->idPublicacion)
+            ->update(['idPublicacionEstado'=>5]);
             
+        $result = array();
+        $data = true;
+        $respuesta = array_push($result, $data);
+        
+        return response()->json($respuesta);
     }
 
     /**

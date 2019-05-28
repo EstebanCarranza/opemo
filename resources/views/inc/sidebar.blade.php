@@ -21,7 +21,7 @@
     <li><a href="{{url('/profile/')}}">Mis perfil</a></li>
     <li><a href="/my-publications">Mis publicaciones</a></li>
     <li><a href="/my-ubications">Mis ubicaciones</a></li>
-    <li><a href="/my-recovery-objects">Mis objetos recuperados</a></li>
+    <li><a href="/messages">Respuestas y mensajes</a></li>
     <!-- my-user-reports -->
     @if(\Auth::user()->idNivelAcceso == 2)
     <li><div class="divider"></div></li>
@@ -56,6 +56,8 @@
       <section id="frmRecoveryPassword">
         @include('forms.recovery-password')
       </section>
+
+      
   @endif
 </ul>
 
@@ -96,5 +98,25 @@
            $("#frmRecoveryPassword").toggle( { direction: "left" }, 200 );
         });
 
+
+      @if ($errors->has('name'))            
+            <?php echo "alert('".$errors->first('name') ."');";?>
+      @endif
+      @if ($errors->has('email'))
+            <?php 
+                /*alert('".$errors->first('email') ."');*/
+                echo "
+                    $('#slide-out').sidenav('open');
+                    $('#frmSignUp').toggle( { direction: 'left' }, 200 );
+                    $('#frmLogin').toggle( { direction: 'left' }, 200 );
+                    ";
+                  
+                  echo "$('#logSNombre').val('".old('name')."');";
+                  echo "$('#logSCorreo').val('".old('email')."');";
+                  echo "$('#logSContrasenia').val('".old('password')."');";
+                  echo "$('#logSRepetirContrasenia').val('".old('password_confirmation')."');";
+                  echo "$('#SiUp_errorData').show();";
+            ?>                                    
+        @endif
     });
   </script>

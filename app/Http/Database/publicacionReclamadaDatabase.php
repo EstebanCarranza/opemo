@@ -36,11 +36,25 @@ class publicacionReclamadaDatabase
         ));
         
         $id = DB::getPdo()->lastInsertId();
+
+        DB::table('tbl_publicacion')
+            ->where('idPublicacion',$data->getIdPublicacion())
+                ->update(['idPublicacionEstado'=>7]);
+        
+        DB::table('tbl_mensajes')->insert(
+            array(
+            'idPublicacionReclamada'    => $id,
+            'idUsuario2'                => \Auth::user()->id,
+            'idUsuario1'                => $data->getIdUsuarioReclamador(),
+            'mensaje'                   => $data->getDescripcion()
+        ));
+        
         if($id)
             return $id;
         else 
             return -1;
         
     }
+    
     
 }

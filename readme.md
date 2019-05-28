@@ -4,7 +4,7 @@
 </p>
 <p align="left">
   <strong>Sitio web hosteado:&nbsp</strong>
-  <label>http://opemo.twicky.com/</label>
+  <label>http://opemo.twicky.com.mx/</label>
 </p>
 <p align="left">
   <strong>Instrucciones de instalación</strong>

@@ -43,28 +43,50 @@ class VResultadosBusqueda extends Migration
             from vListaPublicacion as vPub
             union
             select 
-                'ubicacion' as tipoResultado,
-                vUb.idUbicacion,
-                vUb.idUsuario,
-                vUb.name,
-                vUb.titulo as tituloUbicacion,
-                vUb.descripcion as descripcionUbicacion,
-                vUb.antiguedad,
-                vUb.pathUbicacion,
-                vUb.idCiudad,
-                vUb.tituloCiudad,
-                vUb.tituloCiudadCompleta,
-                vUb.created_at,
-                vUb.updated_at,
+            'ubicacion' as tipoResultado,
+            vUb.idUbicacion,
+            vUb.idUsuario,
+            vUb.name,
+            vUb.titulo as tituloUbicacion,
+            vUb.descripcion as descripcionUbicacion,
+            vUb.antiguedad,
+            vUb.pathUbicacion,
+            vUb.idCiudad,
+            vUb.tituloCiudad,
+            vUb.tituloCiudadCompleta,
+            vUb.created_at,
+            vUb.updated_at,
 
-                vUb.idUbicacion as dr0,
-                vUb.titulo as dr1,
-                0 as dr2,
-                'Normal' as dr3,
-                date(updated_at) as dr4,
-                time(updated_at) as dr5
+            vUb.idUbicacion as dr0,
+            vUb.titulo as dr1,
+            0 as dr2,
+            'Normal' as dr3,
+            date(updated_at) as dr4,
+            time(updated_at) as dr5
 
-            from vUbicacion as vUb;
+            from vUbicacion as vUb
+            union
+            select 
+                'usuario' as tipoResultado,
+                usr.id as idUser,
+                usr.id,
+                usr.name as nombre,
+                usr.email,
+                usr.bio,
+                fnObtenerAntiguedad(created_at) as antiguedad,
+                usr.pathAvatar,
+                usr.idNivelAcceso,
+                '1_normal,2_admin' as tituloNivelAcceso,
+                concat(usr.nombre,' ', usr.apellido_pat) as nombreCompleto,
+                usr.created_at,
+                usr.updated_at,
+                usr.bloqueado,
+                '0_noBloqueado,1_bloqueado' as tituloBloqueado,
+                '0' as dr1,
+                'Normal' as dr2,
+                usr.fechaNacimiento,
+                time(created_at) as hora
+            from users as usr;
         ");
 
     }

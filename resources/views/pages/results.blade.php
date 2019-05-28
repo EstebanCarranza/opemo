@@ -6,24 +6,21 @@
         <label for="pubTitulo">Titulo</label>
     </div>
      <div class="input-field col l4 m6 s12">
-                <input id="pubFecha" type="text" class="validate datepicker" required>
+                <input id="pubFecha" type="text" class="validate datepicker" name="fecha" required>
                 <label for="pubFecha">Fecha</label>
             </div>
             <div class="input-field col l4 m6 s12">
-                <input id="pubHora" type="text" class="validate timepicker" required>
+                <input id="pubHora" type="text" name="hora" class="validate timepicker" required>
                 <label for="pubHora">Hora</label>
             </div>
 
              <div class="input-field col l4 m6 s12">
-                    <input type="hidden" id="selectId" value="-1">
-                    <select class="insert-ubicacion" name="ubicacion" id="cbxUbicacion">    
-                    </select>
-                <label>Elige una ubicación</label>
+                <input id="pubUbicacion" type="text" class="validate" required>
+                <label for="pubUbicacion">Ubicación</label>
             </div>
             <div class="input-field col l4 m6 s12">
-                <select id="idCiudad" class="insert-ciudad">
-                </select>
-                <label>Elige un municipio</label>
+               <input id="pubMunicipio" type="text" class="validate" required>
+                <label for="pubMunicipio">Municipio</label>
             </div>
     <div class="input-field col l2 m4 s12">
         <a id="btnBuscar" class="col s12 waves-effect waves-light btn orange">Buscar</a>
@@ -84,14 +81,26 @@
         $("#pubFecha").val("");
         
         $("#pubHora").val("");
+
+        $("#pubUbicacion").val("");
+
+        $("#pubMunicipio").val("");
         
         /*$("#cbxUbicacion").val("");
         
         $("#idCiudad").val("");*/
     });
+    <?php 
+        if(isset($_GET['titulo']))
+        {
+            echo "$('#pubTitulo').val('".$_GET['titulo']."');";
+            echo "getResultados();";
+        }
+    ?>
         function getResultados()
         {
             getCargando();  
+            //debugger;
             dataToSend.page = pagination;
             if($("#pubTitulo").val()!="")
                 dataToSend.titulo = $("#pubTitulo").val();  
@@ -99,11 +108,11 @@
                 dataToSend.fecha = $("#pubFecha").val();
             if($("#pubHora").val()!="")
                 dataToSend.hora = $("#pubHora").val()+":00";
-            if($("#cbxUbicacion").find(":selected").val() != -1)
-                dataToSend.ubicacion =  $("#cbxUbicacion").find(":selected").val();
-            if($("#idCiudad").find(":selected").val()!=-1)
-                dataToSend.municipio = $("#idCiudad").find(":selected").val();
-
+            if($("#pubUbicacion").val() !="")
+                dataToSend.ubicacion =  $("#pubUbicacion").val();
+            if($("#pubMunicipio").val()!="")
+                dataToSend.municipio = $("#pubMunicipio").val();
+   // debugger;
             $.ajax({
                 url: "{{url('/search')}}",
                 async: 'true',
@@ -115,7 +124,13 @@
                     //debugger;
                     //debugger;
                 $("#search-results").html("");
-                debugger;
+               // debugger;
+                delete dataToSend.titulo;
+                delete dataToSend.fecha;
+                delete dataToSend.hora;
+                delete dataToSend.ubicacion;
+                delete dataToSend.municipio;
+
                 if(respuesta.current_page == 0)
                 {
                     $("#search-results").html("<h4 class='center orange-text'>No se encontraron resultados <li class='large orange-text material-icons'>sentiment_very_dissatisfied</li></h4>");
@@ -129,7 +144,8 @@
                                 link = "/publication-list/" + respuesta.data[i].idPublicacion;
                             else if(respuesta.data[i].tipoResultado == "ubicacion")
                                 link = "/ubications/" + respuesta.data[i].idPublicacion;
-                            
+                            else if(respuesta.data[i].tipoResultado =="usuario")
+                                link = "/profile/" + respuesta.data[i].idPublicacion;
                             var card =  
                                 "<div class='col l4 m6 s12 animated-card card-row-custom-size'>" +
                                     "<div class='card small hoverable card-custom-size'>" +
@@ -228,7 +244,7 @@
                         $("#pageLast").text(respuesta.last_page);
                         $("#paginationRow").show();
                     }
-                debugger;
+                //debugger;
                 },
                 error: function (x, h, r) {
                     alert("Error: " + x + h + r);
@@ -237,61 +253,7 @@
 
             });
         }
-        getUbicaciones();
-        function getUbicaciones()
-        {
-            $.ajax({
-                url: '/data/ubication/',
-                async: 'true',
-                type: 'GET',
-                dataType: 'json',
-                success: function (respuesta) {
-                var idCiudadSelected = $("#selectId").val();
-                if(idCiudadSelected == -1)
-                    $(".insert-ubicacion").append("<option selected value='-1' disabled>Elige una ubicación</option>");
-                else
-                    $(".insert-ubicacion").append("<option value='-1' disabled>Elige una ubicación</option>");
-                    for(var i = 0; i < respuesta.length; i++)
-                    {
-                        //agregar el option al combo de html
-                        if(idCiudadSelected == respuesta[i].idUbicacion)                
-                            $(".insert-ubicacion").append("<option selected value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
-                        else
-                            $(".insert-ubicacion").append("<option value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
-                        //actualizar el combobox de materialized
-                        $('select').formSelect();
-                    } 
-                },
-                error: function (x, h, r) {
-                    alert("Error: " + x + h + r);
-
-                }
-            });
-        }
-        getCiudades();
-        function getCiudades()
-        {
-            $.ajax({
-                url: '/Ciudad/',
-                async: 'true',
-                type: 'GET',
-                dataType: 'json',
-                success: function (respuesta) {
-                    $(".insert-ciudad").append("<option selected value='-1'>Selecciona un municipio</option>");
-                    for(var i = 0; i < respuesta.length; i++)
-                    {
-                        //agregar el option al combo de html
-                        $(".insert-ciudad").append("<option value='"+respuesta[i].idCiudad+"'>"+respuesta[i].titulo+"</option>");
-                        //actualizar el combobox de materialized
-                        $('select').formSelect();
-                    } 
-                },
-                error: function (x, h, r) {
-                    alert("Error: " + x + h + r);
-
-                }
-            });
-        }
+        
 
 
     });

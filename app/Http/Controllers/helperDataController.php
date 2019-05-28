@@ -22,6 +22,29 @@ class helperDataController extends Controller
     {
        
     }
+    public function bloquearPublicacionReportada(Request $request)
+    {
+        if($request->id)
+        {
+            DB::table('tbl_publicacionReportada')
+                ->where('idPublicacion',$request->id)
+                ->delete();
+            DB::table('tbl_publicacion')
+                ->where('idPublicacion',$request->id)
+                ->update(['idPublicacionEstado'=>1]);
+            
+        }
+        return redirect('publication-reports');
+    }
+     public function getUbications()
+    {
+        $data = new Ubicacion();
+        $dbUbicacion = new ubicacionDatabase();
+        $ubiData = DB::table($data->getTableName())
+            ->select($dbUbicacion->getIdUbicacion(), $dbUbicacion->getTitulo())->get();
+
+         return response()->json($ubiData);
+    }
     public function getUbicationsForUser()
     {
         $user_info = \Auth::user();

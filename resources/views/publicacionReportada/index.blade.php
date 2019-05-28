@@ -46,7 +46,7 @@
                       "<a href='/publication-list/"+value.idPublicacion+"'>Publicación</a>"+
                     "</span>"+
                     "<span class='black-text col s4 center'>"+
-                      "<a href='#'>Bloquear</a>"+
+                      "<a href='/bloquear/publicacion?id="+value.idPublicacion+"'>Bloquear</a>"+
                     "</span>"+
                   "</div>"+
                   "<br>"+
@@ -65,6 +65,9 @@
 
         });
     }
+
+    
+   
   });
 </script>
 

@@ -77,12 +77,15 @@ Route::get('/image/profile/avatar/',    'helperImageController@getProfileAvatarP
 Route::get('/image/profile/cover/',     'helperImageController@getProfileCoverPhoto');
 
 Route::get('/data/ubication/',          'helperDataController@getUbicationsForUser');
+Route::get('/data/ubication/all',          'helperDataController@getUbications');
 Route::get('/data/comments/',           'helperDataController@getCommentList');
 Route::get('/data/reports/list/',             'helperDataController@getPuReLi');
+Route::get('/bloquear/publicacion',     'helperDataController@bloquearPublicacionReportada');
 
 Route::post('/seguir',                  'seguirController@seguir');
 Route::get('/seguidores',               'seguirController@getSeguidoresList');
 Route::get('/seguidos',                 'seguirController@getSiguiendoList');
 Route::get('/my-publications',          'publicacionController@indexMyPublications');
 Route::get('/my-ubications',            'ubicacionController@indexMyUbications');
+
 

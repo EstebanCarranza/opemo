@@ -17,7 +17,12 @@ class busquedaController extends Controller
     {
         $whereData = array();
         if($request->titulo)
+        {
+            //array_push($whereData, ['name', 'LIKE','%'.$request->titulo.'%']);
             array_push($whereData, ['tituloPublicacion', 'LIKE','%'.$request->titulo.'%']);
+            //array_push($whereData, ['tituloUbicacion', 'LIKE','%'.$request->titulo.'%']);
+            //array_push($whereData, ['tituloCiudadCompleto', 'LIKE','%'.$request->titulo.'%']);
+        }
         if($request->descripcion)
             array_push($whereData, ['descripcion', 'LIKE','%'.$request->descripcion.'%']);
         if($request->hora)
@@ -25,9 +30,12 @@ class busquedaController extends Controller
         if($request->fecha)
             array_push($whereData, ['fecha', 'LIKE','%'.$request->fecha.'%']);
         if($request->ubicacion)
-            array_push($whereData, ['idUbicacion', '=',$request->ubicacion]);
+        {
+            array_push($whereData, ['tituloPublicacion', 'LIKE', '%'.$request->ubicacion.'%']);
+            //array_push($whereData, ['tituloUbicacion', 'LIKE', '%'.$request->ubicacion.'%']);
+        }
         if($request->municipio)
-            array_push($whereData, ['idCiudad', '=',$request->municipio]);
+            array_push($whereData, ['tituloCiudad', 'LIKE','%'.$request->municipio.'%']);
 
         
         $db = DB::table('vResultadosBusqueda')

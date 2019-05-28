@@ -4,7 +4,7 @@
     {{ method_field('PATCH') }}
     {{ csrf_field() }}
         <div class="modal-content">
-        <h4>Cambiar imagen de portada</h4>
+        <h4>Cambiar imagen de avatar</h4>
         <h6>Asegurate de que la imagen sea de 150x150 pixeles para que se coloque correctamente como portada.</h6>
         <hr>
             <p>&nbsp;</p>     

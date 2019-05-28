@@ -73,6 +73,16 @@ class dashboardController extends Controller
                 'description' => 'Aquí podrás ver y bloquear las publicaciones que han sido reportadas por la comunidad'
             )
         );
+        /*
+        array_push(
+            $this->cardsData, 
+            array
+            (
+                'title' => 'Lista de usuarios',
+                'link' => '/users-list',
+                'description' => 'Aquí podras visualizar la lista de usuarios dados de alta en la página'
+            )
+        );*/
         return $this->cardsData;
     }
 

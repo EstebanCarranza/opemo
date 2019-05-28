@@ -53,8 +53,8 @@
           @else
             @if(!Auth::guest())
               <li class="tab col s4"><a class="" href="#test1">Información</a></li>
-              <li class="tab col s4 "><a class="" href="#test3">Seguidores</a></li>
-              <li class="tab col s4"><a href="#test4">Seguidos</a></li>
+              <li class="tab col s4" id="getSeguidores"><a class="" href="#test3">Seguidores</a></li>
+              <li class="tab col s4" id="getSeguidos"><a href="#test4">Seguidos</a></li>
             @else
               <li class="tab col s12"><a class="" href="#test1">Información</a></li>
             @endif
@@ -378,12 +378,16 @@
     });
     function getSeguidores()
     {
+      var dataToSend = {
+        id:{{$usuario->getIdUsuario()}}
+      };
       $.ajax({
         url: '/seguidores',
         async: 'true',
+        data:dataToSend,
         type: 'get',
         success: function (respuesta) {
-          //debugger;
+          debugger;
           $("#listSeguidores").html("");
           for(var i= 0; i < respuesta.length; i++)
           {
@@ -444,9 +448,13 @@
     });
     function getSeguidos()
     {
+      var dataToSend = {
+        id:{{$usuario->getIdUsuario()}}
+      };     
       $.ajax({
         url: '/seguidos',
         async: 'true',
+        data:dataToSend,
         type: 'get',
         success: function (respuesta) {
           $("#listSeguidos").html("");

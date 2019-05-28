@@ -35,7 +35,7 @@
                             {{$publicacion->getTituloUbicacion()}},
                             {{$publicacion->getTituloCiudadCompleta()}}<br>
                              Publicado por:
-                         <a href="{{url('/profile/'.$publicacion->getNombreUsuario())}}">{{$publicacion->getNombreUsuario()}}</a>
+                         <a href="{{url('/profile/'.$publicacion->getIdUsuario())}}">{{$publicacion->getNombreUsuario()}}</a>
                         </small>
                     </div>
                 </div>

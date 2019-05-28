@@ -44,9 +44,9 @@
                         <span>Cargar</span>
                         <input type="hidden" id="helperEdit" name="helperEdit" value="{{$helperEdit}}">
                         @if($helperEdit)
-                          <input id='imagen-ubicacion' name='imgUbicacion' type="file" required>
+                          <input id='imagen-ubicacion' name='imgUbicacion' type="file" required accept="image/*">
                         @else
-                          <input id='imagen-ubicacion' name='imgUbicacion' type="file" >
+                          <input id='imagen-ubicacion' name='imgUbicacion' type="file"  accept="image/*">
                         @endif
                     </div>
                     <div class="file-path-wrapper">

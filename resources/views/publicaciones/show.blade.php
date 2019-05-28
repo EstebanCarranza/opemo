@@ -5,8 +5,11 @@
    
 <div class="row card-panel">
     <div class="col l6">
-    <img class="col l12 s12 materialboxed" data-caption='{{$publicacionData->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacionData->getIdPublicacion())}}">
-    
+    @if(substr($publicacionData->getPathImgVideo(),-3) == "mp4")
+        <video controls class="col l12 s12 materialboxed" data-caption='{{$publicacionData->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacionData->getIdPublicacion())}}"></video>
+    @else
+        <img class="col l12 s12 materialboxed" data-caption='{{$publicacionData->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacionData->getIdPublicacion())}}">
+    @endif
     <div class="col s12 l12">    
         <a href="{{url('/profile/'.$publicacionData->getIdUsuario())}}">
             <div class="card-panel z-depth-1 report-size ">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\File;
+//use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -34,11 +35,23 @@ class helperImageController extends Controller
             if($publicacion)
             {
                 $data->setPathImgVideo($publicacion->pathImgVideo);
-                $response = response()->make(Storage::get($data->getPathImgVideo()), 200);
-                $response->header("Content-Type", 'image/png');
-                return $response;
+                /*if (!file_exists($data->getPathImgVideo())) {
+                    return 'No hay imagen';
+                }else
+                {*/
+                
+                    $response = response()->make(Storage::get($data->getPathImgVideo()), 200);
+                    if(substr($data->getPathImgVideo(),-3) == "mp4"){
+                        $response->header("Content-Type", 'video/mp4');
+                    }
+                    else
+                        $response->header("Content-Type", 'image/png');
+                    return $response;
+                //}
+                
+                
             }
-            else {return "Imagen no encontrada";}
+            else {return "Publicacion no encontrada";}
         }else {
             return "Los datos ingresados no son correctos";
         }

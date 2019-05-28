@@ -19,7 +19,11 @@
         }
     @endphp
                 <div class='card-image waves-effect waves-block waves-light'>
-                    <img class='activator' src={{ url('/image/publication?mode=1&id='.$publicacion->getIdPublicacion()) }}>
+                    @if(substr($publicacion->getPathImgVideo(),-3) == "mp4")
+                        <video controls class="" data-caption='{{$publicacion->getTitulo()}}' src="{{url('/image/publication?mode=1&id='.$publicacion->getIdPublicacion())}}"></video>
+                    @else
+                        <img class='activator' src={{ url('/image/publication?mode=1&id='.$publicacion->getIdPublicacion()) }}>
+                    @endif
                 </div>
                 <div class='card-content'>
                     <a href="#" class=""><i class='material-icons right activator'>more_vert</i></a>

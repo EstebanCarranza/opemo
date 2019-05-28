@@ -148,7 +148,9 @@ class publicacionController extends Controller
     public function getPublicationList()
     {
         $db = new publicacionDatabase();
-        $dbPublicacion = DB::table($this->view)->where($db->getIdPublicacionEstado(),3)->paginate(15);
+        $dbPublicacion = DB::table($this->view)->where($db->getIdPublicacionEstado(),3)
+        ->orderBy('updated_at','desc')
+        ->paginate(15);
         /*->select()
         ->where($db->getIdPublicacionEstado(),3)->get();*/
         $publicacionList = array();
@@ -185,6 +187,7 @@ class publicacionController extends Controller
     {
         $dbPublicacion = DB::table($this->view)
         ->where('idUsuario', $id)
+        ->orderBy('updated_at','desc')
         ->paginate(15);
         /*$dbPublicacion = DB::table($this->view)
         ->select()
@@ -281,8 +284,6 @@ class publicacionController extends Controller
         $var->setDescripcion($request->input('descripcionLarga'));
         $var->setIdUsuario($user_info->id);
         $var->setIdPublicacionEstado($request->input('idPublicacionEstado'));
-
-        
         
         
         $pathPublicacion = "users/".$user_info->id."/publicaciones/".time();

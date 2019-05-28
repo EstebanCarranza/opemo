@@ -27,9 +27,9 @@ class dashboardController extends Controller
             $this->cardsData, 
             array
             (
-                'title' => 'Respuestas y mensajes',
+                'title' => 'Reclamos',
                 'link' => '/messages',
-                'description' => 'Aquí podrás ver los mensajes de conversación sobre los reclamos que hayas hecho'
+                'description' => 'Aquí podrás ver los reclamos que has hecho'
             )
         );
         array_push(

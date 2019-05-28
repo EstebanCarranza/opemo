@@ -77,7 +77,7 @@ class helperDataController extends Controller
         //get Publication Report List
         $dbPublicacionReportada = new publicacionReportadaDatabase();
         $lista = DB::table($dbPublicacionReportada->getView())->select()
-                ->orderBy('created_at', 'asc')
+                ->orderBy('updated_at', 'desc')
                 ->get();
             
         return response()->json($lista);
@@ -90,7 +90,7 @@ class helperDataController extends Controller
                 ->where('idPublicacionEstado',7)
                 ->where('idUsuario', \Auth::user()->id)
                 ->orWhere('idUsuarioReclamador',\Auth::user()->id)
-                ->orderBy('created_at', 'asc')
+                ->orderBy('updated_at', 'desc')
                 ->get();
             
         return response()->json($lista);
@@ -110,7 +110,13 @@ class helperDataController extends Controller
         if($request->id)
         {
             $lista = DB::table('vPuntuacion')->select()->where('idUsuario', $request->id)->first();
-            return response()->json($lista);
+            if($lista)
+                return response()->json($lista);
+            else
+            {
+                $lista = ['puntuacion'=>0, 'idUsuario'=>0];
+                return response()->json($lista);
+            }
         }
     }
    

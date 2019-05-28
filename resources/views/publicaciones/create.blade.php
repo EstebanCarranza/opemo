@@ -118,11 +118,28 @@
         </button>
     </div>
 </form>
+  
 
+  <!-- Modal Structure -->
+  <div id="mdlMensaje" class="modal">
+    <div class="modal-content">
+      <h3>No tienes ninguna ubicacion :(</h3>
+      <h4 class="red-text">No puedes crear publicaciones si no has creado previamente al menos una ubicación, ¿Quieres capturar una ubicación?</h4>
+      <br>
+      <div class="row">
+        <a href="/ubications/create" class="col s12 large orange waves-effect waves-light btn">Crear una ubicación</a>
+      </div>
+      <div class="row">
+        <a href="/dashboard" class="col s12 large orange waves-effect waves-light btn">Regresar al dashboard</a>
+      </div>
+    </div>
+  </div>
 
  <script>
 $(document).ready(function(){
     $('.modal').modal();
+    
+    
     $('.datepicker').datepicker({
         autoClose : true,
         format : 'yyyy-mm-dd'
@@ -136,7 +153,10 @@ $(document).ready(function(){
     $("#btnCrear").addClass("disabled");
     $("#btnBorrador").click(function()
     {
-        agregarBorrador();
+        if($("#editMode").val())
+            agregarBorradorEditado();
+        else
+            agregarBorradorCreado();
     });
     function validar_edit()
     {
@@ -172,21 +192,33 @@ $(document).ready(function(){
             type: 'GET',
             dataType: 'json',
             success: function (respuesta) {
-            var idCiudadSelected = $("#selectId").val();
-            if(idCiudadSelected == -1)
-                $(".insert-ubicacion").append("<option selected value='-1' disabled>Elige una ubicación</option>");
-            else
-                $(".insert-ubicacion").append("<option value='-1' disabled>Elige una ubicación</option>");
-                for(var i = 0; i < respuesta.length; i++)
+                
+                if(respuesta.length == 0)
                 {
-                    //agregar el option al combo de html
-                    if(idCiudadSelected == respuesta[i].idUbicacion)                
-                        $(".insert-ubicacion").append("<option selected value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
+                    $("#mdlMensaje").modal('open');
+                    $("#btnCrear").hide();
+                    $("#btnBorrador").hide();
+
+
+                }
+                else
+                {
+                    var idCiudadSelected = $("#selectId").val();
+                    if(idCiudadSelected == -1)
+                        $(".insert-ubicacion").append("<option selected value='-1' disabled>Elige una ubicación</option>");
                     else
-                        $(".insert-ubicacion").append("<option value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
-                    //actualizar el combobox de materialized
-                    $('select').formSelect();
-                } 
+                        $(".insert-ubicacion").append("<option value='-1' disabled>Elige una ubicación</option>");
+                        for(var i = 0; i < respuesta.length; i++)
+                        {
+                            //agregar el option al combo de html
+                            if(idCiudadSelected == respuesta[i].idUbicacion)                
+                                $(".insert-ubicacion").append("<option selected value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
+                            else
+                                $(".insert-ubicacion").append("<option value='"+respuesta[i].idUbicacion+"'>"+respuesta[i].titulo+"</option>");
+                            //actualizar el combobox de materialized
+                            $('select').formSelect();
+                        } 
+                }
             },
             error: function (x, h, r) {
                 alert("Error: " + x + h + r);
@@ -218,7 +250,7 @@ $(document).ready(function(){
         });
     }*/
 
-    function agregarBorrador()
+    function agregarBorradorEditado()
     {
         var titulo = $("#pubTitulo").val();
         var fecha = $("#pubFecha").val();
@@ -251,6 +283,55 @@ $(document).ready(function(){
         url: '/publication-list/'+$("#idPublicacion").val(),
         async: 'true',
         type: 'PATCH',
+        data: data,
+        success: function (respuesta) {
+           //debugger;
+           $("#iconBtnBorrador").html("check");
+           $("#btnBorrador").addClass("green");
+           $("#btnBorrador").removeClass("orange");
+           $("#btnBorrador").html("Guardado como borrador");
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+
+        }
+
+        });
+    }
+
+     function agregarBorradorCreado()
+    {
+        var titulo = $("#pubTitulo").val();
+        var fecha = $("#pubFecha").val();
+        var hora = $("#pubHora").val();
+        var idUbicacion = $("#cbxUbicacion").find(":selected").val();
+        var descripcion = $("#epDescripcionLarga").val();
+        //var idPublicacionEstado = $("#idPublicacionEstado").val();
+        var idPublicacionEstado = 6;
+        var imagen = $("#imagen-publicacion").serialize();
+        var token = '{{csrf_token()}}';
+        var ajax = true;
+        var data = {
+                    _token:token,
+                    titulo:titulo,
+                    fecha:fecha,
+                    hora:hora,
+                    ubicacion:idUbicacion,
+                    descripcionLarga:descripcion,
+                    idPublicacionEstado:idPublicacionEstado,
+                    imgPublicacion:imagen,
+                    borrador:true,
+                    editMode:$("#editMode").val(),
+                    id:$("#idPublicacion").val(),
+                     _method: "POST",
+                     ajax
+                };
+
+        
+      $.ajax({
+        url: '/publication-list/',
+        async: 'true',
+        type: 'POST',
         data: data,
         success: function (respuesta) {
            //debugger;

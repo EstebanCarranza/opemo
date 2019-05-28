@@ -377,7 +377,7 @@ $(document).ready(function(){
         dataType: 'json',
 
         success: function (respuesta) {
-            
+            //debugger;
             $(".star").removeClass("black-text");
             $(".star").removeClass("orange-text");
           var data = respuesta.puntuacion;
@@ -430,7 +430,14 @@ $(document).ready(function(){
               estrellas = 5;
               }
             break;
-            default:break;
+            default:{
+                $("#star-1").addClass("black-text");
+                $("#star-2").addClass("black-text");
+                $("#star-3").addClass("black-text");
+                $("#star-4").addClass("black-text");
+                $("#star-5").addClass("black-text");
+                estrellas = 0;
+            }break;
           }
         },
         error: function (x, h, r) {

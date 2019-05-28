@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h4 class="center">Respuestas</h4>
+<h4 class="center">Reclamos de objetos</h4>
 <div id="listMessage"></div>
       
 
@@ -166,7 +166,7 @@
                         "<div class='col s12'>"+
                           "<span class='black-text'>"+
                           "<b>"+
-                            "Titulo de la publicación"+
+                            "Publicación que realizó "+ value.name +
                             "</b>"+
                           "</span>"+
                           "<br>"+
@@ -178,17 +178,17 @@
                           "<br><br>"+
                           "<span class='black-text'>"+
                           "<b>"+
-                            "Usuario"+
+                            "Usuario que reclama el objeto "+ 
                             "</b>"+
                           "</span>"+
                           "<br>"+
                           "<span class='black-text'>"+
-                            "<a href='/profile/"+value.idUsuario+"'> "+value.name+"</a>"+
+                            "<a href='/profile/"+value.idUsuarioReclamador+"'> "+value.nombreReclamador+"</a>"+
                           "</span>              "+
                           "<br><br>"+
                           "<span class='black-text'>"+
                           "<b>"+
-                            "Respuesta"+
+                            "Mensaje de "+ value.nombreReclamador +
                             "</b>"+
                           "</span>"+
                           "<br>"+

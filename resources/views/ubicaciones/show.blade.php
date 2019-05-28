@@ -15,11 +15,11 @@
                                     {{$ubicacion->getAlias()}}
                                 </div>
                                 <div>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
+                                    <i id="star-1" value="1" class='star black-text material-icons'>star</i>
+                                    <i id="star-2" value="2" class='star black-text material-icons'>star</i>
+                                    <i id="star-3" value="3" class='star black-text material-icons'>star</i>
+                                    <i id="star-4" value="4" class='star black-text material-icons'>star</i>
+                                    <i id="star-5" value="5" class='star black-text material-icons'>star</i>
                                 </div>
                             </div>
                         </div>
@@ -55,6 +55,87 @@
     <script>
     $(document).ready(function(){
         $('.materialboxed').materialbox();
+        
+    getPuntuacion();
+    function getPuntuacion()
+    {
+      $.ajax({
+        url: "{{url('/puntuacion-total?id='.$ubicacion->getIdUsuario())}}",
+        async: 'true',
+        type: 'GET',
+        dataType: 'json',
+
+        success: function (respuesta) {
+            debugger;
+            $(".star").removeClass("black-text");
+            $(".star").removeClass("orange-text");
+          var data = respuesta.puntuacion;
+          estrellas = 0;
+          switch(data)
+          {
+            case "1": {
+             // debugger;
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("black-text");
+              $("#star-3").addClass("black-text");
+              $("#star-4").addClass("black-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 1;
+              }
+            break;
+            case "2": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("black-text");
+              $("#star-4").addClass("black-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 2;
+              }
+            break;
+            case "3": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("orange-text");
+              $("#star-4").addClass("black-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 3;
+              }
+            break;
+            case "4": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("orange-text");
+              $("#star-4").addClass("orange-text");
+              $("#star-5").addClass("black-text");
+              estrellas = 4;
+              }
+            break;
+            case "5": {
+              $("#star-1").addClass("orange-text");
+              $("#star-2").addClass("orange-text");
+              $("#star-3").addClass("orange-text");
+              $("#star-4").addClass("orange-text");
+              $("#star-5").addClass("orange-text");
+              estrellas = 5;
+              }
+            break;
+            default:{
+                $("#star-1").addClass("black-text");
+                $("#star-2").addClass("black-text");
+                $("#star-3").addClass("black-text");
+                $("#star-4").addClass("black-text");
+                $("#star-5").addClass("black-text");
+                estrellas = 0;
+            }break;
+          }
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+
+        }
+
+        });
+    }   
     });
     </script>
 @stop

@@ -99,7 +99,8 @@ class publicacionDatabase
                 $this->hora          =>          $publicacionN->getHora(),
                 $this->idUbicacion   =>          $publicacionN->getIdUbicacion(),
                 $this->idPublicacionEstado =>    $publicacionN->getIdPublicacionEstado(),
-                $this->descripcion   =>          $publicacionN->getDescripcion()
+                $this->descripcion   =>          $publicacionN->getDescripcion(),
+                $this->updated_at  => null
             ]);
         return true;
     }
@@ -115,7 +116,8 @@ class publicacionDatabase
                 $this->idPublicacionEstado =>    $publicacionN->getIdPublicacionEstado(),
                 $this->pathVistaPrevia =>        $publicacionN->getPathImgVideo(),
                 $this->descripcion   =>          $publicacionN->getDescripcion(),
-                $this->pathImgVideo   =>         $publicacionN->getPathImgVideo()
+                $this->pathImgVideo   =>         $publicacionN->getPathImgVideo(),
+                $this->updated_at  => null
             ]);
         return true;
     }

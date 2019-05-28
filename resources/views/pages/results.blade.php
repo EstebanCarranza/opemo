@@ -140,25 +140,37 @@
                         for(var i = 0; i < respuesta.data.length; i++)
                         {          
                             var link = "";
+                            var imagenURL = "";
+                            var tituloCiudadCompleto = "";
                             if(respuesta.data[i].tipoResultado == "publicacion")
+                            {
                                 link = "/publication-list/" + respuesta.data[i].idPublicacion;
+                                imagenURL = "/image/publication?mode=1&id=" + respuesta.data[i].idPublicacion;
+                            }
                             else if(respuesta.data[i].tipoResultado == "ubicacion")
+                            {
                                 link = "/ubications/" + respuesta.data[i].idPublicacion;
+                                imagenURL = "/image/ubication?id=" + respuesta.data[i].idPublicacion;
+                            }
                             else if(respuesta.data[i].tipoResultado =="usuario")
+                            {
                                 link = "/profile/" + respuesta.data[i].idPublicacion;
+                                imagenURL = "/image/profile/cover?id=" + respuesta.data[i].idPublicacion;
+                            }
+                            (respuesta.data[i].tituloCiudadCompleto!=null)?tituloCiudadCompleto=respuesta.data[i].tituloCiudadCompleto:tituloCiudadCompleto='';
                             var card =  
                                 "<div class='col l4 m6 s12 animated-card card-row-custom-size'>" +
                                     "<div class='card small hoverable card-custom-size'>" +
                                         "<div class='card-image waves-effect waves-block waves-light'>" +
-                                            "<img class='activator' src=''>" +
+                                            "<img class='activator' src='"+imagenURL+"'>" +
                                         "</div>" +
                                         "<div class='card-content'>" +
                                             "<a href='#' class=''><i class='material-icons right activator'>more_vert</i></a>" +
-                                            "<span class='card-title  grey-text text-darken-4 truncate'>"+respuesta.data[i].idPublicacion+respuesta.data[i].tituloPublicacion+"</span>" +                                        
+                                            "<span class='card-title  grey-text text-darken-4 truncate'>"+respuesta.data[i].tituloPublicacion+"</span>" +                                        
                                             "<p><a href='"+link+"'>Abrir</a>"+
                                             "<div class='card-footer'>" +
                                                 "<small class='text-muted truncate'>" +
-                                                    respuesta.data[i].tituloCiudadCompleto+"&nbsp;<br>" +
+                                                    tituloCiudadCompleto+"&nbsp;<br>" +
                                                     respuesta.data[i].antiguedad +
                                                 "</small>" +
                                             "</div>" +

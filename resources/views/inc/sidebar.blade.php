@@ -21,7 +21,7 @@
     <li><a href="{{url('/profile/')}}">Mis perfil</a></li>
     <li><a href="/my-publications">Mis publicaciones</a></li>
     <li><a href="/my-ubications">Mis ubicaciones</a></li>
-    <li><a href="/messages">Respuestas y mensajes</a></li>
+    <li><a href="/messages">Reclamos</a></li>
     <!-- my-user-reports -->
     @if(\Auth::user()->idNivelAcceso == 2)
     <li><div class="divider"></div></li>
@@ -40,9 +40,9 @@
     </form>
   @else
   <li><div class="user-view">
-      <div class="background orange">
+      <div class="background orange">        
       </div>
-      <a href="#user"><img class="circle" src="img/profile.png"></a>
+      <a href="#user"><img class="circle" src="{{url('defaultData/avatar_.png')}}"></a>
       <a href="#"><span class="white-text name">Anónimo</span></a>
       <a class="white-text lnkIniciarSesion">Inicia sesión o registrate</a>
     </div></li>

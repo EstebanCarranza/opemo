@@ -559,7 +559,14 @@ getPuntuacion();
               estrellas = 5;
               }
             break;
-            default:break;
+            default:{
+                $("#star-1").addClass("black-text");
+                $("#star-2").addClass("black-text");
+                $("#star-3").addClass("black-text");
+                $("#star-4").addClass("black-text");
+                $("#star-5").addClass("black-text");
+                estrellas = 0;
+            }break;
           }
         },
         error: function (x, h, r) {

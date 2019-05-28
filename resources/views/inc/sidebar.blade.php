@@ -53,6 +53,7 @@
       <section id="frmSignUp">
         @include('forms.signup')
       </section>
+      
       <section id="frmRecoveryPassword">
         @include('forms.recovery-password')
       </section>
@@ -68,6 +69,7 @@
                 edge:'right'
             }
         );
+        
         $("#frmSignUp").hide();
          $("#frmRecoveryPassword").hide();
 
@@ -90,6 +92,7 @@
            $("#frmLogin").show(200);
         });
 
+        
         $("#lnkRecuperarContrasenia").click(function()
         {
              
@@ -98,25 +101,80 @@
            $("#frmRecoveryPassword").toggle( { direction: "left" }, 200 );
         });
 
-
-      @if ($errors->has('name'))            
-            <?php echo "alert('".$errors->first('name') ."');";?>
-      @endif
       @if ($errors->has('email'))
             <?php 
                 /*alert('".$errors->first('email') ."');*/
-                echo "
-                    $('#slide-out').sidenav('open');
-                    $('#frmSignUp').toggle( { direction: 'left' }, 200 );
-                    $('#frmLogin').toggle( { direction: 'left' }, 200 );
-                    ";
-                  
-                  echo "$('#logSNombre').val('".old('name')."');";
-                  echo "$('#logSCorreo').val('".old('email')."');";
-                  echo "$('#logSContrasenia').val('".old('password')."');";
-                  echo "$('#logSRepetirContrasenia').val('".old('password_confirmation')."');";
-                  echo "$('#SiUp_errorData').show();";
+                
+                if(old('type')=="register"){
+                   echo "
+                        $('#slide-out').sidenav('open');
+                        $('#frmSignUp').toggle( { direction: 'left' }, 200 );
+                        $('#frmLogin').toggle( { direction: 'left' }, 200 );
+                        ";
+                      
+                      echo "$('#logSNombre').val('".old('name')."');";
+                      echo "$('#logSCorreo').val('".old('email')."');";
+                      echo "$('#logSContrasenia').val('".old('password')."');";
+                      echo "$('#logSRepetirContrasenia').val('".old('password_confirmation')."');";
+                      echo "$('#SiUp_errorData').show();";
+                      
+                }
+                if(old('login')=="login")
+                {                  
+                    echo "
+                      $('#slide-out').sidenav('open');
+                      $('#frmLogin').toggle( { direction: 'left' }, 200 );
+                      $('#frmSignUp').toggle( { direction: 'left' }, 200 );
+                      ";
+                    
+                    echo "$('#logCorreo').val('".old('email')."');";
+                    echo "$('#logContrasenia').val('".old('password')."');";                  
+                    echo "$('#SiUp_errorDataLogin').show();";
+                    
+                    //old('email',"");
+                 // }
+                }
+               /*old('email',"");
+               old('password',"");*/
             ?>                                    
+        @endif
+        @if ($errors->has('password'))
+          <?php 
+                /*alert('".$errors->first('email') ."');*/
+                if(old('type')=="register")
+                {
+                  echo "
+                        $('#slide-out').sidenav('open');
+                        $('#frmSignUp').toggle( { direction: 'left' }, 200 );
+                        $('#frmLogin').toggle( { direction: 'left' }, 200 );
+                        ";
+                      
+                      echo "$('#logSNombre').val('".old('name')."');";
+                      echo "$('#logSCorreo').val('".old('email')."');";
+                      echo "$('#logSContrasenia').val('".old('password')."');";
+                      echo "$('#logSRepetirContrasenia').val('".old('password_confirmation')."');";
+                      echo "$('#SiUp_errorPassword').show();";
+                      
+                }
+                if(old('type')=="login")
+                {
+                  //if(old('email') != "")
+                    echo "
+                        $('#slide-out').sidenav('open');
+                        $('#frmSignUp').toggle( { direction: 'left' }, 200 );
+                        $('#frmLogin').toggle( { direction: 'left' }, 200 );
+                        ";
+                      
+                      
+                      echo "$('#logCorreo').val('".old('email')."');";
+                      echo "$('#logContrasenia').val('".old('password')."');";
+                      echo "$('#SiUp_errorDataLogin').show();";
+                      
+
+                      /*old('email',"");
+                      old('password',"");*/
+                }
+            ?>         
         @endif
     });
   </script>

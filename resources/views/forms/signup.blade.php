@@ -4,11 +4,14 @@
     -->
 <form id="frmSignUp" class="" method="POST" action="{{route('register')}}">
    {{csrf_field()}}
-    
+    <input type="hidden" name="type" value="register">
     <li class="row">
         <h5 class="center"> Registrarme </h5>
         <div id="SiUp_errorData" class="input-field col s10 offset-s1">
             <strong><h6  class="red-text center">Ya existe este usuario intenta con otro correo</h6></strong>
+        </div>
+        <div id="SiUp_errorPassword" class="col s10 offset-s1">
+            <strong><h6 class="red-text center">La contraseña debe tener mínimo 6 caracteres</h6></strong>
         </div>
         <div class="input-field col s10 offset-s1">
         <input name="name" id="logSNombre" type="text" class="validate" required>
@@ -18,9 +21,10 @@
         <input name="email" id="logSCorreo" type="email" class="validate" required>
         <label for="logSCorreo">Correo electrónico</label>
         </div>
+        
         <div class="input-field col s10 offset-s1">
         <input name="password" id="logSContrasenia" type="password" class="validate" required>
-        <label for="logSContrasenia">Contraseña</label>
+        <label for="logSContrasenia">Contraseña <small>(mínimo 6 caracteres)</small></label>
         </div>
         <div class="input-field col s10 offset-s1">
         <input name="password_confirmation" id="logSRepetirContrasenia" type="password" class="validate" required>
@@ -46,6 +50,8 @@
     $(document).ready(function()
     {
         $("#SiUp_errorData").hide();
+        $("#SiUp_errorPassword").hide();
+        
         /*
         $("#frmSignUp").on('submit', function(evt){
             evt.preventDefault();  
@@ -80,7 +86,16 @@
             && $("#logSRepetirContrasenia").val()!=""
             )
             {
-                $("#btnSignUp").removeClass("disabled");
+                if($("#logSContrasenia").val() == $("#logSRepetirContrasenia").val())
+                {
+                    if($("#logSContrasenia").val().length >= 6)
+                        $("#btnSignUp").removeClass("disabled");
+                    else
+                        $("#btnSignUp").addClass("disabled");
+                }   
+                else
+                        $("#btnSignUp").addClass("disabled");
+                
             }else
             {
                 $("#btnSignUp").addClass("disabled");

@@ -4,7 +4,7 @@
 </p>
 <p align="left">
   <strong>Sitio web hosteado:&nbsp</strong>
-  <label>http://opemo.herokuapp.com/</label>
+  <label>http://opemo.twicky.com/</label>
 </p>
 <p align="left">
   <strong>Instrucciones de instalación</strong>
@@ -16,18 +16,15 @@
     <li>Ejecutar las migraciones: php artisan migrate</li>
     <li>Si aparece algún error actualizar la migración: php artisan migrate:refresh</li>
     <li>Ejecutar el seed testimonio: php artisan db:seed --class=testimonio</li>
-    <li>Ejecutar el seed razonReporte: php artisan db:seed --class=razonReporte</li>
     <li>Ejecutar el seed pais: php artisan db:seed --class=pais</li>
     <li>Ejecutar el seed estado: php artisan db:seed --class=estado</li>
     <li>Ejecutar el seed ciudad: php artisan db:seed --class=ciudad</li>
-    <li>Ejecutar el seed ubicaciones: php artisan db:seed --class=ubicaciones</li>
+    <li>Ejecutar el seed estado de publicaciones: php artisan db:seed --class=publicacionEstado</li>
+    <li>Ejecutar el seed razonReporte: php artisan db:seed --class=razonReporte</li>
     <li>Ejecutar el servidor: php artisan serve </li>
    </ul>
 </p>
-
-
-
-
+<a href="http://opemo.twicky.com.mx"><img src="http://opemo.twicky.com.mx/img/catbox.jpg"></a>
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 

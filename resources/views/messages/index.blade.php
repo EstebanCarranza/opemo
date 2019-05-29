@@ -5,7 +5,7 @@
       
 
 <!-- Modal Structure -->
-  <div id="modalResponse" class="modal">
+  <div id="modPuntuacion" class="modal">
     <div class="modal-content">
       <h4>Marcar objeto como recuperado</h4>
       <h5>
@@ -25,10 +25,9 @@
       <input type="hidden" name="idPublicacion" id="txtIdPublicacion">
     </div>
     <div class="modal-footer">
-      <a id="btnEnviarPuntuacion" class="modal-close waves-effect waves-green btn-flat">Enviar puntuación</a>
+     <a id="btnEnviarPuntuacion" class="modal-close waves-effect waves-green btn-flat">Enviar puntuación</a>     
     </div>
   </div>
-
   <!-- Modal Structure -->
   <div id="msgReporte" class="modal white green-text">
     <div class="modal-content center">
@@ -43,9 +42,11 @@
 <script>    
     $(document).ready(function()
     {
+      $('.modal').modal();
       var estrellas = 3;
       function enviarPuntuacion()
       {
+        
         var data = {
                     _token:'{{csrf_token()}}',
                     idUsuario:$("#txtIdUsuario").val(),
@@ -55,16 +56,15 @@
 
         
       $.ajax({
-        url: '/puntuacion/',
+        url: '/puntuacion',
         async: 'true',
         type: 'POST',
         data: data,
         success: function (respuesta) {
-           //debugger;   
-
-           getPublicationReclam();
-            $("#msgReporteTitle").html("Objeto recuperado y puntuación agregada correctamente");
+          // debugger;   
+          $("#msgReporteTitle").html("Gracias por puntuar al usuario y finalizar la recuperación de tu objeto :)");
           $("#msgReporte").modal('open');
+           getPublicationReclam();
         },
         error: function (x, h, r) {
             alert("Error: " + x + h + r);
@@ -75,6 +75,7 @@
       }
       $("#btnEnviarPuntuacion").click(function()
       {
+        debugger;
         enviarPuntuacion();
       });
 
@@ -144,7 +145,7 @@
             default:break;
           }
         });
-        $('.modal').modal();
+        
         getPublicationReclam();
         function getPublicationReclam()
         {
@@ -206,7 +207,7 @@
                           {
                               cardReclamo = 
                                 "<span class='black-text col s4 center'>"+
-                                  "<a class='modal-trigger' user='"+value.name+"' objeto='"+value.tituloPublicacion+"' idUsuario='"+value.idUsuario+"' idPublicacion='"+value.idPublicacion+"'>Recuperado</a>"+
+                                  "<a href='#modPuntuacion' class='modal-trigger' user='"+value.name+"' objeto='"+value.tituloPublicacion+"' idUsuario='"+value.idUsuario+"' idPublicacion='"+value.idPublicacion+"'>Recuperado</a>"+
                                 "</span>";
                               cardData += cardReclamo;
                           }
@@ -242,7 +243,7 @@
                   $("#recObjeto").html($(this).attr('objeto'));
                   $("#txtIdPublicacion").val($(this).attr('idPublicacion'));
                   $("#txtIdUsuario").val($(this).attr('idUsuario'));
-                  $("#modalResponse").modal('open');
+                  $("#modPuntuacion").modal('open');
                 });
             
             },

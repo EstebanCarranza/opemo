@@ -28,4 +28,10 @@
     </div>
     @endforeach
 @endif
+<script>
+    $(document).ready(function()
+    {
+        $('#slide-out').sidenav('open');
+    });
+</script>
 @stop

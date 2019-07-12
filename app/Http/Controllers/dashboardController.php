@@ -94,6 +94,7 @@ class dashboardController extends Controller
             return redirect('/');
         else
         {
+
             $this->getCardsForUser();
             if(\Auth::user()->idNivelAcceso == 2)
                 $this->getCardsForAdmin();

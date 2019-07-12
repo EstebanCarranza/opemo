@@ -87,6 +87,8 @@ Route::get('/data/message/list/',       'helperDataController@getPuMeLi');
 Route::get('/bloquear/publicacion',     'helperDataController@bloquearPublicacionReportada');
 Route::get('/reclam/delete',            'helperDataController@deleteReclam');
 Route::get('/puntuacion-total',         'helperDataController@getPuntuacion');
+Route::get('/enviar-correo',            'helperDataController@enviarCorreo');
+Route::get('/testimonios',            'helperDataController@getTestimonio');
 
 Route::post('/seguir',                  'seguirController@seguir');
 Route::get('/seguidores',               'seguirController@getSeguidoresList');

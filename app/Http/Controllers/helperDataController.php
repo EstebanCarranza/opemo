@@ -10,6 +10,10 @@ use App\Http\Database\ubicacionDatabase;
 use App\Http\Database\comentarioDatabase;
 use App\Http\Database\publicacionReportadaDatabase;
 use App\Http\Database\publicacionReclamadaDatabase;
+//use App\Mail;
+use \App\Mail\EnviarCorreos;
+///use Mail;
+use Illuminate\Support\Facades\Mail;
 
 
 class helperDataController extends Controller
@@ -22,6 +26,24 @@ class helperDataController extends Controller
     public function index()
     {
        
+    }
+    public function enviarCorreo(Request $request)
+    {
+        //Mail::to(['esteban.carranza@outlook.com'])->send("");
+        if($request->id)
+        {
+            $dbUsuario = DB::table('users')->select()->where('id',$request->id)->first();
+            \Mail::send('mail.index',array(
+             'usuario'=>$dbUsuario), function($message)
+            {
+                //$message->from('your@gmail.com');
+                $message->to('esteban.carranza@outlook.com', 'Esteban')->subject('Nuevo inicio de sesión');
+            });
+            return response()->json(['enviarCorreo'=>true]);
+        }else {
+            return response()->json(['enviarCorreo'=>false]);
+        }
+         
     }
     public function bloquearPublicacionReportada(Request $request)
     {
@@ -118,6 +140,19 @@ class helperDataController extends Controller
                 return response()->json($lista);
             }
         }
+    }
+    public function getTestimonio(Request $request)
+    {
+       
+            $lista = DB::table('tbl_testimonio')->select()->where('mostrarTestimonio', true)->get();
+            if($lista)
+                return response()->json($lista);
+            else
+            {
+                $lista = ['idTestimonio'=>0, 'descripcion'=>"No encontrado"];
+                return response()->json($lista);
+            }
+       
     }
    
 }

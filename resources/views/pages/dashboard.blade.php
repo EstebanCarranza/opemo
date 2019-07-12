@@ -29,4 +29,44 @@
         @endif
     </div>
 </div>
+<script>
+  $(document).ready(function()
+  {
+
+    if(localStorage.getItem('sendMail')==null)
+    {
+        localStorage.setItem('sendMail',false);
+        sendEmailAuth();
+    }
+    if(!localStorage.getItem('sendMail'))
+    {
+        sendEmailAuth();
+    }
+    function sendEmailAuth()
+    {
+        var dataToSend = {
+            id : {{Auth::user()->id}}
+        };
+      $.ajax({
+        url: "{{url('/enviar-correo')}}",
+        async: 'true',
+        type: 'GET',
+        data:dataToSend,
+        dataType: 'json',
+
+        success: function (respuesta) {
+            localStorage.setItem('sendMail',true);
+        },
+        error: function (x, h, r) {
+            alert("Error: " + x + h + r);
+
+        }
+
+        });
+    }
+
+    
+   
+  });
+</script>
 @stop
